@@ -168,13 +168,9 @@ export default function MesasPage() {
       if (cajas && dbUser) {
         const rolesData = dbUser.roles;
         const rolesObj = Array.isArray(rolesData) ? rolesData[0] : rolesData;
-        const userNivel = rolesObj?.nivel || 0;
         const userRol = rolesObj?.nombre || "";
 
-        if (userNivel >= 4) {
-          // Admin y Superadmin pueden ver y operar siempre (by-pass de seguridad para supervisión)
-          setCajaAbierta(true);
-        } else if (userRol === 'cajero') {
+        if (userRol === 'cajero') {
           // Si es cajero, verificar que ESTE cajero específico tenga su caja abierta
           const { data: lastArqueo } = await supabase
             .from("arqueos")
@@ -202,10 +198,24 @@ export default function MesasPage() {
             setCajaAbierta(false);
           }
         } else {
-          // Otros roles: verificar si hay al menos una caja abierta en general
-          const { data: lastArqueo } = await supabase.from("arqueos").select("*").eq("id_caja", cajas.id_caja).eq("tipo", "apertura").order("created_at", { ascending: false }).limit(1).maybeSingle();
+          // Admin, Superadmin y otros roles: verificar si hay al menos una caja abierta en general
+          const { data: lastArqueo } = await supabase
+            .from("arqueos")
+            .select("*")
+            .eq("id_caja", cajas.id_caja)
+            .eq("tipo", "apertura")
+            .order("created_at", { ascending: false })
+            .limit(1)
+            .maybeSingle();
           if (lastArqueo) {
-            const { data: cierrePost } = await supabase.from("arqueos").select("*").eq("id_caja", cajas.id_caja).eq("tipo", "cierre").gt("created_at", lastArqueo.created_at).limit(1).maybeSingle();
+            const { data: cierrePost } = await supabase
+              .from("arqueos")
+              .select("*")
+              .eq("id_caja", cajas.id_caja)
+              .eq("tipo", "cierre")
+              .gt("created_at", lastArqueo.created_at)
+              .limit(1)
+              .maybeSingle();
             setCajaAbierta(!cierrePost);
           } else {
             setCajaAbierta(false);
