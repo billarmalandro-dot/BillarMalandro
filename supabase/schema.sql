@@ -550,11 +550,26 @@ CREATE TRIGGER on_auth_user_created
 -- Protege las tablas para que solo usuarios autenticados accedan
 -- ============================================================
 
+-- Función auxiliar para verificar si el usuario logueado es empleado activo
+CREATE OR REPLACE FUNCTION public.es_empleado()
+RETURNS boolean 
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+BEGIN
+  RETURN EXISTS (
+    SELECT 1 FROM public.usuarios 
+    WHERE auth_id = auth.uid() AND activo = true
+  );
+END;
+$$;
+
 ALTER TABLE clientes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE productos ENABLE ROW LEVEL SECURITY;
 ALTER TABLE categorias ENABLE ROW LEVEL SECURITY;
 ALTER TABLE sucursales ENABLE ROW LEVEL SECURITY;
 
+-- POLÍTICAS PARA CLIENTES
 -- Los clientes solo pueden ver/editar su propio perfil
 CREATE POLICY "Clientes ven su propio perfil"
   ON clientes FOR SELECT
@@ -564,15 +579,49 @@ CREATE POLICY "Clientes editan su propio perfil"
   ON clientes FOR UPDATE
   USING (auth.uid() = auth_id);
 
--- Productos y categorías visibles para todos (catálogo público)
+-- Los empleados pueden ver, insertar y editar todos los clientes
+CREATE POLICY "Empleados ven todos los clientes"
+  ON clientes FOR SELECT
+  USING (public.es_empleado());
+
+CREATE POLICY "Empleados insertan clientes"
+  ON clientes FOR INSERT
+  WITH CHECK (public.es_empleado());
+
+CREATE POLICY "Empleados editan todos los clientes"
+  ON clientes FOR UPDATE
+  USING (public.es_empleado())
+  WITH CHECK (public.es_empleado());
+
+-- POLÍTICAS PARA PRODUCTOS
+-- Productos visibles para todos (catálogo público)
 CREATE POLICY "Productos visibles para todos"
   ON productos FOR SELECT
   USING (true);
 
+CREATE POLICY "Empleados gestionan productos"
+  ON productos FOR ALL
+  USING (public.es_empleado())
+  WITH CHECK (public.es_empleado());
+
+-- POLÍTICAS PARA CATEGORÍAS
+-- Categorías visibles para todos (catálogo público)
 CREATE POLICY "Categorias visibles para todos"
   ON categorias FOR SELECT
   USING (true);
 
+CREATE POLICY "Empleados gestionan categorias"
+  ON categorias FOR ALL
+  USING (public.es_empleado())
+  WITH CHECK (public.es_empleado());
+
+-- POLÍTICAS PARA SUCURSALES
+-- Sucursales visibles para todos (catálogo público)
 CREATE POLICY "Sucursales visibles para todos"
   ON sucursales FOR SELECT
   USING (true);
+
+CREATE POLICY "Empleados gestionan sucursales"
+  ON sucursales FOR ALL
+  USING (public.es_empleado())
+  WITH CHECK (public.es_empleado());
