@@ -113,7 +113,7 @@ export default function LoginPage() {
           <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-billanga-primary relative mb-4">
             <Image 
               src="/logo_transparente.png" 
-              alt="Logo El Billanga" 
+              alt="Logo Billar El Malandro" 
               fill 
               sizes="64px"
               className="object-cover"

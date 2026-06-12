@@ -88,13 +88,13 @@ export default function RegistroPage() {
           <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-billanga-primary relative mb-4">
             <Image 
               src="/logo_transparente.png" 
-              alt="Logo El Billanga" 
+              alt="Logo Billar El Malandro" 
               fill 
               sizes="64px"
               className="object-cover"
             />
           </div>
-          <h2 className="text-2xl font-bold text-white text-center">Únete a El Billanga</h2>
+          <h2 className="text-2xl font-bold text-white text-center">Únete a Billar El Malandro</h2>
           <p className="text-billanga-gray text-sm mt-2 text-center">Crea tu cuenta para reservas y torneos</p>
         </div>
 

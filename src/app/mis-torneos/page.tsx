@@ -138,7 +138,7 @@ export default function MisTorneosPage() {
             <Trophy className="w-8 h-8 md:w-10 md:h-10 text-billanga-primary" />
             Zona de Torneos
           </h1>
-          <p className="text-billanga-gray mt-2">Compite, gana respeto y acumula Puntos Billanga.</p>
+          <p className="text-billanga-gray mt-2">Compite, gana respeto y acumula Puntos Malandro.</p>
         </div>
         
         {cliente && (

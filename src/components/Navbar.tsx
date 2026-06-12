@@ -240,15 +240,15 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
         <div className="relative w-8 h-8 md:w-10 md:h-10">
           <Image 
             src="/logo_transparente.png" 
-            alt="Logo La Billanga" 
+            alt="Logo Billar El Malandro" 
             fill 
             sizes="40px"
             className="object-contain"
             priority
           />
         </div>
-        <div>
-          <span className="text-billanga-primary">LA</span> BILLANGA
+        <div className="font-black tracking-tight">
+          <span className="text-billanga-primary">BILLAR</span> MALANDRO
         </div>
       </Link>
       
@@ -339,7 +339,7 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                     ) : (
                       <div className="mt-2 flex items-center gap-1.5 text-xs text-billanga-primary font-semibold bg-billanga-primary/10 px-2 py-0.5 rounded-full w-max">
                         <Award className="w-3.5 h-3.5" />
-                        <span>{clientPoints} Puntos Billanga</span>
+                        <span>{clientPoints} Puntos Malandro</span>
                       </div>
                     )}
                   </div>
@@ -459,7 +459,7 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                   </p>
                 ) : (
                   <p className="text-[11px] text-billanga-primary font-bold mt-1 flex items-center gap-1">
-                    <Award className="w-3.5 h-3.5" /> {clientPoints} Puntos Billanga
+                    <Award className="w-3.5 h-3.5" /> {clientPoints} Puntos Malandro
                   </p>
                 )}
               </div>

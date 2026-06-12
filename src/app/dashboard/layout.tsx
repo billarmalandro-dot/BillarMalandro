@@ -208,7 +208,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="h-20 px-6 flex items-center justify-between border-b border-[#2a2a2c] shrink-0">
           <Link href="/dashboard" className="flex items-center gap-2.5">
             <div className="relative w-10 h-10">
-              <img src="/logo_transparente.png" alt="Logo La Billanga" className="w-full h-full object-contain drop-shadow-md" />
+              <img src="/logo_transparente.png" alt="Logo Billar El Malandro" className="w-full h-full object-contain drop-shadow-md" />
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-sm tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-billanga-gray">

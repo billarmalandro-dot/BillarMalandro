@@ -79,7 +79,7 @@ const TicketCierre = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
 
           {/* Encabezado */}
           <div className="text-center" style={{ marginBottom: '2px' }}>
-            <p style={{ fontSize: '12px', fontWeight: 'bold' }}>EL BILLANGA</p>
+            <p style={{ fontSize: '12px', fontWeight: 'bold' }}>BILLAR EL MALANDRO</p>
             <p style={{ fontSize: '9px' }}>{data.sucursalNombre}</p>
             <p>{SEP}</p>
             <p style={{ fontWeight: 'bold' }}>CIERRE DE CAJA</p>
