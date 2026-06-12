@@ -100,13 +100,24 @@ export default function CampeonatosPage() {
   const loadInscripciones = async (camp: any) => {
     setActiveCampeonato(camp);
     try {
-      const [inscReq, clientesReq] = await Promise.all([
+      const [inscReq, clientesReq, staffReq] = await Promise.all([
         supabase.from("inscripciones").select("*, clientes(nombre, telefono)").eq("id_campeonato", camp.id_campeonato),
-        supabase.from("clientes").select("id_cliente, nombre, telefono").eq("activo", true)
+        supabase.from("clientes").select("id_cliente, nombre, telefono, email").eq("activo", true),
+        supabase.from("usuarios").select("email")
       ]);
       
+      const staffEmails = new Set(
+        (staffReq.data || [])
+          .map(u => u.email?.toLowerCase().trim())
+          .filter(Boolean)
+      );
+
+      const filteredClientes = (clientesReq.data || []).filter(
+        c => !c.email || !staffEmails.has(c.email.toLowerCase().trim())
+      );
+      
       setInscripciones(inscReq.data || []);
-      setClientes(clientesReq.data || []);
+      setClientes(filteredClientes);
       setIsRegistering(true);
     } catch (err: any) {
       alert("Error cargando inscripciones: " + err.message);

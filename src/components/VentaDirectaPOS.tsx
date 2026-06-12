@@ -65,15 +65,26 @@ export default function VentaDirectaPOS({ onClose, onSuccess }: VentaDirectaPOSP
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const [catRes, prodRes, cliRes] = await Promise.all([
+      const [catRes, prodRes, cliRes, staffRes] = await Promise.all([
         supabase.from("categorias").select("*"),
         supabase.from("productos").select("*").eq("activo", true),
-        supabase.from("clientes").select("*").eq("activo", true)
+        supabase.from("clientes").select("*").eq("activo", true),
+        supabase.from("usuarios").select("email")
       ]);
 
       if (catRes.data) setCategorias(catRes.data);
       if (prodRes.data) setProductos(prodRes.data);
-      if (cliRes.data) setClientes(cliRes.data);
+      if (cliRes.data) {
+        const staffEmails = new Set(
+          (staffRes.data || [])
+            .map(u => u.email?.toLowerCase().trim())
+            .filter(Boolean)
+        );
+        const filtered = cliRes.data.filter(
+          c => !c.email || !staffEmails.has(c.email.toLowerCase().trim())
+        );
+        setClientes(filtered);
+      }
       setLoading(false);
     };
     fetchData();

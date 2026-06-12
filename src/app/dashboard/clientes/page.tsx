@@ -26,13 +26,27 @@ export default function ClientesPage() {
   const loadClientes = async () => {
     setLoading(true);
     try {
+      // Obtener correos del personal para filtrarlos
+      const { data: staffData } = await supabase.from("usuarios").select("email");
+      const staffEmails = new Set(
+        (staffData || [])
+          .map(u => u.email?.toLowerCase().trim())
+          .filter(Boolean)
+      );
+
       const { data, error } = await supabase
         .from("clientes")
         .select("*")
         .order("puntos_fidelidad", { ascending: false });
       
       if (error) throw error;
-      setClientes(data || []);
+
+      // Filtrar clientes para no mostrar empleados
+      const filtered = (data || []).filter(
+        c => !c.email || !staffEmails.has(c.email.toLowerCase().trim())
+      );
+
+      setClientes(filtered);
     } catch (err: any) {
       setDbError(err.message);
     } finally {
