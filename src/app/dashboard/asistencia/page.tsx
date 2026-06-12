@@ -175,7 +175,7 @@ export default function AsistenciaPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Tarjeta de Reloj Checador */}
-        <div className={`border rounded-2xl p-8 flex flex-col items-center justify-center text-center gap-6 ${estaTrabajando ? "bg-[#1a1a1c] border-billanga-primary/30 shadow-[0_0_30px_rgba(0,230,118,0.1)]" : "bg-[#1a1a1c] border-[#2a2a2c]"}`}>
+        <div className={`border rounded-2xl p-8 flex flex-col items-center justify-center text-center gap-6 ${estaTrabajando ? "bg-[#1a1a1c] border-billanga-primary/30 shadow-[0_0_30px_rgba(220, 38, 38,0.1)]" : "bg-[#1a1a1c] border-[#2a2a2c]"}`}>
           
           <div className="space-y-2">
             <h3 className="text-lg text-billanga-gray capitalize">{hoyStr}</h3>
@@ -213,7 +213,7 @@ export default function AsistenciaPage() {
                 <button 
                   onClick={handleMarcarEntrada}
                   disabled={isProcessing}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-billanga-primary hover:bg-billanga-primary-dark disabled:opacity-50 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(0,230,118,0.3)]"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-billanga-primary hover:bg-billanga-primary-dark disabled:opacity-50 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"
                 >
                   {isProcessing ? <RefreshCw className="w-5 h-5 animate-spin" /> : <LogIn className="w-5 h-5" />}
                   Iniciar Turno

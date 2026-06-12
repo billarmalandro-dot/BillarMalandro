@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-billanga-black: #080c09;
-  --color-billanga-dark: #111a13;
-  --color-billanga-primary: #00e676;
-  --color-billanga-primary-dark: #00b25c;
-  --color-billanga-accent: #d4af37;
-  --color-billanga-white: #cde5d0;
-  --color-billanga-gray: #789980;
+  --color-billanga-black: #141416;
+  --color-billanga-dark: #1e1e21;
+  --color-billanga-primary: #dc2626;
+  --color-billanga-primary-dark: #991b1b;
+  --color-billanga-accent: #ffffff;
+  --color-billanga-white: #f3f4f6;
+  --color-billanga-gray: #9ca3af;
 }
 
 :root {

@@ -84,7 +84,7 @@ export default function CatalogoList({ searchQuery = "" }: CatalogoListProps) {
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((producto) => (
-            <div key={producto.id} className="glass-panel rounded-2xl overflow-hidden group flex flex-col transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,230,118,0.2)] hover:-translate-y-1 border border-white/5 hover:border-billanga-primary/50">
+            <div key={producto.id} className="glass-panel rounded-2xl overflow-hidden group flex flex-col transition-all duration-300 hover:shadow-[0_0_20px_rgba(220, 38, 38,0.2)] hover:-translate-y-1 border border-white/5 hover:border-billanga-primary/50">
               {/* Contenedor de Imagen */}
               <div className="relative h-64 w-full bg-black/50 overflow-hidden">
                 <Image 

@@ -163,7 +163,7 @@ export default function CampeonatosPage() {
           </button>
           <button 
             onClick={() => setIsCreating(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(0,230,118,0.3)]"
+            className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"
           >
             <Plus className="w-4 h-4" /> Nuevo Torneo
           </button>
@@ -221,7 +221,7 @@ export default function CampeonatosPage() {
 
               <button 
                 onClick={() => loadInscripciones(camp)}
-                className="w-full flex items-center justify-between px-4 py-3 bg-[#2a2a2c] hover:bg-billanga-primary text-white rounded-xl text-sm font-bold transition-all group-hover:shadow-[0_0_20px_rgba(0,230,118,0.2)]"
+                className="w-full flex items-center justify-between px-4 py-3 bg-[#2a2a2c] hover:bg-billanga-primary text-white rounded-xl text-sm font-bold transition-all group-hover:shadow-[0_0_20px_rgba(220, 38, 38,0.2)]"
               >
                 <span>Ver Inscripciones</span>
                 <ChevronRight className="w-4 h-4" />

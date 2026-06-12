@@ -403,7 +403,7 @@ export default function CajaPage() {
             <button onClick={() => setIsClosingCaja(true)} className="flex items-center gap-2 px-4 py-2.5 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl text-sm font-bold transition-all"><Lock className="w-4 h-4" /> Cerrar Caja</button>
           </div>
         ) : (
-          <button onClick={() => setIsOpeningCaja(true)} className="flex items-center gap-2 px-6 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(0,230,118,0.3)]"><Unlock className="w-5 h-5" /> Abrir Caja</button>
+          <button onClick={() => setIsOpeningCaja(true)} className="flex items-center gap-2 px-6 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"><Unlock className="w-5 h-5" /> Abrir Caja</button>
         )}
       </div>
 

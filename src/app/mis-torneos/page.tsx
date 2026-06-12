@@ -142,7 +142,7 @@ export default function MisTorneosPage() {
         </div>
         
         {cliente && (
-          <div className="glass-panel px-4 py-2 rounded-xl flex items-center gap-3 border border-billanga-primary/20 shadow-[0_0_15px_rgba(0,230,118,0.15)]">
+          <div className="glass-panel px-4 py-2 rounded-xl flex items-center gap-3 border border-billanga-primary/20 shadow-[0_0_15px_rgba(220, 38, 38,0.15)]">
             <Award className="w-5 h-5 text-yellow-500" />
             <div>
               <p className="text-[10px] text-billanga-gray uppercase font-bold tracking-wider">Tus Puntos</p>
@@ -252,7 +252,7 @@ export default function MisTorneosPage() {
                   <div className="w-full sm:w-auto flex-shrink-0">
                     <button 
                       onClick={() => handleInscribirse(torneo.id_torneo)}
-                      className="w-full sm:w-auto bg-billanga-primary hover:bg-billanga-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-xl transition-all shadow-[0_4px_15px_rgba(0,230,118,0.3)] hover:shadow-[0_6px_20px_rgba(0,230,118,0.4)] flex items-center justify-center gap-2"
+                      className="w-full sm:w-auto bg-billanga-primary hover:bg-billanga-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-xl transition-all shadow-[0_4px_15px_rgba(220, 38, 38,0.3)] hover:shadow-[0_6px_20px_rgba(220, 38, 38,0.4)] flex items-center justify-center gap-2"
                     >
                       Inscribirme <ChevronRight className="w-4 h-4" />
                     </button>

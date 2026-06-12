@@ -174,7 +174,7 @@ export default function RegistroPage() {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 rounded-lg bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold transition-all shadow-[0_0_15px_rgba(0,230,118,0.3)] hover:shadow-[0_0_25px_rgba(0,230,118,0.5)] mt-6 disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full py-3 rounded-lg bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold transition-all shadow-[0_0_15px_rgba(220, 38, 38,0.3)] hover:shadow-[0_0_25px_rgba(220, 38, 38,0.5)] mt-6 disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading ? (
               <>

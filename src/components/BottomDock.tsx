@@ -97,7 +97,7 @@ export default function BottomDock() {
           <div className="relative -mt-8 flex flex-col items-center flex-1 z-50">
             <button 
               onClick={scrollToTop}
-              className="w-14 h-14 rounded-full bg-gradient-to-br from-billanga-primary to-billanga-primary-dark text-white flex items-center justify-center shadow-[0_0_20px_rgba(0,230,118,0.5)] hover:shadow-[0_0_25px_rgba(0,230,118,0.7)] hover:scale-105 transition-all duration-300 border border-white/20 active:scale-95"
+              className="w-14 h-14 rounded-full bg-gradient-to-br from-billanga-primary to-billanga-primary-dark text-white flex items-center justify-center shadow-[0_0_20px_rgba(220, 38, 38,0.5)] hover:shadow-[0_0_25px_rgba(220, 38, 38,0.7)] hover:scale-105 transition-all duration-300 border border-white/20 active:scale-95"
             >
               <Home className="w-6 h-6" />
             </button>

@@ -388,7 +388,7 @@ export default function InventarioPage() {
             onClick={() => setActiveView(tab.key)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
               activeView === tab.key 
-                ? 'bg-billanga-primary text-white shadow-[0_0_12px_rgba(0,230,118,0.3)]' 
+                ? 'bg-billanga-primary text-white shadow-[0_0_12px_rgba(220, 38, 38,0.3)]' 
                 : 'text-billanga-gray hover:text-white hover:bg-[#2a2a2c]'
             }`}
           >

@@ -349,7 +349,7 @@ export default function HomePage() {
         <div className="fixed bottom-28 md:bottom-6 left-0 w-full px-4 z-40 flex justify-center animate-in slide-in-from-bottom-10 fade-in duration-300">
           <button 
             onClick={() => setIsCartOpen(true)}
-            className="w-full max-w-sm bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-2xl p-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,230,118,0.4)] transition-transform hover:scale-105 active:scale-95"
+            className="w-full max-w-sm bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-2xl p-4 flex items-center justify-between shadow-[0_10px_30px_rgba(220, 38, 38,0.4)] transition-transform hover:scale-105 active:scale-95"
           >
             <div className="flex items-center gap-3">
               <div className="bg-white/20 p-2 rounded-xl relative">
@@ -501,7 +501,7 @@ export default function HomePage() {
                 <button 
                   onClick={handleSendOrder}
                   disabled={isOrdering || !tableNumber}
-                  className="w-full py-4 bg-billanga-primary hover:bg-[#b81d24] disabled:opacity-50 text-white rounded-xl font-black text-lg transition-all shadow-[0_0_20px_rgba(0,230,118,0.3)] flex justify-center items-center gap-2 active:scale-95"
+                  className="w-full py-4 bg-billanga-primary hover:bg-[#b81d24] disabled:opacity-50 text-white rounded-xl font-black text-lg transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)] flex justify-center items-center gap-2 active:scale-95"
                 >
                   {isOrdering ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div> : "Enviar a la Barra"}
                 </button>

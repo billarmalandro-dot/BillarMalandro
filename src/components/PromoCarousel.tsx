@@ -154,7 +154,7 @@ export default function PromoCarousel({ novedades }: PromoCarouselProps) {
           </p>
 
           <div className="flex justify-center">
-            <button className="bg-billanga-primary hover:bg-[#b81d24] text-white px-8 py-3 rounded-full text-sm md:text-base font-bold tracking-wide transition-all duration-300 shadow-[0_0_15px_rgba(0,230,118,0.3)] hover:scale-105 flex items-center gap-2">
+            <button className="bg-billanga-primary hover:bg-[#b81d24] text-white px-8 py-3 rounded-full text-sm md:text-base font-bold tracking-wide transition-all duration-300 shadow-[0_0_15px_rgba(220, 38, 38,0.3)] hover:scale-105 flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
               Ver Detalles
             </button>

@@ -192,7 +192,7 @@ export default function VentasPage() {
         <p className="text-billanga-gray text-center max-w-md mb-8">
           Por razones de seguridad, no puedes acceder al módulo de ventas ni cobrar productos hasta que inicies tu turno y abras la caja.
         </p>
-        <a href="/dashboard/caja" className="px-8 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold rounded-xl flex items-center gap-2 shadow-[0_0_20px_rgba(0,230,118,0.4)] transition-all">
+        <a href="/dashboard/caja" className="px-8 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold rounded-xl flex items-center gap-2 shadow-[0_0_20px_rgba(220, 38, 38,0.4)] transition-all">
           Ir a Abrir Caja
         </a>
       </div>
@@ -207,7 +207,7 @@ export default function VentasPage() {
           <p className="text-sm text-billanga-gray">Revisa, filtra y gestiona todas las ventas registradas.</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => setIsDirectPOSOpen(true)} className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold rounded-lg text-sm transition-all shadow-[0_0_15px_rgba(0,230,118,0.3)]"><Plus className="w-4 h-4" /> Venta Directa</button>
+          <button onClick={() => setIsDirectPOSOpen(true)} className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold rounded-lg text-sm transition-all shadow-[0_0_15px_rgba(220, 38, 38,0.3)]"><Plus className="w-4 h-4" /> Venta Directa</button>
           <button onClick={loadData} className="flex items-center gap-2 px-4 py-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg text-sm transition-all"><RefreshCw className="w-4 h-4" /> Refrescar</button>
         </div>
       </div>

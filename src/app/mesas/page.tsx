@@ -132,7 +132,7 @@ export default function MesasDisponiblesPage() {
                   onClick={() => setActiveSucursalId(sucursal.id_sucursal)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all ${
                     activeSucursalId === sucursal.id_sucursal 
-                      ? 'bg-billanga-primary text-white shadow-[0_0_15px_rgba(0,230,118,0.3)]' 
+                      ? 'bg-billanga-primary text-white shadow-[0_0_15px_rgba(220, 38, 38,0.3)]' 
                       : 'bg-[#121212] border border-[#2a2a2c] text-billanga-gray hover:text-white hover:border-billanga-primary/50'
                   }`}
                 >
@@ -224,7 +224,7 @@ export default function MesasDisponiblesPage() {
               href="https://wa.me/59172665231" 
               target="_blank" 
               rel="noreferrer"
-              className="px-8 py-4 bg-billanga-primary hover:bg-[#b81d24] text-white rounded-2xl font-black text-lg transition-all shadow-[0_0_20px_rgba(0,230,118,0.3)] hover:scale-105"
+              className="px-8 py-4 bg-billanga-primary hover:bg-[#b81d24] text-white rounded-2xl font-black text-lg transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)] hover:scale-105"
             >
               ¡Reserva tu mesa por WhatsApp!
             </a>

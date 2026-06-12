@@ -703,7 +703,7 @@ export default function MesasPage() {
         <p className="text-billanga-gray text-center max-w-md mb-8">
           Por razones de seguridad, no puedes interactuar con las mesas ni realizar ventas hasta que inicies tu turno y abras la caja.
         </p>
-        <a href="/dashboard/caja" className="px-8 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold rounded-xl flex items-center gap-2 shadow-[0_0_20px_rgba(0,230,118,0.4)] transition-all">
+        <a href="/dashboard/caja" className="px-8 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold rounded-xl flex items-center gap-2 shadow-[0_0_20px_rgba(220, 38, 38,0.4)] transition-all">
           Ir a Abrir Caja
         </a>
       </div>
@@ -736,7 +736,7 @@ export default function MesasPage() {
           {isAdmin && (
             <button 
               onClick={() => setIsManagingMesas(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(0,230,118,0.2)]"
+              className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(220, 38, 38,0.2)]"
             >
               <Settings className="w-4 h-4" /> Gestionar Mesas
             </button>
@@ -764,7 +764,7 @@ export default function MesasPage() {
             <div 
               key={mesa.id_mesa} 
               className={`relative p-3 rounded-[2rem] bg-neutral-900 shadow-2xl border-b-8 transition-all duration-300 aspect-[4/3] flex flex-col group ${
-                isEnUso ? "border-neutral-950 scale-[1.02] shadow-[0_20px_40px_rgba(0,230,118,0.15)]" : "border-neutral-950 hover:scale-[1.02]"
+                isEnUso ? "border-neutral-950 scale-[1.02] shadow-[0_20px_40px_rgba(220, 38, 38,0.15)]" : "border-neutral-950 hover:scale-[1.02]"
               }`}
             >
               <div className={`relative w-full h-full flex flex-col justify-center items-center overflow-hidden transition-colors duration-700
@@ -1037,7 +1037,7 @@ export default function MesasPage() {
             </div>
             <div className="p-6 border-t border-[#2a2a2c] bg-black/20 flex gap-3 shrink-0">
               <button onClick={() => { setIsOpeningSession(false); setSelectedMesa(null); }} className="flex-1 py-3 rounded-lg border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white font-bold text-sm">Cancelar</button>
-              <button onClick={handleConfirmStart} className="flex-[2] py-3 rounded-lg bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold text-sm flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,230,118,0.3)]"><Play className="w-4 h-4 fill-white" /> Iniciar Mesa</button>
+              <button onClick={handleConfirmStart} className="flex-[2] py-3 rounded-lg bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold text-sm flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(220, 38, 38,0.3)]"><Play className="w-4 h-4 fill-white" /> Iniciar Mesa</button>
             </div>
           </div>
         </div>
@@ -1136,7 +1136,7 @@ export default function MesasPage() {
                     <span className="text-[10px] font-normal opacity-70">Avisa al cliente que pase a caja.</span>
                   </div>
                 ) : (
-                  <button onClick={openCobroModal} className="w-full py-4 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(0,230,118,0.3)] flex justify-center items-center gap-2">
+                  <button onClick={openCobroModal} className="w-full py-4 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)] flex justify-center items-center gap-2">
                     <Banknote className="w-5 h-5" /> Cobrar y Finalizar
                   </button>
                 )}
@@ -1165,7 +1165,7 @@ export default function MesasPage() {
             </div>
             <div className="flex-1 overflow-y-auto p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 content-start scrollbar-thin scrollbar-thumb-[#2a2a2c]">
                 {filteredProducts.map(prod => (
-                  <button key={prod.id_producto} onClick={() => handleAddProduct(prod)} className="bg-[#1a1a1c] border border-[#2a2a2c] hover:border-billanga-primary/50 hover:shadow-[0_0_15px_rgba(0,230,118,0.15)] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square transition-all active:scale-95 group">
+                  <button key={prod.id_producto} onClick={() => handleAddProduct(prod)} className="bg-[#1a1a1c] border border-[#2a2a2c] hover:border-billanga-primary/50 hover:shadow-[0_0_15px_rgba(220, 38, 38,0.15)] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square transition-all active:scale-95 group">
                     <div className="w-16 h-16 rounded-xl bg-black/40 flex items-center justify-center mb-3 group-hover:bg-billanga-primary/20 transition-colors overflow-hidden">
                       {prod.imagen_url ? (
                         <img src={prod.imagen_url} alt={prod.nombre} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
