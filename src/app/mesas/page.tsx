@@ -97,7 +97,7 @@ export default function MesasDisponiblesPage() {
 
       <main className="flex-1 max-w-6xl mx-auto px-4 md:px-6 pt-32 pb-20 w-full relative z-0">
         <div className="mb-8 flex justify-between items-center">
-          <Link href="/" className="inline-flex items-center text-billanga-primary hover:text-white transition-colors gap-2">
+          <Link href="/" className="inline-flex items-center text-billar-primary hover:text-white transition-colors gap-2">
             <ArrowLeft className="w-5 h-5" />
             <span className="hidden sm:inline">Volver a la tienda</span>
             <span className="sm:hidden">Volver</span>
@@ -115,10 +115,10 @@ export default function MesasDisponiblesPage() {
 
         <div className="space-y-10">
           <div className="text-center space-y-4">
-            <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-billanga-primary to-green-400">
+            <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-billar-primary to-green-400">
               Disponibilidad de Mesas
             </h1>
-            <p className="text-billanga-gray max-w-2xl mx-auto text-sm md:text-base">
+            <p className="text-billar-gray max-w-2xl mx-auto text-sm md:text-base">
               Consulta en tiempo real qué mesas están libres en nuestras sucursales y ven a jugar sin hacer filas.
             </p>
           </div>
@@ -132,8 +132,8 @@ export default function MesasDisponiblesPage() {
                   onClick={() => setActiveSucursalId(sucursal.id_sucursal)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold transition-all ${
                     activeSucursalId === sucursal.id_sucursal 
-                      ? 'bg-billanga-primary text-white shadow-[0_0_15px_rgba(220, 38, 38,0.3)]' 
-                      : 'bg-[#121212] border border-[#2a2a2c] text-billanga-gray hover:text-white hover:border-billanga-primary/50'
+                      ? 'bg-billar-primary text-white shadow-[0_0_15px_rgba(220, 38, 38,0.3)]' 
+                      : 'bg-[#121212] border border-[#2a2a2c] text-billar-gray hover:text-white hover:border-billar-primary/50'
                   }`}
                 >
                   <MapPin className="w-4 h-4" />
@@ -158,11 +158,11 @@ export default function MesasDisponiblesPage() {
           {/* Grid de Mesas */}
           {loading ? (
             <div className="flex justify-center items-center py-20">
-              <div className="w-10 h-10 border-4 border-billanga-primary border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-10 h-10 border-4 border-billar-primary border-t-transparent rounded-full animate-spin"></div>
             </div>
           ) : mesasToShow.length === 0 ? (
             <div className="text-center py-20 bg-[#121212] rounded-3xl border border-[#2a2a2c]">
-              <p className="text-billanga-gray">No hay mesas registradas en esta sucursal.</p>
+              <p className="text-billar-gray">No hay mesas registradas en esta sucursal.</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
@@ -175,7 +175,7 @@ export default function MesasDisponiblesPage() {
                     className={`relative p-5 rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center min-h-[140px] ${
                       isOccupied 
                         ? 'bg-[#1a1111] border-red-900/50' 
-                        : 'bg-[#111a14] border-green-900/50 hover:bg-[#15231a] hover:border-billanga-primary/50'
+                        : 'bg-[#111a14] border-green-900/50 hover:bg-[#15231a] hover:border-billar-primary/50'
                     }`}
                   >
                     {/* Indicador superior derecho */}
@@ -221,10 +221,10 @@ export default function MesasDisponiblesPage() {
           {/* Botón CTA Whatsapp */}
           <div className="pt-10 flex justify-center">
              <a 
-              href="https://wa.me/59172665231" 
+              href="https://wa.me/59168746014" 
               target="_blank" 
               rel="noreferrer"
-              className="px-8 py-4 bg-billanga-primary hover:bg-[#b81d24] text-white rounded-2xl font-black text-lg transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)] hover:scale-105"
+              className="px-8 py-4 bg-billar-primary hover:bg-[#b81d24] text-white rounded-2xl font-black text-lg transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)] hover:scale-105"
             >
               ¡Reserva tu mesa por WhatsApp!
             </a>

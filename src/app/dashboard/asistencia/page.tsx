@@ -136,8 +136,8 @@ export default function AsistenciaPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-billanga-gray">
-        <RefreshCw className="w-10 h-10 animate-spin text-billanga-primary mb-4" />
+      <div className="flex flex-col items-center justify-center py-24 text-billar-gray">
+        <RefreshCw className="w-10 h-10 animate-spin text-billar-primary mb-4" />
         <p className="text-sm">Cargando módulo de asistencia...</p>
       </div>
     );
@@ -152,10 +152,10 @@ export default function AsistenciaPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            <UserCheck className="w-7 h-7 text-billanga-primary" /> 
+            <UserCheck className="w-7 h-7 text-billar-primary" /> 
             Control de Asistencia
           </h2>
-          <p className="text-sm text-billanga-gray">
+          <p className="text-sm text-billar-gray">
             Registra tu hora de entrada y salida (Turno de {currentUser?.nombre})
           </p>
         </div>
@@ -175,10 +175,10 @@ export default function AsistenciaPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Tarjeta de Reloj Checador */}
-        <div className={`border rounded-2xl p-8 flex flex-col items-center justify-center text-center gap-6 ${estaTrabajando ? "bg-[#1a1a1c] border-billanga-primary/30 shadow-[0_0_30px_rgba(220, 38, 38,0.1)]" : "bg-[#1a1a1c] border-[#2a2a2c]"}`}>
+        <div className={`border rounded-2xl p-8 flex flex-col items-center justify-center text-center gap-6 ${estaTrabajando ? "bg-[#1a1a1c] border-billar-primary/30 shadow-[0_0_30px_rgba(220, 38, 38,0.1)]" : "bg-[#1a1a1c] border-[#2a2a2c]"}`}>
           
           <div className="space-y-2">
-            <h3 className="text-lg text-billanga-gray capitalize">{hoyStr}</h3>
+            <h3 className="text-lg text-billar-gray capitalize">{hoyStr}</h3>
             <p className="text-4xl font-black text-white font-mono">
               {new Date().toLocaleTimeString("es-BO", { hour: '2-digit', minute:'2-digit' })}
             </p>
@@ -213,13 +213,13 @@ export default function AsistenciaPage() {
                 <button 
                   onClick={handleMarcarEntrada}
                   disabled={isProcessing}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-billanga-primary hover:bg-billanga-primary-dark disabled:opacity-50 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-billar-primary hover:bg-billar-primary-dark disabled:opacity-50 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"
                 >
                   {isProcessing ? <RefreshCw className="w-5 h-5 animate-spin" /> : <LogIn className="w-5 h-5" />}
                   Iniciar Turno
                 </button>
                 {asistenciaActual?.hora_salida && (
-                  <p className="text-xs text-billanga-gray">¿Turno doble o regreso de descanso? Puedes volver a iniciar.</p>
+                  <p className="text-xs text-billar-gray">¿Turno doble o regreso de descanso? Puedes volver a iniciar.</p>
                 )}
               </>
             )}
@@ -230,7 +230,7 @@ export default function AsistenciaPage() {
         <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl overflow-hidden flex flex-col">
           <div className="p-5 border-b border-[#2a2a2c]">
             <h3 className="font-bold text-white flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-billanga-primary" /> 
+              <Calendar className="w-5 h-5 text-billar-primary" /> 
               Tus últimos turnos
             </h3>
           </div>
@@ -244,7 +244,7 @@ export default function AsistenciaPage() {
                       <p className="text-white font-bold text-sm">
                         {new Date(reg.fecha).toLocaleDateString("es-BO", { weekday: 'short', day: 'numeric', month: 'short' })}
                       </p>
-                      <p className="text-xs text-billanga-gray mt-1 flex items-center gap-2">
+                      <p className="text-xs text-billar-gray mt-1 flex items-center gap-2">
                         <span className="flex items-center gap-1 text-green-400">
                           <LogIn className="w-3 h-3" /> 
                           {new Date(reg.hora_entrada).toLocaleTimeString("es-BO", { hour: '2-digit', minute:'2-digit' })}
@@ -256,7 +256,7 @@ export default function AsistenciaPage() {
                             {new Date(reg.hora_salida).toLocaleTimeString("es-BO", { hour: '2-digit', minute:'2-digit' })}
                           </span>
                         ) : (
-                          <span className="text-billanga-gray/50 italic">En curso...</span>
+                          <span className="text-billar-gray/50 italic">En curso...</span>
                         )}
                       </p>
                     </div>
@@ -271,7 +271,7 @@ export default function AsistenciaPage() {
                 ))}
               </div>
             ) : (
-              <div className="h-full flex flex-col items-center justify-center p-8 text-center text-billanga-gray">
+              <div className="h-full flex flex-col items-center justify-center p-8 text-center text-billar-gray">
                 <Clock className="w-8 h-8 mb-3 opacity-20" />
                 <p className="text-sm">No hay registros recientes.</p>
               </div>

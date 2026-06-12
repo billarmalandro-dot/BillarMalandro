@@ -199,7 +199,7 @@ export default function ComprasPage() {
   if (loading) {
     return (
       <div className="flex h-[calc(100vh-100px)] items-center justify-center">
-        <RefreshCw className="w-8 h-8 text-billanga-primary animate-spin" />
+        <RefreshCw className="w-8 h-8 text-billar-primary animate-spin" />
       </div>
     );
   }
@@ -210,10 +210,10 @@ export default function ComprasPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white flex items-center gap-3">
-            <Truck className="w-8 h-8 text-billanga-primary" />
+            <Truck className="w-8 h-8 text-billar-primary" />
             Compras de Inventario
           </h1>
-          <p className="text-billanga-gray mt-1">Registra el ingreso de mercadería y bebidas, y opcionalmente descuenta el dinero de tu caja.</p>
+          <p className="text-billar-gray mt-1">Registra el ingreso de mercadería y bebidas, y opcionalmente descuenta el dinero de tu caja.</p>
         </div>
       </div>
 
@@ -239,11 +239,11 @@ export default function ComprasPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           
           <div className="space-y-2">
-            <label className="text-sm font-medium text-billanga-gray block">Producto Comprado <span className="text-red-500">*</span></label>
+            <label className="text-sm font-medium text-billar-gray block">Producto Comprado <span className="text-red-500">*</span></label>
             <select
               value={selectedProductId}
               onChange={(e) => setSelectedProductId(e.target.value)}
-              className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billanga-primary"
+              className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billar-primary"
               required
             >
               <option value="">-- Seleccionar Producto --</option>
@@ -257,19 +257,19 @@ export default function ComprasPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-billanga-gray block">Cantidad Entrante <span className="text-red-500">*</span></label>
+              <label className="text-sm font-medium text-billar-gray block">Cantidad Entrante <span className="text-red-500">*</span></label>
               <input
                 type="number"
                 min="1"
                 step="0.01"
                 value={cantidad}
                 onChange={(e) => setCantidad(e.target.value)}
-                className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billanga-primary"
+                className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billar-primary"
                 required
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-billanga-gray block">Costo Total (Bs.) <span className="text-red-500">*</span></label>
+              <label className="text-sm font-medium text-billar-gray block">Costo Total (Bs.) <span className="text-red-500">*</span></label>
               <input
                 type="number"
                 min="0"
@@ -277,18 +277,18 @@ export default function ComprasPage() {
                 placeholder="0.00"
                 value={costoTotal}
                 onChange={(e) => setCostoTotal(e.target.value)}
-                className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billanga-primary"
+                className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billar-primary"
                 required
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-billanga-gray block">Pagar con (Egreso de Caja)</label>
+            <label className="text-sm font-medium text-billar-gray block">Pagar con (Egreso de Caja)</label>
             <select
               value={selectedCajaId}
               onChange={(e) => setSelectedCajaId(e.target.value)}
-              className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billanga-primary"
+              className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billar-primary"
             >
               <option value="none">No descontar de ninguna caja del sistema</option>
               {cajas.map(c => (
@@ -301,13 +301,13 @@ export default function ComprasPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-billanga-gray block">Observaciones (Opcional)</label>
+            <label className="text-sm font-medium text-billar-gray block">Observaciones (Opcional)</label>
             <input
               type="text"
               value={observaciones}
               onChange={(e) => setObservaciones(e.target.value)}
               placeholder="Ej: Proveedor Coca-Cola, Factura #1234"
-              className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billanga-primary"
+              className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billar-primary"
             />
           </div>
 
@@ -315,7 +315,7 @@ export default function ComprasPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-billanga-primary hover:bg-[#b81d24] text-white font-bold py-3 px-4 rounded-xl transition-all shadow-[0_0_15px_rgba(220, 38, 38,0.2)] hover:shadow-[0_0_20px_rgba(220, 38, 38,0.4)] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-billar-primary hover:bg-[#b81d24] text-white font-bold py-3 px-4 rounded-xl transition-all shadow-[0_0_15px_rgba(220, 38, 38,0.2)] hover:shadow-[0_0_20px_rgba(220, 38, 38,0.4)] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>

@@ -111,7 +111,7 @@ export default function NotificationBell() {
       >
         <Bell className="w-5 h-5 text-white" />
         {unreadCount > 0 && (
-          <span className="absolute top-0 right-0 w-4 h-4 bg-billanga-primary text-white text-[9px] font-bold rounded-full border-2 border-[#1a1a1c] flex items-center justify-center animate-pulse">
+          <span className="absolute top-0 right-0 w-4 h-4 bg-billar-primary text-white text-[9px] font-bold rounded-full border-2 border-[#1a1a1c] flex items-center justify-center animate-pulse">
             {unreadCount > 9 ? '9+' : unreadCount}
           </span>
         )}
@@ -125,7 +125,7 @@ export default function NotificationBell() {
             {unreadCount > 0 && (
               <button 
                 onClick={markAllAsRead}
-                className="text-xs text-billanga-gray hover:text-white flex items-center gap-1 transition-colors"
+                className="text-xs text-billar-gray hover:text-white flex items-center gap-1 transition-colors"
               >
                 <CheckCheck className="w-3.5 h-3.5" />
                 Marcar leídas
@@ -135,7 +135,7 @@ export default function NotificationBell() {
           
           <div className="max-h-80 overflow-y-auto">
             {notifs.length === 0 ? (
-              <div className="p-8 text-center text-billanga-gray flex flex-col items-center">
+              <div className="p-8 text-center text-billar-gray flex flex-col items-center">
                 <Bell className="w-8 h-8 opacity-20 mb-2" />
                 <p className="text-sm">No tienes notificaciones nuevas.</p>
               </div>
@@ -144,20 +144,20 @@ export default function NotificationBell() {
                 {notifs.map(n => (
                   <div 
                     key={n.id_notificacion} 
-                    className={`p-4 border-b border-[#2a2a2c] last:border-0 hover:bg-white/5 transition-colors relative group ${!n.leida ? 'bg-billanga-primary/5' : ''}`}
+                    className={`p-4 border-b border-[#2a2a2c] last:border-0 hover:bg-white/5 transition-colors relative group ${!n.leida ? 'bg-billar-primary/5' : ''}`}
                   >
                     <div className="flex gap-3 items-start">
                       <div className="mt-0.5">{getIcon(n.tipo)}</div>
                       <div className="flex-1 min-w-0">
                         <div className="flex justify-between items-start gap-2">
-                          <h4 className={`text-sm truncate ${!n.leida ? 'font-bold text-white' : 'font-medium text-billanga-gray'}`}>
+                          <h4 className={`text-sm truncate ${!n.leida ? 'font-bold text-white' : 'font-medium text-billar-gray'}`}>
                             {n.titulo}
                           </h4>
-                          <span className="text-[10px] text-billanga-gray whitespace-nowrap">
+                          <span className="text-[10px] text-billar-gray whitespace-nowrap">
                             {new Date(n.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                           </span>
                         </div>
-                        <p className={`text-xs mt-1 line-clamp-2 ${!n.leida ? 'text-gray-300' : 'text-billanga-gray/70'}`}>
+                        <p className={`text-xs mt-1 line-clamp-2 ${!n.leida ? 'text-gray-300' : 'text-billar-gray/70'}`}>
                           {n.mensaje}
                         </p>
                       </div>

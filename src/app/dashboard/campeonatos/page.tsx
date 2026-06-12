@@ -150,10 +150,10 @@ export default function CampeonatosPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            <Trophy className="w-7 h-7 text-billanga-primary" /> 
+            <Trophy className="w-7 h-7 text-billar-primary" /> 
             Campeonatos y Torneos
           </h2>
-          <p className="text-sm text-billanga-gray">
+          <p className="text-sm text-billar-gray">
             Crea torneos de billar y gestiona las inscripciones.
           </p>
         </div>
@@ -163,7 +163,7 @@ export default function CampeonatosPage() {
           </button>
           <button 
             onClick={() => setIsCreating(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"
+            className="flex items-center gap-2 px-4 py-2 bg-billar-primary hover:bg-billar-primary-dark text-white rounded-xl text-sm font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"
           >
             <Plus className="w-4 h-4" /> Nuevo Torneo
           </button>
@@ -183,37 +183,37 @@ export default function CampeonatosPage() {
       {/* Grid de Campeonatos */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {loading ? (
-          <div className="col-span-full py-12 text-center text-billanga-gray">Cargando torneos...</div>
+          <div className="col-span-full py-12 text-center text-billar-gray">Cargando torneos...</div>
         ) : campeonatos.length > 0 ? (
           campeonatos.map((camp) => (
-            <div key={camp.id_campeonato} className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl p-6 hover:border-billanga-primary/50 transition-all flex flex-col group">
+            <div key={camp.id_campeonato} className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl p-6 hover:border-billar-primary/50 transition-all flex flex-col group">
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-3">
-                  <div className={`p-3 rounded-xl ${camp.estado === "proximo" ? "bg-blue-500/10 text-blue-400" : camp.estado === "en_curso" ? "bg-green-500/10 text-green-400" : "bg-[#2a2a2c] text-billanga-gray"}`}>
+                  <div className={`p-3 rounded-xl ${camp.estado === "proximo" ? "bg-blue-500/10 text-blue-400" : camp.estado === "en_curso" ? "bg-green-500/10 text-green-400" : "bg-[#2a2a2c] text-billar-gray"}`}>
                     <Trophy className="w-6 h-6" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-white leading-tight">{camp.nombre}</h3>
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-billanga-gray">{camp.estado.replace("_", " ")}</span>
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-billar-gray">{camp.estado.replace("_", " ")}</span>
                   </div>
                 </div>
               </div>
               
               <div className="space-y-3 mb-6 flex-1">
-                <div className="flex items-center gap-2 text-sm text-billanga-gray">
-                  <Calendar className="w-4 h-4 text-billanga-primary" />
+                <div className="flex items-center gap-2 text-sm text-billar-gray">
+                  <Calendar className="w-4 h-4 text-billar-primary" />
                   <span>{new Date(camp.fecha_inicio).toLocaleDateString("es-BO")}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-billanga-gray">
-                  <Users className="w-4 h-4 text-billanga-primary" />
+                <div className="flex items-center gap-2 text-sm text-billar-gray">
+                  <Users className="w-4 h-4 text-billar-primary" />
                   <span>Cupo Máximo: {camp.cupo_maximo || "Ilimitado"}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-billanga-gray">
+                <div className="flex items-center gap-2 text-sm text-billar-gray">
                   <span className="font-bold text-green-400">Bs. {camp.precio_inscripcion}</span>
                   <span>/ Inscripción</span>
                 </div>
                 {camp.premio && (
-                  <p className="text-sm text-billanga-gray bg-[#2a2a2c]/50 p-2 rounded-lg italic">
+                  <p className="text-sm text-billar-gray bg-[#2a2a2c]/50 p-2 rounded-lg italic">
                     Premio: {camp.premio}
                   </p>
                 )}
@@ -221,7 +221,7 @@ export default function CampeonatosPage() {
 
               <button 
                 onClick={() => loadInscripciones(camp)}
-                className="w-full flex items-center justify-between px-4 py-3 bg-[#2a2a2c] hover:bg-billanga-primary text-white rounded-xl text-sm font-bold transition-all group-hover:shadow-[0_0_20px_rgba(220, 38, 38,0.2)]"
+                className="w-full flex items-center justify-between px-4 py-3 bg-[#2a2a2c] hover:bg-billar-primary text-white rounded-xl text-sm font-bold transition-all group-hover:shadow-[0_0_20px_rgba(220, 38, 38,0.2)]"
               >
                 <span>Ver Inscripciones</span>
                 <ChevronRight className="w-4 h-4" />
@@ -229,7 +229,7 @@ export default function CampeonatosPage() {
             </div>
           ))
         ) : (
-          <div className="col-span-full py-12 text-center text-billanga-gray border border-dashed border-[#2a2a2c] rounded-2xl">
+          <div className="col-span-full py-12 text-center text-billar-gray border border-dashed border-[#2a2a2c] rounded-2xl">
             <Trophy className="w-12 h-12 mx-auto mb-4 opacity-20" />
             <p className="text-sm">No hay torneos registrados.</p>
           </div>
@@ -242,15 +242,15 @@ export default function CampeonatosPage() {
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] w-full max-w-lg rounded-2xl overflow-hidden animate-in zoom-in-95 duration-200">
             <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center">
               <h3 className="font-bold text-lg text-white">Nuevo Torneo</h3>
-              <button onClick={() => setIsCreating(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billanga-gray"><X className="w-5 h-5" /></button>
+              <button onClick={() => setIsCreating(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billar-gray"><X className="w-5 h-5" /></button>
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <label className="text-sm font-medium text-billanga-gray block mb-1">Nombre del Torneo *</label>
-                <input type="text" value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none" placeholder="Ej: Torneo Relámpago Bola 8" />
+                <label className="text-sm font-medium text-billar-gray block mb-1">Nombre del Torneo *</label>
+                <input type="text" value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none" placeholder="Ej: Torneo Relámpago Bola 8" />
               </div>
               <div>
-                <label className="text-sm font-medium text-billanga-gray block mb-1">Banner del Torneo (Opcional)</label>
+                <label className="text-sm font-medium text-billar-gray block mb-1">Banner del Torneo (Opcional)</label>
                 <ImageUploader 
                   value={formData.imagen_url} 
                   onChange={(url) => setFormData({ ...formData, imagen_url: url })} 
@@ -259,32 +259,32 @@ export default function CampeonatosPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-billanga-gray block mb-1">Fecha Inicio *</label>
-                  <input type="date" value={formData.fecha_inicio} onChange={e => setFormData({...formData, fecha_inicio: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none [color-scheme:dark]" />
+                  <label className="text-sm font-medium text-billar-gray block mb-1">Fecha Inicio *</label>
+                  <input type="date" value={formData.fecha_inicio} onChange={e => setFormData({...formData, fecha_inicio: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none [color-scheme:dark]" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-billanga-gray block mb-1">Cupo Máximo</label>
-                  <input type="number" value={formData.cupo_maximo} onChange={e => setFormData({...formData, cupo_maximo: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none" />
+                  <label className="text-sm font-medium text-billar-gray block mb-1">Cupo Máximo</label>
+                  <input type="number" value={formData.cupo_maximo} onChange={e => setFormData({...formData, cupo_maximo: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-billanga-gray block mb-1">Costo Inscripción (Bs.)</label>
-                  <input type="number" step="0.01" value={formData.precio_inscripcion} onChange={e => setFormData({...formData, precio_inscripcion: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none" />
+                  <label className="text-sm font-medium text-billar-gray block mb-1">Costo Inscripción (Bs.)</label>
+                  <input type="number" step="0.01" value={formData.precio_inscripcion} onChange={e => setFormData({...formData, precio_inscripcion: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-billanga-gray block mb-1">Premio</label>
-                  <input type="text" value={formData.premio} onChange={e => setFormData({...formData, premio: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none" placeholder="Ej: 1000 Bs + Trofeo" />
+                  <label className="text-sm font-medium text-billar-gray block mb-1">Premio</label>
+                  <input type="text" value={formData.premio} onChange={e => setFormData({...formData, premio: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none" placeholder="Ej: 1000 Bs + Trofeo" />
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium text-billanga-gray block mb-1">Descripción</label>
-                <textarea rows={2} value={formData.descripcion} onChange={e => setFormData({...formData, descripcion: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none" placeholder="Reglas, formato..." />
+                <label className="text-sm font-medium text-billar-gray block mb-1">Descripción</label>
+                <textarea rows={2} value={formData.descripcion} onChange={e => setFormData({...formData, descripcion: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none" placeholder="Reglas, formato..." />
               </div>
             </div>
             <div className="p-6 border-t border-[#2a2a2c] bg-black/20 flex gap-3">
               <button onClick={() => setIsCreating(false)} className="flex-1 py-2.5 rounded-lg border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white font-bold text-sm">Cancelar</button>
-              <button onClick={handleCreate} className="flex-1 py-2.5 rounded-lg bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold text-sm">Crear Torneo</button>
+              <button onClick={handleCreate} className="flex-1 py-2.5 rounded-lg bg-billar-primary hover:bg-billar-primary-dark text-white font-bold text-sm">Crear Torneo</button>
             </div>
           </div>
         </div>
@@ -297,9 +297,9 @@ export default function CampeonatosPage() {
             <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center shrink-0">
               <div>
                 <h3 className="font-bold text-lg text-white">Inscripciones</h3>
-                <p className="text-xs text-billanga-primary font-bold uppercase">{activeCampeonato.nombre}</p>
+                <p className="text-xs text-billar-primary font-bold uppercase">{activeCampeonato.nombre}</p>
               </div>
-              <button onClick={() => setIsRegistering(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billanga-gray"><X className="w-5 h-5" /></button>
+              <button onClick={() => setIsRegistering(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billar-gray"><X className="w-5 h-5" /></button>
             </div>
             
             <div className="p-6 bg-black/20 border-b border-[#2a2a2c] shrink-0">
@@ -308,7 +308,7 @@ export default function CampeonatosPage() {
                 <select 
                   value={selectedCliente} 
                   onChange={e => setSelectedCliente(e.target.value)}
-                  className="flex-1 bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none text-sm"
+                  className="flex-1 bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none text-sm"
                 >
                   <option value="">-- Seleccionar Cliente --</option>
                   {clientes.map(c => (
@@ -318,14 +318,14 @@ export default function CampeonatosPage() {
                 <select
                   value={estadoPago}
                   onChange={e => setEstadoPago(e.target.value)}
-                  className="bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none text-sm"
+                  className="bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none text-sm"
                 >
                   <option value="pendiente">Pendiente</option>
                   <option value="pagado">Pagado</option>
                 </select>
                 <button 
                   onClick={handleRegisterClient}
-                  className="px-4 py-2.5 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-lg text-sm font-bold flex items-center justify-center gap-2"
+                  className="px-4 py-2.5 bg-billar-primary hover:bg-billar-primary-dark text-white rounded-lg text-sm font-bold flex items-center justify-center gap-2"
                 >
                   <Plus className="w-4 h-4" /> Inscribir
                 </button>
@@ -335,7 +335,7 @@ export default function CampeonatosPage() {
             <div className="flex-1 overflow-y-auto p-0">
               <table className="w-full text-left border-collapse">
                 <thead className="sticky top-0 bg-[#1a1a1c]">
-                  <tr className="border-b border-[#2a2a2c] text-xs font-bold text-billanga-gray tracking-wider uppercase">
+                  <tr className="border-b border-[#2a2a2c] text-xs font-bold text-billar-gray tracking-wider uppercase">
                     <th className="py-3 pl-6">Jugador</th>
                     <th className="py-3 text-center">Estado Pago</th>
                     <th className="py-3 pr-6 text-right">Acción</th>
@@ -347,10 +347,10 @@ export default function CampeonatosPage() {
                       <tr key={ins.id_inscripcion} className="border-b border-[#2a2a2c]/40 hover:bg-white/[0.02]">
                         <td className="py-3 pl-6">
                           <div className="flex items-center gap-3">
-                            <span className="text-billanga-gray font-mono text-xs w-4">{i + 1}.</span>
+                            <span className="text-billar-gray font-mono text-xs w-4">{i + 1}.</span>
                             <div>
                               <p className="text-sm font-bold text-white">{ins.clientes?.nombre}</p>
-                              <p className="text-[10px] text-billanga-gray">{ins.clientes?.telefono || "Sin cel"}</p>
+                              <p className="text-[10px] text-billar-gray">{ins.clientes?.telefono || "Sin cel"}</p>
                             </div>
                           </div>
                         </td>
@@ -366,14 +366,14 @@ export default function CampeonatosPage() {
                             {ins.estado_pago}
                           </button>
                         </td>
-                        <td className="py-3 pr-6 text-right text-xs text-billanga-gray">
+                        <td className="py-3 pr-6 text-right text-xs text-billar-gray">
                           {new Date(ins.created_at).toLocaleDateString()}
                         </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={3} className="py-8 text-center text-sm text-billanga-gray">
+                      <td colSpan={3} className="py-8 text-center text-sm text-billar-gray">
                         No hay jugadores inscritos aún.
                       </td>
                     </tr>
@@ -383,7 +383,7 @@ export default function CampeonatosPage() {
             </div>
             
             <div className="p-4 border-t border-[#2a2a2c] bg-black/20 flex justify-between items-center text-sm">
-              <span className="text-billanga-gray">Total Inscritos:</span>
+              <span className="text-billar-gray">Total Inscritos:</span>
               <span className="font-bold text-white text-lg">{inscripciones.length} / {activeCampeonato.cupo_maximo || "∞"}</span>
             </div>
           </div>

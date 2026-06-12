@@ -89,8 +89,8 @@ export default function PedidosMonitorPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-billanga-gray">
-        <RefreshCw className="w-12 h-12 animate-spin text-billanga-primary mb-4" />
+      <div className="flex flex-col items-center justify-center min-h-[50vh] text-billar-gray">
+        <RefreshCw className="w-12 h-12 animate-spin text-billar-primary mb-4" />
         <p>Cargando monitor de barra...</p>
       </div>
     );
@@ -103,7 +103,7 @@ export default function PedidosMonitorPage() {
       <div className="flex justify-between items-start border-b border-white/5 pb-3">
         <div>
           <h3 className="font-black text-xl text-white">Mesa {p.numero_mesa || "Barra"}</h3>
-          <p className="text-sm text-billanga-gray mt-0.5">Cliente: <span className="text-white/80 font-medium">{p.clientes?.nombre || "Anónimo"}</span></p>
+          <p className="text-sm text-billar-gray mt-0.5">Cliente: <span className="text-white/80 font-medium">{p.clientes?.nombre || "Anónimo"}</span></p>
         </div>
         <div className="text-right">
           <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wide border ${
@@ -114,7 +114,7 @@ export default function PedidosMonitorPage() {
           }`}>
             {p.estado}
           </span>
-          <p className="text-[11px] text-billanga-gray mt-2 font-mono">
+          <p className="text-[11px] text-billar-gray mt-2 font-mono">
             {new Date(p.created_at).toLocaleTimeString("es-ES", { hour: '2-digit', minute: '2-digit' })}
           </p>
         </div>
@@ -130,7 +130,7 @@ export default function PedidosMonitorPage() {
               </span>
               <span className="text-sm font-medium text-white/90 line-clamp-1">{item.productos?.nombre}</span>
             </div>
-            <span className="text-xs font-bold text-billanga-gray shrink-0">Bs. {Number(item.subtotal).toFixed(2)}</span>
+            <span className="text-xs font-bold text-billar-gray shrink-0">Bs. {Number(item.subtotal).toFixed(2)}</span>
           </div>
         ))}
       </div>
@@ -138,18 +138,18 @@ export default function PedidosMonitorPage() {
       {/* Footer del ticket (Total y Acciones) */}
       <div className="border-t border-white/5 pt-3 mt-auto">
         <div className="flex justify-between items-center mb-4">
-          <span className="text-sm text-billanga-gray font-bold">TOTAL</span>
-          <span className="text-lg font-black text-billanga-primary">Bs. {Number(p.total).toFixed(2)}</span>
+          <span className="text-sm text-billar-gray font-bold">TOTAL</span>
+          <span className="text-lg font-black text-billar-primary">Bs. {Number(p.total).toFixed(2)}</span>
         </div>
 
         {/* Acciones según el estado */}
         <div className="grid grid-cols-2 gap-2">
           {p.estado === 'pendiente' && (
             <>
-              <button onClick={() => updateEstado(p.id_pedido, 'cancelado')} className="py-2 bg-[#2a2a2c] hover:bg-red-500/20 text-billanga-gray hover:text-red-500 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5">
+              <button onClick={() => updateEstado(p.id_pedido, 'cancelado')} className="py-2 bg-[#2a2a2c] hover:bg-red-500/20 text-billar-gray hover:text-red-500 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5">
                 <XCircle className="w-3.5 h-3.5" /> Cancelar
               </button>
-              <button onClick={() => updateEstado(p.id_pedido, 'preparacion')} className="py-2 bg-billanga-primary hover:bg-[#b81d24] text-white rounded-xl text-xs font-bold shadow-lg shadow-billanga-primary/20 transition-all active:scale-95 flex items-center justify-center gap-1.5">
+              <button onClick={() => updateEstado(p.id_pedido, 'preparacion')} className="py-2 bg-billar-primary hover:bg-[#b81d24] text-white rounded-xl text-xs font-bold shadow-lg shadow-billar-primary/20 transition-all active:scale-95 flex items-center justify-center gap-1.5">
                 <ChefHat className="w-3.5 h-3.5" /> Preparar
               </button>
             </>
@@ -182,13 +182,13 @@ export default function PedidosMonitorPage() {
       <div className="flex justify-between items-end">
         <div>
           <h1 className="text-2xl font-black text-white flex items-center gap-2">
-            <Utensils className="w-6 h-6 text-billanga-primary" />
+            <Utensils className="w-6 h-6 text-billar-primary" />
             Monitor de Pedidos (Barra)
           </h1>
-          <p className="text-sm text-billanga-gray mt-1">Los nuevos pedidos de los clientes aparecerán aquí automáticamente en tiempo real.</p>
+          <p className="text-sm text-billar-gray mt-1">Los nuevos pedidos de los clientes aparecerán aquí automáticamente en tiempo real.</p>
         </div>
-        <div className="flex items-center gap-2 bg-[#1a1a1c] border border-billanga-primary/30 px-4 py-2 rounded-xl">
-          <div className="w-2 h-2 rounded-full bg-billanga-primary animate-pulse"></div>
+        <div className="flex items-center gap-2 bg-[#1a1a1c] border border-billar-primary/30 px-4 py-2 rounded-xl">
+          <div className="w-2 h-2 rounded-full bg-billar-primary animate-pulse"></div>
           <span className="text-xs font-bold text-white tracking-widest uppercase">EN VIVO</span>
         </div>
       </div>
@@ -204,7 +204,7 @@ export default function PedidosMonitorPage() {
             </h2>
             <span className="bg-yellow-500/20 text-yellow-500 text-xs font-black px-2 py-0.5 rounded-full">{pendientes.length}</span>
           </div>
-          {pendientes.length === 0 && <p className="text-center text-sm text-billanga-gray py-10">No hay pedidos nuevos.</p>}
+          {pendientes.length === 0 && <p className="text-center text-sm text-billar-gray py-10">No hay pedidos nuevos.</p>}
           <div className="space-y-4">
             {pendientes.map(p => <PedidoCard key={p.id_pedido} p={p} />)}
           </div>
@@ -218,7 +218,7 @@ export default function PedidosMonitorPage() {
             </h2>
             <span className="bg-blue-500/20 text-blue-500 text-xs font-black px-2 py-0.5 rounded-full">{enPreparacion.length}</span>
           </div>
-          {enPreparacion.length === 0 && <p className="text-center text-sm text-billanga-gray py-10">Barra libre por ahora.</p>}
+          {enPreparacion.length === 0 && <p className="text-center text-sm text-billar-gray py-10">Barra libre por ahora.</p>}
           <div className="space-y-4">
             {enPreparacion.map(p => <PedidoCard key={p.id_pedido} p={p} />)}
           </div>
@@ -232,7 +232,7 @@ export default function PedidosMonitorPage() {
             </h2>
             <span className="bg-emerald-500/20 text-emerald-500 text-xs font-black px-2 py-0.5 rounded-full">{historial.length}</span>
           </div>
-          {historial.length === 0 && <p className="text-center text-sm text-billanga-gray py-10">Aún no hay historial.</p>}
+          {historial.length === 0 && <p className="text-center text-sm text-billar-gray py-10">Aún no hay historial.</p>}
           <div className="space-y-4">
             {historial.map(p => <PedidoCard key={p.id_pedido} p={p} />)}
           </div>

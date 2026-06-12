@@ -52,7 +52,7 @@ const TicketCierre = forwardRef<HTMLDivElement, Props>(({ data }, ref) => {
       {/* Botón Imprimir - siempre visible arriba */}
       <button
         onClick={handlePrint}
-        className="mb-3 print:hidden flex items-center gap-2 bg-billanga-primary text-white px-4 py-2 rounded-lg font-bold shadow-lg hover:bg-billanga-primary-dark transition-colors text-sm shrink-0"
+        className="mb-3 print:hidden flex items-center gap-2 bg-billar-primary text-white px-4 py-2 rounded-lg font-bold shadow-lg hover:bg-billar-primary-dark transition-colors text-sm shrink-0"
       >
         <Printer className="w-4 h-4" /> Imprimir Ticket Z
       </button>

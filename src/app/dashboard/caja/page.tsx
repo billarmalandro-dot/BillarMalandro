@@ -347,7 +347,7 @@ export default function CajaPage() {
   };
 
   if (loading) {
-    return (<div className="flex flex-col items-center justify-center py-24 text-billanga-gray"><RefreshCw className="w-10 h-10 animate-spin text-billanga-primary mb-4" /><p className="text-sm">Cargando control de caja...</p></div>);
+    return (<div className="flex flex-col items-center justify-center py-24 text-billar-gray"><RefreshCw className="w-10 h-10 animate-spin text-billar-primary mb-4" /><p className="text-sm">Cargando control de caja...</p></div>);
   }
 
   return (
@@ -365,7 +365,7 @@ export default function CajaPage() {
           
           <div className="text-center mt-2 mb-3 print:hidden shrink-0">
             <h2 className="text-lg font-bold text-white mb-1">Turno Cerrado Exitosamente</h2>
-            <p className="text-billanga-gray text-sm">Aquí tienes el ticket de cierre Z.</p>
+            <p className="text-billar-gray text-sm">Aquí tienes el ticket de cierre Z.</p>
           </div>
 
           <TicketCierre data={ticketData} ref={ticketRef} />
@@ -375,8 +375,8 @@ export default function CajaPage() {
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 print:hidden">
         <div>
-          <h2 className="text-2xl font-bold text-white flex items-center gap-2"><Landmark className="w-7 h-7 text-billanga-primary" /> Control de Caja</h2>
-          <p className="text-sm text-billanga-gray">Apertura, cierre y movimientos de caja diarios.</p>
+          <h2 className="text-2xl font-bold text-white flex items-center gap-2"><Landmark className="w-7 h-7 text-billar-primary" /> Control de Caja</h2>
+          <p className="text-sm text-billar-gray">Apertura, cierre y movimientos de caja diarios.</p>
         </div>
         <button onClick={loadData} className="flex items-center gap-2 px-4 py-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg text-sm transition-all"><RefreshCw className="w-4 h-4" /> Refrescar</button>
       </div>
@@ -387,11 +387,11 @@ export default function CajaPage() {
       <div className={`border rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 print:hidden ${cajaAbierta ? "bg-green-500/5 border-green-500/30" : "bg-[#1a1a1c] border-[#2a2a2c]"}`}>
         <div className="flex items-center gap-4">
           <div className={`p-4 rounded-2xl ${cajaAbierta ? "bg-green-500/10" : "bg-[#2a2a2c]"}`}>
-            {cajaAbierta ? <Unlock className="w-8 h-8 text-green-500" /> : <Lock className="w-8 h-8 text-billanga-gray" />}
+            {cajaAbierta ? <Unlock className="w-8 h-8 text-green-500" /> : <Lock className="w-8 h-8 text-billar-gray" />}
           </div>
           <div>
             <h3 className="text-xl font-black text-white">{cajaAbierta ? "Caja Abierta" : "Caja Cerrada"}</h3>
-            <p className="text-sm text-billanga-gray">
+            <p className="text-sm text-billar-gray">
               {cajaAbierta ? `Apertura: ${new Date(arqueoActual?.created_at).toLocaleString("es-BO")} — Monto inicial: Bs. ${Number(arqueoActual?.monto_inicial || 0).toFixed(2)}` : "No hay una caja abierta actualmente."}
             </p>
           </div>
@@ -400,10 +400,10 @@ export default function CajaPage() {
           <div className="flex gap-3">
             <button onClick={() => { setMovTipo('ingreso'); setIsAddingMov(true); }} className="flex items-center gap-2 px-4 py-2.5 bg-green-600 hover:bg-green-500 text-white rounded-xl text-sm font-bold transition-all"><Plus className="w-4 h-4" /> Ingreso</button>
             <button onClick={() => { setMovTipo('egreso'); setIsAddingMov(true); }} className="flex items-center gap-2 px-4 py-2.5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl text-sm font-bold transition-all"><ArrowDownRight className="w-4 h-4" /> Egreso</button>
-            <button onClick={() => setIsClosingCaja(true)} className="flex items-center gap-2 px-4 py-2.5 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl text-sm font-bold transition-all"><Lock className="w-4 h-4" /> Cerrar Caja</button>
+            <button onClick={() => setIsClosingCaja(true)} className="flex items-center gap-2 px-4 py-2.5 bg-billar-primary hover:bg-billar-primary-dark text-white rounded-xl text-sm font-bold transition-all"><Lock className="w-4 h-4" /> Cerrar Caja</button>
           </div>
         ) : (
-          <button onClick={() => setIsOpeningCaja(true)} className="flex items-center gap-2 px-6 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"><Unlock className="w-5 h-5" /> Abrir Caja</button>
+          <button onClick={() => setIsOpeningCaja(true)} className="flex items-center gap-2 px-6 py-3 bg-billar-primary hover:bg-billar-primary-dark text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)]"><Unlock className="w-5 h-5" /> Abrir Caja</button>
         )}
       </div>
 
@@ -416,36 +416,36 @@ export default function CajaPage() {
               <ArrowUpRight className="w-6 h-6 text-green-500" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-billanga-gray mb-1">Total Ingresos</p>
+              <p className="text-sm font-medium text-billar-gray mb-1">Total Ingresos</p>
               <h3 className="text-3xl font-black text-green-500 tracking-tight">Bs. {totalIngresos.toFixed(2)}</h3>
               
               <div className="mt-4 pt-4 border-t border-[#2a2a2c] flex justify-between">
                 <div>
-                  <p className="text-xs text-billanga-gray">Efectivo</p>
+                  <p className="text-xs text-billar-gray">Efectivo</p>
                   <p className="text-sm font-bold text-white">Bs. {totalEfectivo.toFixed(2)}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs text-billanga-gray">QR / Transf.</p>
+                  <p className="text-xs text-billar-gray">QR / Transf.</p>
                   <p className="text-sm font-bold text-white">Bs. {totalQr.toFixed(2)}</p>
                 </div>
               </div>
             </div>
           </div>
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-xl p-5">
-            <div className="flex items-center gap-3"><div className="p-2.5 bg-red-500/10 rounded-xl"><ArrowDownRight className="w-5 h-5 text-red-400" /></div><div><p className="text-xs text-billanga-gray">Total Egresos</p><p className="text-2xl font-black text-red-400">Bs. {totalEgresos.toFixed(2)}</p></div></div>
+            <div className="flex items-center gap-3"><div className="p-2.5 bg-red-500/10 rounded-xl"><ArrowDownRight className="w-5 h-5 text-red-400" /></div><div><p className="text-xs text-billar-gray">Total Egresos</p><p className="text-2xl font-black text-red-400">Bs. {totalEgresos.toFixed(2)}</p></div></div>
           </div>
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-xl p-5">
-            <div className="flex items-center gap-3"><div className="p-2.5 bg-blue-500/10 rounded-xl"><DollarSign className="w-5 h-5 text-blue-400" /></div><div><p className="text-xs text-billanga-gray">Saldo Estimado</p><p className="text-2xl font-black text-white">Bs. {saldoActual.toFixed(2)}</p></div></div>
+            <div className="flex items-center gap-3"><div className="p-2.5 bg-blue-500/10 rounded-xl"><DollarSign className="w-5 h-5 text-blue-400" /></div><div><p className="text-xs text-billar-gray">Saldo Estimado</p><p className="text-2xl font-black text-white">Bs. {saldoActual.toFixed(2)}</p></div></div>
           </div>
         </div>
       )}
 
       {/* Movimientos del Día */}
       <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-xl overflow-hidden print:hidden">
-        <div className="p-5 border-b border-[#2a2a2c]"><h3 className="font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-billanga-primary" /> Movimientos del Turno</h3></div>
+        <div className="p-5 border-b border-[#2a2a2c]"><h3 className="font-bold text-white flex items-center gap-2"><Clock className="w-5 h-5 text-billar-primary" /> Movimientos del Turno</h3></div>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
-            <thead><tr className="border-b border-[#2a2a2c] text-xs font-bold text-billanga-gray tracking-wider uppercase bg-[#141416]/50">
+            <thead><tr className="border-b border-[#2a2a2c] text-xs font-bold text-billar-gray tracking-wider uppercase bg-[#141416]/50">
               <th className="py-3 pl-6">Hora</th><th className="py-3">Tipo</th><th className="py-3 text-right">Monto</th><th className="py-3 pr-6">Descripción</th>
             </tr></thead>
             <tbody>
@@ -453,14 +453,14 @@ export default function CajaPage() {
                 const isPositive = m.tipo === 'ingreso' || m.tipo === 'apertura';
                 return (
                   <tr key={m.id_mov_caja} className="border-b border-[#2a2a2c]/40 hover:bg-white/[0.02] transition-colors text-sm">
-                    <td className="py-3 pl-6 text-billanga-gray text-xs">{new Date(m.created_at).toLocaleTimeString("es-BO", { hour: "2-digit", minute: "2-digit" })}</td>
+                    <td className="py-3 pl-6 text-billar-gray text-xs">{new Date(m.created_at).toLocaleTimeString("es-BO", { hour: "2-digit", minute: "2-digit" })}</td>
                     <td className="py-3"><span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase ${isPositive ? "bg-green-500/10 text-green-500" : m.tipo === 'cierre' ? "bg-blue-500/10 text-blue-400" : "bg-red-500/10 text-red-400"}`}>{m.tipo}</span></td>
                     <td className={`py-3 text-right font-bold ${isPositive ? "text-green-400" : "text-red-400"}`}>{isPositive ? "+" : "-"} Bs. {Number(m.monto).toFixed(2)}</td>
-                    <td className="py-3 pr-6 text-billanga-gray text-xs truncate max-w-[200px]">{m.descripcion || "—"}</td>
+                    <td className="py-3 pr-6 text-billar-gray text-xs truncate max-w-[200px]">{m.descripcion || "—"}</td>
                   </tr>
                 );
               }) : (
-                <tr><td colSpan={4} className="py-12 text-center text-billanga-gray text-sm">No hay movimientos manuales registrados en este turno.</td></tr>
+                <tr><td colSpan={4} className="py-12 text-center text-billar-gray text-sm">No hay movimientos manuales registrados en este turno.</td></tr>
               )}
             </tbody>
           </table>
@@ -471,10 +471,10 @@ export default function CajaPage() {
       {isOpeningCaja && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] w-full max-w-md rounded-2xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center"><h3 className="font-bold text-lg text-white">Abrir Caja</h3><button onClick={() => setIsOpeningCaja(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billanga-gray"><X className="w-5 h-5" /></button></div>
+            <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center"><h3 className="font-bold text-lg text-white">Abrir Caja</h3><button onClick={() => setIsOpeningCaja(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billar-gray"><X className="w-5 h-5" /></button></div>
             <div className="p-6 space-y-4">
-              <p className="text-sm text-billanga-gray">Ingresa el monto con el que se abre la caja (fondo de cambio).</p>
-              <div><label className="text-sm font-medium text-billanga-gray block mb-1">Monto Inicial (Bs.)</label><input type="number" step="0.01" min="0" value={montoInicial} onChange={e => setMontoInicial(e.target.value)} placeholder="0.00" className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-3 px-4 text-white text-2xl font-mono focus:outline-none focus:border-billanga-primary text-center" /></div>
+              <p className="text-sm text-billar-gray">Ingresa el monto con el que se abre la caja (fondo de cambio).</p>
+              <div><label className="text-sm font-medium text-billar-gray block mb-1">Monto Inicial (Bs.)</label><input type="number" step="0.01" min="0" value={montoInicial} onChange={e => setMontoInicial(e.target.value)} placeholder="0.00" className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-3 px-4 text-white text-2xl font-mono focus:outline-none focus:border-billar-primary text-center" /></div>
             </div>
             <div className="p-6 border-t border-[#2a2a2c] bg-black/20 flex gap-3">
               <button onClick={() => setIsOpeningCaja(false)} className="flex-1 py-2.5 rounded-lg border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white font-bold text-sm">Cancelar</button>
@@ -488,19 +488,19 @@ export default function CajaPage() {
       {isClosingCaja && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] w-full max-w-md rounded-2xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center"><h3 className="font-bold text-lg text-white">Cerrar Caja</h3><button onClick={() => setIsClosingCaja(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billanga-gray"><X className="w-5 h-5" /></button></div>
+            <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center"><h3 className="font-bold text-lg text-white">Cerrar Caja</h3><button onClick={() => setIsClosingCaja(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billar-gray"><X className="w-5 h-5" /></button></div>
             <div className="p-6 space-y-4">
               <div className="bg-black/30 p-4 rounded-xl grid grid-cols-2 gap-4 text-sm">
-                <div><span className="text-billanga-gray text-xs block">Monto Inicial</span><span className="text-white font-bold">Bs. {Number(arqueoActual?.monto_inicial || 0).toFixed(2)}</span></div>
-                <div><span className="text-billanga-gray text-xs block">Saldo Estimado</span><span className="text-white font-bold">Bs. {saldoActual.toFixed(2)}</span></div>
+                <div><span className="text-billar-gray text-xs block">Monto Inicial</span><span className="text-white font-bold">Bs. {Number(arqueoActual?.monto_inicial || 0).toFixed(2)}</span></div>
+                <div><span className="text-billar-gray text-xs block">Saldo Estimado</span><span className="text-white font-bold">Bs. {saldoActual.toFixed(2)}</span></div>
               </div>
-              <div><label className="text-sm font-medium text-billanga-gray block mb-1">Monto Final Contado (Bs.)</label><input type="number" step="0.01" min="0" value={montoFinal} onChange={e => setMontoFinal(e.target.value)} placeholder="0.00" className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-3 px-4 text-white text-2xl font-mono focus:outline-none focus:border-billanga-primary text-center" /></div>
+              <div><label className="text-sm font-medium text-billar-gray block mb-1">Monto Final Contado (Bs.)</label><input type="number" step="0.01" min="0" value={montoFinal} onChange={e => setMontoFinal(e.target.value)} placeholder="0.00" className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-3 px-4 text-white text-2xl font-mono focus:outline-none focus:border-billar-primary text-center" /></div>
               {montoFinal && (<div className={`p-3 rounded-lg text-center font-bold text-sm ${Number(montoFinal) - saldoActual >= 0 ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400"}`}>Diferencia: Bs. {(Number(montoFinal) - saldoActual).toFixed(2)}</div>)}
-              <div><label className="text-sm font-medium text-billanga-gray block mb-1">Observación (opcional)</label><textarea rows={2} value={observacionCierre} onChange={e => setObservacionCierre(e.target.value)} placeholder="Notas del cierre..." className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white placeholder:text-billanga-gray/50 focus:outline-none focus:border-billanga-primary text-sm" /></div>
+              <div><label className="text-sm font-medium text-billar-gray block mb-1">Observación (opcional)</label><textarea rows={2} value={observacionCierre} onChange={e => setObservacionCierre(e.target.value)} placeholder="Notas del cierre..." className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white placeholder:text-billar-gray/50 focus:outline-none focus:border-billar-primary text-sm" /></div>
             </div>
             <div className="p-6 border-t border-[#2a2a2c] bg-black/20 flex gap-3">
               <button onClick={() => setIsClosingCaja(false)} className="flex-1 py-2.5 rounded-lg border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white font-bold text-sm">Cancelar</button>
-              <button onClick={handleCerrarCaja} className="flex-1 py-2.5 rounded-lg bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold text-sm flex items-center justify-center gap-2"><Lock className="w-4 h-4" /> Cerrar y Generar Reporte</button>
+              <button onClick={handleCerrarCaja} className="flex-1 py-2.5 rounded-lg bg-billar-primary hover:bg-billar-primary-dark text-white font-bold text-sm flex items-center justify-center gap-2"><Lock className="w-4 h-4" /> Cerrar y Generar Reporte</button>
             </div>
           </div>
         </div>
@@ -510,10 +510,10 @@ export default function CajaPage() {
       {isAddingMov && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] w-full max-w-md rounded-2xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center"><h3 className="font-bold text-lg text-white">Registrar {movTipo === 'ingreso' ? 'Ingreso' : 'Egreso'}</h3><button onClick={() => setIsAddingMov(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billanga-gray"><X className="w-5 h-5" /></button></div>
+            <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center"><h3 className="font-bold text-lg text-white">Registrar {movTipo === 'ingreso' ? 'Ingreso' : 'Egreso'}</h3><button onClick={() => setIsAddingMov(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billar-gray"><X className="w-5 h-5" /></button></div>
             <div className="p-6 space-y-4">
-              <div><label className="text-sm font-medium text-billanga-gray block mb-1">Monto (Bs.)</label><input type="number" step="0.01" min="0.01" value={movMonto} onChange={e => setMovMonto(e.target.value)} placeholder="0.00" className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-3 px-4 text-white text-xl font-mono focus:outline-none focus:border-billanga-primary text-center" /></div>
-              <div><label className="text-sm font-medium text-billanga-gray block mb-1">Descripción</label><input type="text" value={movDescripcion} onChange={e => setMovDescripcion(e.target.value)} placeholder="Ej: Pago a proveedor, Vuelto cliente..." className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billanga-primary" /></div>
+              <div><label className="text-sm font-medium text-billar-gray block mb-1">Monto (Bs.)</label><input type="number" step="0.01" min="0.01" value={movMonto} onChange={e => setMovMonto(e.target.value)} placeholder="0.00" className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-3 px-4 text-white text-xl font-mono focus:outline-none focus:border-billar-primary text-center" /></div>
+              <div><label className="text-sm font-medium text-billar-gray block mb-1">Descripción</label><input type="text" value={movDescripcion} onChange={e => setMovDescripcion(e.target.value)} placeholder="Ej: Pago a proveedor, Vuelto cliente..." className="w-full bg-black/40 border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:outline-none focus:border-billar-primary" /></div>
             </div>
             <div className="p-6 border-t border-[#2a2a2c] bg-black/20 flex gap-3">
               <button onClick={() => setIsAddingMov(false)} className="flex-1 py-2.5 rounded-lg border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white font-bold text-sm">Cancelar</button>

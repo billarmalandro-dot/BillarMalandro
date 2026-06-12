@@ -110,8 +110,8 @@ export default function MisTorneosPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen pt-24 flex flex-col items-center justify-center text-billanga-gray">
-        <RefreshCw className="w-10 h-10 animate-spin text-billanga-primary mb-4" />
+      <div className="min-h-screen pt-24 flex flex-col items-center justify-center text-billar-gray">
+        <RefreshCw className="w-10 h-10 animate-spin text-billar-primary mb-4" />
         <p>Cargando campeonatos...</p>
       </div>
     );
@@ -135,17 +135,17 @@ export default function MisTorneosPage() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-black text-white flex items-center gap-3">
-            <Trophy className="w-8 h-8 md:w-10 md:h-10 text-billanga-primary" />
+            <Trophy className="w-8 h-8 md:w-10 md:h-10 text-billar-primary" />
             Zona de Torneos
           </h1>
-          <p className="text-billanga-gray mt-2">Compite, gana respeto y acumula Puntos Malandro.</p>
+          <p className="text-billar-gray mt-2">Compite, gana respeto y acumula Puntos Malandro.</p>
         </div>
         
         {cliente && (
-          <div className="glass-panel px-4 py-2 rounded-xl flex items-center gap-3 border border-billanga-primary/20 shadow-[0_0_15px_rgba(220, 38, 38,0.15)]">
+          <div className="glass-panel px-4 py-2 rounded-xl flex items-center gap-3 border border-billar-primary/20 shadow-[0_0_15px_rgba(220, 38, 38,0.15)]">
             <Award className="w-5 h-5 text-yellow-500" />
             <div>
-              <p className="text-[10px] text-billanga-gray uppercase font-bold tracking-wider">Tus Puntos</p>
+              <p className="text-[10px] text-billar-gray uppercase font-bold tracking-wider">Tus Puntos</p>
               <p className="text-lg font-black text-white">{cliente.puntos_fidelidad} Pts</p>
             </div>
           </div>
@@ -157,14 +157,14 @@ export default function MisTorneosPage() {
         {/* Mis Torneos */}
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
-            <Award className="w-5 h-5 text-billanga-primary" /> Mis Competiciones
+            <Award className="w-5 h-5 text-billar-primary" /> Mis Competiciones
           </h2>
           
           {misTorneos.length === 0 ? (
             <div className="glass-panel p-8 rounded-2xl text-center border border-white/5">
-              <Trophy className="w-12 h-12 text-billanga-gray mx-auto mb-3 opacity-30" />
-              <p className="text-billanga-gray">No estás inscrito en ningún torneo activo.</p>
-              <p className="text-xs text-billanga-gray/70 mt-1">¡Revisa los próximos torneos a la derecha y únete!</p>
+              <Trophy className="w-12 h-12 text-billar-gray mx-auto mb-3 opacity-30" />
+              <p className="text-billar-gray">No estás inscrito en ningún torneo activo.</p>
+              <p className="text-xs text-billar-gray/70 mt-1">¡Revisa los próximos torneos a la derecha y únete!</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -172,15 +172,15 @@ export default function MisTorneosPage() {
                 const torneo = inscripcion.torneo;
                 if (!torneo) return null;
                 return (
-                  <div key={inscripcion.id_participante} className="glass-panel p-5 rounded-2xl border border-white/10 hover:border-billanga-primary/30 transition-all group relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-billanga-primary/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-billanga-primary/10 transition-all" />
+                  <div key={inscripcion.id_participante} className="glass-panel p-5 rounded-2xl border border-white/10 hover:border-billar-primary/30 transition-all group relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-billar-primary/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-billar-primary/10 transition-all" />
                     
                     <div className="flex justify-between items-start mb-3 relative z-10">
                       <div>
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full mb-2 inline-block ${
                           torneo.estado === 'proximo' ? 'bg-blue-500/10 text-blue-400' :
                           torneo.estado === 'en_curso' ? 'bg-yellow-500/10 text-yellow-500 animate-pulse' :
-                          'bg-billanga-gray/20 text-billanga-gray'
+                          'bg-billar-gray/20 text-billar-gray'
                         }`}>
                           {torneo.estado.replace('_', ' ')}
                         </span>
@@ -189,10 +189,10 @@ export default function MisTorneosPage() {
                     </div>
                     
                     <div className="space-y-2 mb-4 relative z-10">
-                      <p className="text-xs text-billanga-gray flex items-center gap-2">
+                      <p className="text-xs text-billar-gray flex items-center gap-2">
                         <Calendar className="w-3.5 h-3.5" /> {formatDate(torneo.fecha_inicio)}
                       </p>
-                      <p className="text-xs text-billanga-gray flex items-center gap-2">
+                      <p className="text-xs text-billar-gray flex items-center gap-2">
                         <Trophy className="w-3.5 h-3.5 text-yellow-500/70" /> Premio: Bs. {torneo.premio_estimado}
                       </p>
                     </div>
@@ -200,7 +200,7 @@ export default function MisTorneosPage() {
                     <div className="pt-3 border-t border-white/5 flex justify-between items-center relative z-10">
                       <div className="flex items-center gap-2">
                         <span className={`w-2 h-2 rounded-full ${inscripcion.estado_pago === 'pagado' ? 'bg-green-500' : 'bg-yellow-500'}`} />
-                        <span className="text-xs text-billanga-gray uppercase font-bold tracking-wider">
+                        <span className="text-xs text-billar-gray uppercase font-bold tracking-wider">
                           Pago: {inscripcion.estado_pago}
                         </span>
                       </div>
@@ -223,28 +223,28 @@ export default function MisTorneosPage() {
         {/* Torneos Disponibles */}
         <div className="space-y-6">
           <h2 className="text-xl font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
-            <Calendar className="w-5 h-5 text-billanga-primary" /> Próximos Campeonatos
+            <Calendar className="w-5 h-5 text-billar-primary" /> Próximos Campeonatos
           </h2>
 
           {torneosDisponibles.length === 0 ? (
             <div className="glass-panel p-8 rounded-2xl text-center border border-white/5">
-              <Calendar className="w-12 h-12 text-billanga-gray mx-auto mb-3 opacity-30" />
-              <p className="text-billanga-gray">No hay nuevos torneos programados por ahora.</p>
+              <Calendar className="w-12 h-12 text-billar-gray mx-auto mb-3 opacity-30" />
+              <p className="text-billar-gray">No hay nuevos torneos programados por ahora.</p>
             </div>
           ) : (
             <div className="space-y-4">
               {torneosDisponibles.map((torneo) => (
-                <div key={torneo.id_torneo} className="bg-[#1a1a1c] border border-[#2a2a2c] p-5 rounded-2xl flex flex-col sm:flex-row gap-4 items-center justify-between hover:border-billanga-primary/30 transition-all">
+                <div key={torneo.id_torneo} className="bg-[#1a1a1c] border border-[#2a2a2c] p-5 rounded-2xl flex flex-col sm:flex-row gap-4 items-center justify-between hover:border-billar-primary/30 transition-all">
                   <div className="w-full sm:w-2/3">
                     <h3 className="text-white font-bold text-lg mb-1">{torneo.nombre}</h3>
-                    {torneo.descripcion && <p className="text-xs text-billanga-gray mb-3 line-clamp-2">{torneo.descripcion}</p>}
+                    {torneo.descripcion && <p className="text-xs text-billar-gray mb-3 line-clamp-2">{torneo.descripcion}</p>}
                     
                     <div className="flex flex-wrap gap-3">
-                      <span className="text-[11px] text-billanga-gray flex items-center gap-1.5 bg-black/40 px-2 py-1 rounded-md">
-                        <Calendar className="w-3 h-3 text-billanga-primary" /> {new Date(torneo.fecha_inicio).toLocaleDateString()}
+                      <span className="text-[11px] text-billar-gray flex items-center gap-1.5 bg-black/40 px-2 py-1 rounded-md">
+                        <Calendar className="w-3 h-3 text-billar-primary" /> {new Date(torneo.fecha_inicio).toLocaleDateString()}
                       </span>
-                      <span className="text-[11px] text-billanga-gray flex items-center gap-1.5 bg-black/40 px-2 py-1 rounded-md">
-                        <Users className="w-3 h-3 text-billanga-primary" /> Inscripción: Bs. {torneo.costo_inscripcion}
+                      <span className="text-[11px] text-billar-gray flex items-center gap-1.5 bg-black/40 px-2 py-1 rounded-md">
+                        <Users className="w-3 h-3 text-billar-primary" /> Inscripción: Bs. {torneo.costo_inscripcion}
                       </span>
                     </div>
                   </div>
@@ -252,7 +252,7 @@ export default function MisTorneosPage() {
                   <div className="w-full sm:w-auto flex-shrink-0">
                     <button 
                       onClick={() => handleInscribirse(torneo.id_torneo)}
-                      className="w-full sm:w-auto bg-billanga-primary hover:bg-billanga-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-xl transition-all shadow-[0_4px_15px_rgba(220, 38, 38,0.3)] hover:shadow-[0_6px_20px_rgba(220, 38, 38,0.4)] flex items-center justify-center gap-2"
+                      className="w-full sm:w-auto bg-billar-primary hover:bg-billar-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-xl transition-all shadow-[0_4px_15px_rgba(220, 38, 38,0.3)] hover:shadow-[0_6px_20px_rgba(220, 38, 38,0.4)] flex items-center justify-center gap-2"
                     >
                       Inscribirme <ChevronRight className="w-4 h-4" />
                     </button>

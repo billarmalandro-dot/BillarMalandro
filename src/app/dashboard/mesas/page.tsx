@@ -686,8 +686,8 @@ export default function MesasPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-billanga-gray">
-        <RefreshCw className="w-10 h-10 animate-spin text-billanga-primary mb-4" />
+      <div className="flex flex-col items-center justify-center py-24 text-billar-gray">
+        <RefreshCw className="w-10 h-10 animate-spin text-billar-primary mb-4" />
         <p className="text-sm">Cargando mesas y estado del salón...</p>
       </div>
     );
@@ -697,13 +697,13 @@ export default function MesasPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] animate-in fade-in zoom-in duration-500">
         <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mb-6">
-          <Lock className="w-12 h-12 text-billanga-primary" />
+          <Lock className="w-12 h-12 text-billar-primary" />
         </div>
         <h2 className="text-3xl font-black text-white mb-3">Caja Cerrada</h2>
-        <p className="text-billanga-gray text-center max-w-md mb-8">
+        <p className="text-billar-gray text-center max-w-md mb-8">
           Por razones de seguridad, no puedes interactuar con las mesas ni realizar ventas hasta que inicies tu turno y abras la caja.
         </p>
-        <a href="/dashboard/caja" className="px-8 py-3 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold rounded-xl flex items-center gap-2 shadow-[0_0_20px_rgba(220, 38, 38,0.4)] transition-all">
+        <a href="/dashboard/caja" className="px-8 py-3 bg-billar-primary hover:bg-billar-primary-dark text-white font-bold rounded-xl flex items-center gap-2 shadow-[0_0_20px_rgba(220, 38, 38,0.4)] transition-all">
           Ir a Abrir Caja
         </a>
       </div>
@@ -724,10 +724,10 @@ export default function MesasPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            <CircleDot className="w-7 h-7 text-billanga-primary" />
+            <CircleDot className="w-7 h-7 text-billar-primary" />
             Control de Mesas
           </h2>
-          <p className="text-sm text-billanga-gray">Abre mesas, elige modalidades y cobra en tiempo real.</p>
+          <p className="text-sm text-billar-gray">Abre mesas, elige modalidades y cobra en tiempo real.</p>
         </div>
         <div className="flex items-center gap-3">
           <button onClick={() => loadData()} className="flex items-center gap-2 px-4 py-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg text-sm transition-all">
@@ -736,7 +736,7 @@ export default function MesasPage() {
           {isAdmin && (
             <button 
               onClick={() => setIsManagingMesas(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(220, 38, 38,0.2)]"
+              className="flex items-center gap-2 px-4 py-2 bg-billar-primary hover:bg-billar-primary-dark text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(220, 38, 38,0.2)]"
             >
               <Settings className="w-4 h-4" /> Gestionar Mesas
             </button>
@@ -771,14 +771,14 @@ export default function MesasPage() {
                 ${mesa.tipo === 'cacho' 
                   ? 'bg-neutral-800 p-2 [clip-path:polygon(15%_0%,_85%_0%,_100%_15%,_100%_85%,_85%_100%,_15%_100%,_0%_85%,_0%_15%)]' 
                   : 'rounded-[1.25rem] border-[6px] border-neutral-800'} 
-                ${mesa.tipo !== 'cacho' && isEnUso ? (isTimeUp ? "bg-orange-800" : "bg-billanga-primary/90") : ""}
+                ${mesa.tipo !== 'cacho' && isEnUso ? (isTimeUp ? "bg-orange-800" : "bg-billar-primary/90") : ""}
                 ${mesa.tipo !== 'cacho' && !isEnUso ? "bg-emerald-800/90" : ""}
               `}>
                 
                 {/* Fondo Interior */}
                 <div className={`absolute inset-0 z-0 ${
                    mesa.tipo === 'cacho'
-                    ? 'm-[6px] [clip-path:polygon(15%_0%,_85%_0%,_100%_15%,_100%_85%,_85%_100%,_15%_100%,_0%_85%,_0%_15%)] ' + (isEnUso ? (isTimeUp ? "bg-orange-800" : "bg-billanga-primary/90") : "bg-emerald-800/90")
+                    ? 'm-[6px] [clip-path:polygon(15%_0%,_85%_0%,_100%_15%,_100%_85%,_85%_100%,_15%_100%,_0%_85%,_0%_15%)] ' + (isEnUso ? (isTimeUp ? "bg-orange-800" : "bg-billar-primary/90") : "bg-emerald-800/90")
                     : 'bg-transparent'
                 }`}>
                    <div className="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/20 to-transparent mix-blend-overlay"></div>
@@ -859,7 +859,7 @@ export default function MesasPage() {
                   onClick={() => handleOpenSessionClick(mesa)} 
                   className={`absolute -bottom-5 left-1/2 -translate-x-1/2 px-6 py-2.5 font-black text-sm uppercase rounded-full shadow-[0_10px_20px_rgba(0,0,0,0.5)] transition-all flex items-center gap-2 border z-20 whitespace-nowrap ${
                     isMesero 
-                      ? 'bg-[#1a1a1c] text-billanga-gray/50 border-[#2a2a2c] cursor-not-allowed' 
+                      ? 'bg-[#1a1a1c] text-billar-gray/50 border-[#2a2a2c] cursor-not-allowed' 
                       : 'bg-[#2a2a2c] text-white hover:bg-white hover:text-black hover:scale-105 active:scale-95 border-[#3a3a3c] hover:border-white'
                   }`}
                 >
@@ -878,25 +878,25 @@ export default function MesasPage() {
             <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center bg-black/20 shrink-0">
               <div>
                 <h3 className="font-bold text-lg text-white">Abrir {selectedMesa.nombre || `Mesa ${selectedMesa.numero}`}</h3>
-                <p className="text-xs text-billanga-gray uppercase">Configuración de Partida</p>
+                <p className="text-xs text-billar-gray uppercase">Configuración de Partida</p>
               </div>
-              <button onClick={() => { setIsOpeningSession(false); setSelectedMesa(null); }} className="text-billanga-gray hover:text-white"><X className="w-5 h-5"/></button>
+              <button onClick={() => { setIsOpeningSession(false); setSelectedMesa(null); }} className="text-billar-gray hover:text-white"><X className="w-5 h-5"/></button>
             </div>
             
             <div className="p-6 space-y-6 overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-[#2a2a2c]">
               {/* Selector de Modalidad */}
               <div className="space-y-3">
-                <label className="text-xs font-bold text-billanga-gray uppercase tracking-wider block">Modalidad de Juego</label>
+                <label className="text-xs font-bold text-billar-gray uppercase tracking-wider block">Modalidad de Juego</label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  <button onClick={() => setModalidad('abierto')} className={`p-3 rounded-xl border text-center transition-all ${modalidad === 'abierto' ? 'bg-billanga-primary/10 border-billanga-primary text-white' : 'bg-black/20 border-[#2a2a2c] text-billanga-gray'}`}>
+                  <button onClick={() => setModalidad('abierto')} className={`p-3 rounded-xl border text-center transition-all ${modalidad === 'abierto' ? 'bg-billar-primary/10 border-billar-primary text-white' : 'bg-black/20 border-[#2a2a2c] text-billar-gray'}`}>
                     <Timer className="w-5 h-5 mx-auto mb-1" />
                     <span className="text-xs font-bold block">T. Libre</span>
                   </button>
-                  <button onClick={() => setModalidad('fijo')} className={`p-3 rounded-xl border text-center transition-all ${modalidad === 'fijo' ? 'bg-billanga-primary/10 border-billanga-primary text-white' : 'bg-black/20 border-[#2a2a2c] text-billanga-gray'}`}>
+                  <button onClick={() => setModalidad('fijo')} className={`p-3 rounded-xl border text-center transition-all ${modalidad === 'fijo' ? 'bg-billar-primary/10 border-billar-primary text-white' : 'bg-black/20 border-[#2a2a2c] text-billar-gray'}`}>
                     <Clock className="w-5 h-5 mx-auto mb-1" />
                     <span className="text-xs font-bold block">T. Fijo</span>
                   </button>
-                  <button onClick={() => setModalidad('partida')} className={`p-3 rounded-xl border text-center transition-all ${modalidad === 'partida' ? 'bg-billanga-primary/10 border-billanga-primary text-white' : 'bg-black/20 border-[#2a2a2c] text-billanga-gray'}`}>
+                  <button onClick={() => setModalidad('partida')} className={`p-3 rounded-xl border text-center transition-all ${modalidad === 'partida' ? 'bg-billar-primary/10 border-billar-primary text-white' : 'bg-black/20 border-[#2a2a2c] text-billar-gray'}`}>
                     <CircleDot className="w-5 h-5 mx-auto mb-1" />
                     <span className="text-xs font-bold block">Por Ficha</span>
                   </button>
@@ -906,34 +906,34 @@ export default function MesasPage() {
               {/* Ajustes Específicos según Modalidad */}
               {modalidad === 'abierto' && (
                 <div className="bg-black/20 p-4 rounded-xl border border-[#2a2a2c]">
-                  <p className="text-sm text-billanga-gray">El reloj contará hacia adelante. El costo se calculará por minuto según la tarifa elegida abajo.</p>
+                  <p className="text-sm text-billar-gray">El reloj contará hacia adelante. El costo se calculará por minuto según la tarifa elegida abajo.</p>
                 </div>
               )}
 
               {modalidad === 'fijo' && (
-                <div className="bg-black/20 p-4 rounded-xl border border-billanga-primary/30 space-y-3 animate-in slide-in-from-top-2">
+                <div className="bg-black/20 p-4 rounded-xl border border-billar-primary/30 space-y-3 animate-in slide-in-from-top-2">
                   <label className="text-xs font-bold text-white uppercase tracking-wider block">Tiempo Pre-pagado (Minutos)</label>
                   <div className="flex gap-2">
                     {[30, 60, 90, 120].map(min => (
-                      <button key={min} onClick={() => setTiempoFijoMinutos(min)} className={`flex-1 py-2 rounded-lg text-sm font-bold border transition-all ${tiempoFijoMinutos === min ? 'bg-billanga-primary text-white border-billanga-primary' : 'bg-[#1a1a1c] text-billanga-gray border-[#2a2a2c] hover:bg-[#2a2a2c]'}`}>{min}m</button>
+                      <button key={min} onClick={() => setTiempoFijoMinutos(min)} className={`flex-1 py-2 rounded-lg text-sm font-bold border transition-all ${tiempoFijoMinutos === min ? 'bg-billar-primary text-white border-billar-primary' : 'bg-[#1a1a1c] text-billar-gray border-[#2a2a2c] hover:bg-[#2a2a2c]'}`}>{min}m</button>
                     ))}
                   </div>
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-billanga-gray text-sm">Personalizado:</span>
-                    <input type="number" min="1" value={tiempoFijoMinutos} onChange={e => setTiempoFijoMinutos(parseInt(e.target.value) || 0)} className="w-20 bg-black border border-[#2a2a2c] rounded py-1 px-2 text-white outline-none focus:border-billanga-primary text-center" />
-                    <span className="text-billanga-gray text-sm">min</span>
+                    <span className="text-billar-gray text-sm">Personalizado:</span>
+                    <input type="number" min="1" value={tiempoFijoMinutos} onChange={e => setTiempoFijoMinutos(parseInt(e.target.value) || 0)} className="w-20 bg-black border border-[#2a2a2c] rounded py-1 px-2 text-white outline-none focus:border-billar-primary text-center" />
+                    <span className="text-billar-gray text-sm">min</span>
                   </div>
                 </div>
               )}
 
               {modalidad === 'partida' && (
-                <div className="bg-black/20 p-4 rounded-xl border border-billanga-primary/30 space-y-3 animate-in slide-in-from-top-2">
+                <div className="bg-black/20 p-4 rounded-xl border border-billar-primary/30 space-y-3 animate-in slide-in-from-top-2">
                   <label className="text-xs font-bold text-white uppercase tracking-wider block">Costo Fijo por Partida</label>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-billanga-gray">Bs.</span>
-                    <input type="number" step="0.5" value={costoPartida} onChange={e => setCostoPartida(parseFloat(e.target.value) || 0)} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-3 pl-10 pr-4 text-white text-lg font-bold outline-none focus:border-billanga-primary" />
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-billar-gray">Bs.</span>
+                    <input type="number" step="0.5" value={costoPartida} onChange={e => setCostoPartida(parseFloat(e.target.value) || 0)} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-3 pl-10 pr-4 text-white text-lg font-bold outline-none focus:border-billar-primary" />
                   </div>
-                  <p className="text-xs text-billanga-gray">No se tomará en cuenta el tiempo ni la tarifa por hora elegida.</p>
+                  <p className="text-xs text-billar-gray">No se tomará en cuenta el tiempo ni la tarifa por hora elegida.</p>
                 </div>
               )}
 
@@ -992,7 +992,7 @@ export default function MesasPage() {
                                     <div className="font-extrabold text-white">
                                       Bs. {t.precio_fijo ? Number(t.precio_fijo).toFixed(2) : Number(t.precio_hora).toFixed(2)}
                                     </div>
-                                    <div className="text-[10px] text-billanga-gray">
+                                    <div className="text-[10px] text-billar-gray">
                                       {t.precio_fijo ? 'fijo' : 'por hora'}
                                     </div>
                                   </div>
@@ -1005,7 +1005,7 @@ export default function MesasPage() {
 
                       {tarifasNormales.length > 0 && (
                         <div className="space-y-2">
-                          <span className="text-[10px] font-bold text-billanga-gray uppercase tracking-widest block">Tarifas Regulares</span>
+                          <span className="text-[10px] font-bold text-billar-gray uppercase tracking-widest block">Tarifas Regulares</span>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {tarifasNormales.map(t => (
                               <button
@@ -1013,13 +1013,13 @@ export default function MesasPage() {
                                 onClick={() => setSelectedTarifaId(t.id_tarifa)}
                                 className={`p-2.5 border rounded-xl text-left flex justify-between items-center transition-all ${
                                   selectedTarifaId === t.id_tarifa 
-                                    ? "border-billanga-primary bg-billanga-primary/10 text-white" 
-                                    : "border-[#2a2a2c] bg-black/20 text-billanga-gray hover:text-white hover:border-[#3a3a3c]"
+                                    ? "border-billar-primary bg-billar-primary/10 text-white" 
+                                    : "border-[#2a2a2c] bg-black/20 text-billar-gray hover:text-white hover:border-[#3a3a3c]"
                                 }`}
                               >
                                 <div>
                                   <div className="font-bold text-sm text-white">{t.nombre}</div>
-                                  <div className="text-[10px] text-billanga-gray capitalize">Días: {t.tipo_dia}</div>
+                                  <div className="text-[10px] text-billar-gray capitalize">Días: {t.tipo_dia}</div>
                                 </div>
                                 <div className="text-right">
                                   <div className="font-bold text-white">Bs. {Number(t.precio_hora).toFixed(2)}</div>
@@ -1037,7 +1037,7 @@ export default function MesasPage() {
             </div>
             <div className="p-6 border-t border-[#2a2a2c] bg-black/20 flex gap-3 shrink-0">
               <button onClick={() => { setIsOpeningSession(false); setSelectedMesa(null); }} className="flex-1 py-3 rounded-lg border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white font-bold text-sm">Cancelar</button>
-              <button onClick={handleConfirmStart} className="flex-[2] py-3 rounded-lg bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold text-sm flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(220, 38, 38,0.3)]"><Play className="w-4 h-4 fill-white" /> Iniciar Mesa</button>
+              <button onClick={handleConfirmStart} className="flex-[2] py-3 rounded-lg bg-billar-primary hover:bg-billar-primary-dark text-white font-bold text-sm flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(220, 38, 38,0.3)]"><Play className="w-4 h-4 fill-white" /> Iniciar Mesa</button>
             </div>
           </div>
         </div>
@@ -1052,27 +1052,27 @@ export default function MesasPage() {
               <div className="p-4 sm:p-5 border-b border-[#2a2a2c] bg-[#1a1a1c] flex justify-between items-center shrink-0">
                 <div>
                   <h3 className="font-black text-xl text-white flex items-center gap-2">
-                    <CircleDot className="text-billanga-primary w-5 h-5" />
+                    <CircleDot className="text-billar-primary w-5 h-5" />
                     Mesa {posMesa.numero}
                   </h3>
-                  <span className="text-xs text-billanga-gray uppercase font-bold tracking-wider">{posSesion.modalidad}</span>
+                  <span className="text-xs text-billar-gray uppercase font-bold tracking-wider">{posSesion.modalidad}</span>
                 </div>
-                <button onClick={() => setIsPosOpen(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billanga-gray transition-colors"><X className="w-5 h-5" /></button>
+                <button onClick={() => setIsPosOpen(false)} className="p-2 hover:bg-[#2a2a2c] rounded-full text-billar-gray transition-colors"><X className="w-5 h-5" /></button>
               </div>
 
               {/* Items de la cuenta */}
               <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-[#2a2a2c]">
                 
                 {/* Item fijo de Tiempo de Juego */}
-                <div className="bg-[#2a2a2c]/30 border border-billanga-primary/30 p-3 rounded-xl flex flex-col gap-2">
+                <div className="bg-[#2a2a2c]/30 border border-billar-primary/30 p-3 rounded-xl flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="bg-billanga-primary/20 p-2 rounded-lg">
-                        {posSesion.modalidad === 'partida' ? <Check className="w-5 h-5 text-billanga-primary" /> : <Timer className="w-5 h-5 text-billanga-primary animate-pulse" />}
+                      <div className="bg-billar-primary/20 p-2 rounded-lg">
+                        {posSesion.modalidad === 'partida' ? <Check className="w-5 h-5 text-billar-primary" /> : <Timer className="w-5 h-5 text-billar-primary animate-pulse" />}
                       </div>
                       <div>
                         <h4 className="font-bold text-white text-sm">{posSesion.modalidad === 'partida' ? 'Cargo Fijo por Ficha' : 'Tiempo de Juego'}</h4>
-                        <p className="text-xs text-billanga-gray font-mono">{getSessionDetails(posSesion).timeString} ({getSessionDetails(posSesion).tarifaNombre})</p>
+                        <p className="text-xs text-billar-gray font-mono">{getSessionDetails(posSesion).timeString} ({getSessionDetails(posSesion).tarifaNombre})</p>
                       </div>
                     </div>
                     <div className="text-right font-black text-white">
@@ -1084,11 +1084,11 @@ export default function MesasPage() {
                   {posSesion.modalidad === 'fijo' && (
                     <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-[#2a2a2c]/50">
                       <div className="flex gap-2">
-                        <button onClick={() => handleAddTime(15)} className="flex-1 bg-[#1a1a1c] hover:bg-[#2a2a2c] border border-[#2a2a2c] hover:border-billanga-primary/50 text-white text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1"><Plus className="w-3 h-3"/> 15 min</button>
-                        <button onClick={() => handleAddTime(30)} className="flex-1 bg-[#1a1a1c] hover:bg-[#2a2a2c] border border-[#2a2a2c] hover:border-billanga-primary/50 text-white text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1"><Plus className="w-3 h-3"/> 30 min</button>
-                        <button onClick={() => handleAddTime(60)} className="flex-1 bg-[#1a1a1c] hover:bg-[#2a2a2c] border border-[#2a2a2c] hover:border-billanga-primary/50 text-white text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1"><Plus className="w-3 h-3"/> 1 hora</button>
+                        <button onClick={() => handleAddTime(15)} className="flex-1 bg-[#1a1a1c] hover:bg-[#2a2a2c] border border-[#2a2a2c] hover:border-billar-primary/50 text-white text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1"><Plus className="w-3 h-3"/> 15 min</button>
+                        <button onClick={() => handleAddTime(30)} className="flex-1 bg-[#1a1a1c] hover:bg-[#2a2a2c] border border-[#2a2a2c] hover:border-billar-primary/50 text-white text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1"><Plus className="w-3 h-3"/> 30 min</button>
+                        <button onClick={() => handleAddTime(60)} className="flex-1 bg-[#1a1a1c] hover:bg-[#2a2a2c] border border-[#2a2a2c] hover:border-billar-primary/50 text-white text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1"><Plus className="w-3 h-3"/> 1 hora</button>
                       </div>
-                      <button onClick={handleConvertToAbierto} className="w-full bg-[#1a1a1c] hover:bg-billanga-primary/10 border border-[#2a2a2c] hover:border-billanga-primary/50 text-billanga-primary text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1">Cobrar solo Consumido</button>
+                      <button onClick={handleConvertToAbierto} className="w-full bg-[#1a1a1c] hover:bg-billar-primary/10 border border-[#2a2a2c] hover:border-billar-primary/50 text-billar-primary text-xs font-bold py-1.5 rounded-lg transition-colors flex items-center justify-center gap-1">Cobrar solo Consumido</button>
                     </div>
                   )}
                 </div>
@@ -1104,7 +1104,7 @@ export default function MesasPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="font-bold text-white text-sm truncate">{item.producto?.nombre}</h4>
-                        <p className="text-[10px] text-billanga-gray">Bs. {Number(item.precio_unitario).toFixed(2)} c/u</p>
+                        <p className="text-[10px] text-billar-gray">Bs. {Number(item.precio_unitario).toFixed(2)} c/u</p>
                       </div>
                     </div>
                     <div className="text-right font-bold text-white ml-2">
@@ -1117,26 +1117,26 @@ export default function MesasPage() {
               {/* Totalizador */}
               <div className="p-5 border-t border-[#2a2a2c] bg-[#1a1a1c] shrink-0">
                 <div className="flex justify-between mb-2 text-sm">
-                  <span className="text-billanga-gray">Subtotal Productos</span>
+                  <span className="text-billar-gray">Subtotal Productos</span>
                   <span className="font-bold text-white">Bs. {(posVenta?.items.reduce((acc, i) => acc + i.subtotal, 0) || 0).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between mb-4 text-sm border-b border-[#2a2a2c] pb-4">
-                  <span className="text-billanga-gray">{posSesion.modalidad === 'partida' ? 'Costo Fijo' : 'Tiempo Calculado'}</span>
-                  <span className="font-bold text-billanga-primary">Bs. {getSessionDetails(posSesion).accumulatedValue}</span>
+                  <span className="text-billar-gray">{posSesion.modalidad === 'partida' ? 'Costo Fijo' : 'Tiempo Calculado'}</span>
+                  <span className="font-bold text-billar-primary">Bs. {getSessionDetails(posSesion).accumulatedValue}</span>
                 </div>
                 <div className="flex justify-between items-end mb-4">
-                  <span className="text-xs text-billanga-gray uppercase tracking-wider font-bold">Total a Pagar</span>
+                  <span className="text-xs text-billar-gray uppercase tracking-wider font-bold">Total a Pagar</span>
                   <span className="text-3xl font-black text-white">
                     Bs. {((posVenta?.items.reduce((acc, i) => acc + i.subtotal, 0) || 0) + Number(getSessionDetails(posSesion).accumulatedValue)).toFixed(2)}
                   </span>
                 </div>
                 {isMesero ? (
-                  <div className="w-full py-3 border border-[#2a2a2c] bg-black/20 text-billanga-gray rounded-xl text-center text-sm font-bold flex flex-col justify-center">
+                  <div className="w-full py-3 border border-[#2a2a2c] bg-black/20 text-billar-gray rounded-xl text-center text-sm font-bold flex flex-col justify-center">
                     Solo Cajero puede cobrar
                     <span className="text-[10px] font-normal opacity-70">Avisa al cliente que pase a caja.</span>
                   </div>
                 ) : (
-                  <button onClick={openCobroModal} className="w-full py-4 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)] flex justify-center items-center gap-2">
+                  <button onClick={openCobroModal} className="w-full py-4 bg-billar-primary hover:bg-billar-primary-dark text-white rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(220, 38, 38,0.3)] flex justify-center items-center gap-2">
                     <Banknote className="w-5 h-5" /> Cobrar y Finalizar
                   </button>
                 )}
@@ -1148,34 +1148,34 @@ export default function MesasPage() {
             {/* Buscador de productos */}
             <div className="p-3 sm:p-4 border-b border-[#2a2a2c] bg-[#1a1a1c] shrink-0">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-billanga-gray/50" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-billar-gray/50" />
                 <input 
                   type="text" 
                   placeholder="Buscar producto..." 
                   value={searchProductoQuery}
                   onChange={e => setSearchProductoQuery(e.target.value)}
-                  className="bg-[#141416] border border-[#2a2a2c] rounded-lg py-2 pl-9 pr-3 text-sm text-white w-full focus:outline-none focus:border-billanga-primary transition-colors"
+                  className="bg-[#141416] border border-[#2a2a2c] rounded-lg py-2 pl-9 pr-3 text-sm text-white w-full focus:outline-none focus:border-billar-primary transition-colors"
                 />
               </div>
             </div>
 
             <div className="p-3 sm:p-4 border-b border-[#2a2a2c] bg-[#1a1a1c] overflow-x-auto flex gap-2 shrink-0 scrollbar-thin scrollbar-thumb-[#2a2a2c]">
-              <button onClick={() => setActiveCategory('all')} className={`shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${activeCategory === 'all' ? 'bg-white text-black' : 'bg-[#2a2a2c] text-billanga-gray hover:text-white'}`}>Todos</button>
-              {categorias.map(cat => <button key={cat.id_categoria} onClick={() => setActiveCategory(cat.id_categoria)} className={`shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${activeCategory === cat.id_categoria ? 'bg-white text-black' : 'bg-[#2a2a2c] text-billanga-gray hover:text-white'}`}>{cat.nombre}</button>)}
+              <button onClick={() => setActiveCategory('all')} className={`shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${activeCategory === 'all' ? 'bg-white text-black' : 'bg-[#2a2a2c] text-billar-gray hover:text-white'}`}>Todos</button>
+              {categorias.map(cat => <button key={cat.id_categoria} onClick={() => setActiveCategory(cat.id_categoria)} className={`shrink-0 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${activeCategory === cat.id_categoria ? 'bg-white text-black' : 'bg-[#2a2a2c] text-billar-gray hover:text-white'}`}>{cat.nombre}</button>)}
             </div>
             <div className="flex-1 overflow-y-auto p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 content-start scrollbar-thin scrollbar-thumb-[#2a2a2c]">
                 {filteredProducts.map(prod => (
-                  <button key={prod.id_producto} onClick={() => handleAddProduct(prod)} className="bg-[#1a1a1c] border border-[#2a2a2c] hover:border-billanga-primary/50 hover:shadow-[0_0_15px_rgba(220, 38, 38,0.15)] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square transition-all active:scale-95 group">
-                    <div className="w-16 h-16 rounded-xl bg-black/40 flex items-center justify-center mb-3 group-hover:bg-billanga-primary/20 transition-colors overflow-hidden">
+                  <button key={prod.id_producto} onClick={() => handleAddProduct(prod)} className="bg-[#1a1a1c] border border-[#2a2a2c] hover:border-billar-primary/50 hover:shadow-[0_0_15px_rgba(220, 38, 38,0.15)] rounded-2xl p-4 flex flex-col items-center justify-between aspect-square transition-all active:scale-95 group">
+                    <div className="w-16 h-16 rounded-xl bg-black/40 flex items-center justify-center mb-3 group-hover:bg-billar-primary/20 transition-colors overflow-hidden">
                       {prod.imagen_url ? (
                         <img src={prod.imagen_url} alt={prod.nombre} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
                       ) : (
-                        <Tag className="w-6 h-6 text-billanga-gray group-hover:text-billanga-primary transition-colors" />
+                        <Tag className="w-6 h-6 text-billar-gray group-hover:text-billar-primary transition-colors" />
                       )}
                     </div>
                     <div className="text-center w-full">
                       <h4 className="font-bold text-sm text-white leading-tight mb-1 line-clamp-2">{prod.nombre}</h4>
-                      <p className="font-black text-billanga-primary">Bs. {prod.precio_venta.toFixed(2)}</p>
+                      <p className="font-black text-billar-primary">Bs. {prod.precio_venta.toFixed(2)}</p>
                     </div>
                   </button>
                 ))}
@@ -1191,18 +1191,18 @@ export default function MesasPage() {
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] w-full max-w-md rounded-2xl overflow-hidden animate-in zoom-in-95 duration-200 shadow-2xl">
             <div className="p-6 border-b border-[#2a2a2c] text-center">
               <h3 className="font-black text-2xl text-white">Finalizar Mesa {posMesa.numero}</h3>
-              <p className="text-sm text-billanga-gray">Elige el método de pago para cerrar</p>
+              <p className="text-sm text-billar-gray">Elige el método de pago para cerrar</p>
             </div>
             <div className="p-6 space-y-6">
-              <div className="bg-billanga-primary/10 border border-billanga-primary/30 p-6 rounded-2xl text-center space-y-2">
-                <span className="text-sm text-billanga-primary uppercase tracking-wider font-bold">Total a Cobrar</span>
+              <div className="bg-billar-primary/10 border border-billar-primary/30 p-6 rounded-2xl text-center space-y-2">
+                <span className="text-sm text-billar-primary uppercase tracking-wider font-bold">Total a Cobrar</span>
                 <div className="text-5xl font-black text-white">Bs. {((posVenta?.items.reduce((acc, i) => acc + i.subtotal, 0) || 0) + Number(getSessionDetails(posSesion).accumulatedValue)).toFixed(2)}</div>
               </div>
               <div className="space-y-3">
-                <label className="text-sm font-medium text-billanga-gray block text-center">Método de Pago</label>
+                <label className="text-sm font-medium text-billar-gray block text-center">Método de Pago</label>
                 <div className="grid grid-cols-2 gap-3">
                   {(['efectivo', 'qr'] as const).map((metodo) => (
-                    <button key={metodo} onClick={() => setMetodoPago(metodo)} className={`p-4 border rounded-xl flex flex-col items-center gap-2 transition-all ${metodoPago === metodo ? "border-billanga-primary bg-billanga-primary/20 text-white" : "border-[#2a2a2c] bg-black/40 text-billanga-gray hover:text-white hover:bg-[#2a2a2c]"}`}>
+                    <button key={metodo} onClick={() => setMetodoPago(metodo)} className={`p-4 border rounded-xl flex flex-col items-center gap-2 transition-all ${metodoPago === metodo ? "border-billar-primary bg-billar-primary/20 text-white" : "border-[#2a2a2c] bg-black/40 text-billar-gray hover:text-white hover:bg-[#2a2a2c]"}`}>
                       <Banknote className="w-6 h-6" />
                       <span className="text-xs font-bold capitalize">{metodo}</span>
                     </button>
@@ -1224,25 +1224,25 @@ export default function MesasPage() {
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] w-full max-w-3xl rounded-2xl overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col max-h-[90vh]">
             <div className="p-6 border-b border-[#2a2a2c] flex justify-between items-center shrink-0 bg-black/20">
               <h3 className="font-bold text-xl text-white flex items-center gap-2">
-                <Settings className="w-6 h-6 text-billanga-primary" /> 
+                <Settings className="w-6 h-6 text-billar-primary" /> 
                 Gestión de Mesas
               </h3>
-              <button onClick={() => { setIsManagingMesas(false); setIsEditingMesa(false); }} className="text-billanga-gray hover:text-white"><X className="w-5 h-5"/></button>
+              <button onClick={() => { setIsManagingMesas(false); setIsEditingMesa(false); }} className="text-billar-gray hover:text-white"><X className="w-5 h-5"/></button>
             </div>
 
             <div className="p-6 border-b border-[#2a2a2c] bg-[#141416] shrink-0">
               <div className="flex flex-col sm:flex-row gap-4 items-end">
                 <div className="w-full sm:w-24">
-                  <label className="text-xs font-bold text-billanga-gray uppercase tracking-wider block mb-1">Número</label>
-                  <input type="number" value={mesaFormData.numero} onChange={e => setMesaFormData({...mesaFormData, numero: parseInt(e.target.value)||1})} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none" />
+                  <label className="text-xs font-bold text-billar-gray uppercase tracking-wider block mb-1">Número</label>
+                  <input type="number" value={mesaFormData.numero} onChange={e => setMesaFormData({...mesaFormData, numero: parseInt(e.target.value)||1})} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none" />
                 </div>
                 <div className="flex-1 w-full">
-                  <label className="text-xs font-bold text-billanga-gray uppercase tracking-wider block mb-1">Nombre (Opcional)</label>
-                  <input type="text" placeholder="Ej: VIP Central" value={mesaFormData.nombre || ""} onChange={e => setMesaFormData({...mesaFormData, nombre: e.target.value})} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none" />
+                  <label className="text-xs font-bold text-billar-gray uppercase tracking-wider block mb-1">Nombre (Opcional)</label>
+                  <input type="text" placeholder="Ej: VIP Central" value={mesaFormData.nombre || ""} onChange={e => setMesaFormData({...mesaFormData, nombre: e.target.value})} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none" />
                 </div>
                 <div className="flex-1 w-full">
-                  <label className="text-xs font-bold text-billanga-gray uppercase tracking-wider block mb-1">Tipo</label>
-                  <select value={mesaFormData.tipo} onChange={e => setMesaFormData({...mesaFormData, tipo: e.target.value as any})} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billanga-primary outline-none [color-scheme:dark]">
+                  <label className="text-xs font-bold text-billar-gray uppercase tracking-wider block mb-1">Tipo</label>
+                  <select value={mesaFormData.tipo} onChange={e => setMesaFormData({...mesaFormData, tipo: e.target.value as any})} className="w-full bg-black border border-[#2a2a2c] rounded-lg py-2.5 px-3 text-white focus:border-billar-primary outline-none [color-scheme:dark]">
                     <option value="pool">Pool</option>
                     <option value="americana">Americana</option>
                     <option value="snooker">Snooker</option>
@@ -1251,7 +1251,7 @@ export default function MesasPage() {
                   </select>
                 </div>
                 <div className="w-full sm:w-auto">
-                  <button type="button" onClick={handleSaveMesa} className="w-full sm:w-auto px-6 py-2.5 bg-billanga-primary hover:bg-billanga-primary-dark text-white rounded-lg font-bold flex items-center justify-center gap-2 transition-all">
+                  <button type="button" onClick={handleSaveMesa} className="w-full sm:w-auto px-6 py-2.5 bg-billar-primary hover:bg-billar-primary-dark text-white rounded-lg font-bold flex items-center justify-center gap-2 transition-all">
                     {isEditingMesa ? <Check className="w-4 h-4"/> : <Plus className="w-4 h-4"/>}
                     {isEditingMesa ? 'Guardar' : 'Añadir'}
                   </button>
@@ -1267,7 +1267,7 @@ export default function MesasPage() {
             <div className="flex-1 overflow-y-auto p-0">
               <table className="w-full text-left border-collapse">
                 <thead className="sticky top-0 bg-[#1a1a1c] z-10 shadow-sm">
-                  <tr className="border-b border-[#2a2a2c] text-xs font-bold text-billanga-gray tracking-wider uppercase">
+                  <tr className="border-b border-[#2a2a2c] text-xs font-bold text-billar-gray tracking-wider uppercase">
                     <th className="py-4 pl-6">Mesa</th>
                     <th className="py-4">Tipo</th>
                     <th className="py-4 text-center">Estado</th>
@@ -1285,7 +1285,7 @@ export default function MesasPage() {
                           <span className="font-bold text-white text-sm">{m.nombre || `Mesa ${m.numero}`}</span>
                         </div>
                       </td>
-                      <td className="py-4 text-sm text-billanga-gray capitalize">{m.tipo}</td>
+                      <td className="py-4 text-sm text-billar-gray capitalize">{m.tipo}</td>
                       <td className="py-4 text-center">
                         <span className={`px-3 py-1 text-xs font-bold uppercase rounded-full border ${m.activo ? 'bg-green-500/10 border-green-500/30 text-green-400' : 'bg-red-500/10 border-red-500/30 text-red-400'}`}>
                           {m.activo ? 'Visible' : 'Oculta/Suspendida'}

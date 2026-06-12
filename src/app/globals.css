@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-billanga-black: #141416;
-  --color-billanga-dark: #1e1e21;
-  --color-billanga-primary: #dc2626;
-  --color-billanga-primary-dark: #991b1b;
-  --color-billanga-accent: #ffffff;
-  --color-billanga-white: #f3f4f6;
-  --color-billanga-gray: #9ca3af;
+  --color-billar-black: #141416;
+  --color-billar-dark: #1e1e21;
+  --color-billar-primary: #dc2626;
+  --color-billar-primary-dark: #991b1b;
+  --color-billar-accent: #ffffff;
+  --color-billar-white: #f3f4f6;
+  --color-billar-gray: #9ca3af;
 }
 
 :root {
-  --background: var(--color-billanga-black);
-  --foreground: var(--color-billanga-white);
+  --background: var(--color-billar-black);
+  --foreground: var(--color-billar-white);
 }
 
 body {
@@ -38,20 +38,20 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-billanga-black);
+  background: var(--color-billar-black);
 }
 
 ::-webkit-scrollbar-thumb {
   background: #3a3a3c;
   border-radius: 10px;
-  border: 2px solid var(--color-billanga-black);
+  border: 2px solid var(--color-billar-black);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-billanga-primary);
+  background: var(--color-billar-primary);
 }
 
 html {
   scrollbar-width: thin;
-  scrollbar-color: #3a3a3c var(--color-billanga-black);
+  scrollbar-color: #3a3a3c var(--color-billar-black);
 }

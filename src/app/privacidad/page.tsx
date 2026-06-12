@@ -11,7 +11,7 @@ export default function PrivacidadPage() {
 
       <main className="flex-1 max-w-4xl mx-auto px-6 pt-32 pb-24 w-full relative z-0">
         <div className="mb-10">
-          <Link href="/" className="inline-flex items-center text-billanga-primary hover:text-white transition-colors gap-2">
+          <Link href="/" className="inline-flex items-center text-billar-primary hover:text-white transition-colors gap-2">
             <ArrowLeft className="w-5 h-5" />
             Volver a la tienda
           </Link>
@@ -19,13 +19,13 @@ export default function PrivacidadPage() {
 
         <div className="space-y-12">
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-billanga-primary to-green-400">
+            <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-billar-primary to-green-400">
               Política de Privacidad
             </h1>
-            <p className="text-billanga-gray">Última actualización: Junio de 2026</p>
+            <p className="text-billar-gray">Última actualización: Junio de 2026</p>
           </div>
 
-          <div className="bg-[#121212] p-8 rounded-3xl border border-[#2a2a2c] space-y-8 text-billanga-gray leading-relaxed">
+          <div className="bg-[#121212] p-8 rounded-3xl border border-[#2a2a2c] space-y-8 text-billar-gray leading-relaxed">
             
             <section className="space-y-4">
               <h2 className="text-xl font-bold text-white">1. Información que Recopilamos</h2>

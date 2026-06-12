@@ -455,7 +455,7 @@ WHERE r.nombre = 'superadmin';
 
 -- Sucursal de ejemplo
 INSERT INTO sucursales (nombre, direccion, telefono)
-VALUES ('El Billanga - Sede Principal', 'Dirección Principal', '0412-1234567');
+VALUES ('Billar Malandro - Sede Principal', 'Dirección Principal', '0412-1234567');
 
 -- Categorías de ejemplo
 INSERT INTO categorias (nombre, descripcion) VALUES

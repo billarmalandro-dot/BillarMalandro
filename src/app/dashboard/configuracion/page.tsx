@@ -199,8 +199,8 @@ export default function ConfiguracionPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-billanga-gray">
-        <RefreshCw className="w-10 h-10 animate-spin text-billanga-primary mb-4" />
+      <div className="flex flex-col items-center justify-center py-24 text-billar-gray">
+        <RefreshCw className="w-10 h-10 animate-spin text-billar-primary mb-4" />
         <p className="text-sm">Cargando configuración...</p>
       </div>
     );
@@ -210,10 +210,10 @@ export default function ConfiguracionPage() {
     <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500">
       <div>
         <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-          <Settings className="w-7 h-7 text-billanga-primary" />
+          <Settings className="w-7 h-7 text-billar-primary" />
           Configuración del Sistema
         </h2>
-        <p className="text-sm text-billanga-gray">Ajusta los parámetros operativos y preferencias generales de la sucursal.</p>
+        <p className="text-sm text-billar-gray">Ajusta los parámetros operativos y preferencias generales de la sucursal.</p>
       </div>
 
       {dbError && (
@@ -239,34 +239,34 @@ export default function ConfiguracionPage() {
           {/* Parámetros Operativos */}
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl p-6 space-y-6">
             <h3 className="text-lg font-bold text-white flex items-center gap-2 border-b border-[#2a2a2c] pb-3">
-              <DollarSign className="w-5 h-5 text-billanga-primary" />
+              <DollarSign className="w-5 h-5 text-billar-primary" />
               Operaciones de Mesa
             </h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-billanga-gray uppercase tracking-wider mb-2">
+                <label className="block text-xs font-bold text-billar-gray uppercase tracking-wider mb-2">
                   Nombre del Establecimiento
                 </label>
                 <input 
                   type="text" 
                   value={billarName}
                   onChange={(e) => setBillarName(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none transition-colors"
+                  className="w-full px-4 py-2.5 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none transition-colors"
                   required
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-billanga-gray uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-bold text-billar-gray uppercase tracking-wider mb-2">
                     Moneda Local
                   </label>
                   <input 
                     type="text" 
                     value={currency}
                     onChange={(e) => setCurrency(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none transition-colors"
                     required
                   />
                 </div>
@@ -277,7 +277,7 @@ export default function ConfiguracionPage() {
           {/* Preferencias del Sistema */}
           <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl p-6 space-y-6">
             <h3 className="text-lg font-bold text-white flex items-center gap-2 border-b border-[#2a2a2c] pb-3">
-              <Bell className="w-5 h-5 text-billanga-primary" />
+              <Bell className="w-5 h-5 text-billar-primary" />
               Notificaciones y Preferencias
             </h3>
             
@@ -285,7 +285,7 @@ export default function ConfiguracionPage() {
               <div className="flex items-center justify-between p-3.5 bg-black/25 rounded-xl border border-[#2a2a2c]/60">
                 <div>
                   <h4 className="text-sm font-semibold text-white">Alertas Sonoras</h4>
-                  <p className="text-xs text-billanga-gray">Emitir sonidos en POS y al abrir/cerrar mesas.</p>
+                  <p className="text-xs text-billar-gray">Emitir sonidos en POS y al abrir/cerrar mesas.</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input 
@@ -294,14 +294,14 @@ export default function ConfiguracionPage() {
                     onChange={(e) => setSoundsEnabled(e.target.checked)}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-billanga-primary"></div>
+                  <div className="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-billar-primary"></div>
                 </label>
               </div>
 
               <div className="flex items-center justify-between p-3.5 bg-black/25 rounded-xl border border-[#2a2a2c]/60">
                 <div>
                   <h4 className="text-sm font-semibold text-white">Impresión Automática</h4>
-                  <p className="text-xs text-billanga-gray">Imprimir factura POS inmediatamente al cobrar.</p>
+                  <p className="text-xs text-billar-gray">Imprimir factura POS inmediatamente al cobrar.</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input 
@@ -310,14 +310,14 @@ export default function ConfiguracionPage() {
                     onChange={(e) => setAutoPrint(e.target.checked)}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-billanga-primary"></div>
+                  <div className="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-billar-primary"></div>
                 </label>
               </div>
 
               <div className="flex items-center justify-between p-3.5 bg-black/25 rounded-xl border border-[#2a2a2c]/60">
                 <div>
                   <h4 className="text-sm font-semibold text-white">Modo Nocturno</h4>
-                  <p className="text-xs text-billanga-gray">Mantener estética oscura premium del dashboard.</p>
+                  <p className="text-xs text-billar-gray">Mantener estética oscura premium del dashboard.</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input 
@@ -326,7 +326,7 @@ export default function ConfiguracionPage() {
                     disabled
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-zinc-850 rounded-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all bg-billanga-primary opacity-60 cursor-not-allowed"></div>
+                  <div className="w-11 h-6 bg-zinc-850 rounded-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all bg-billar-primary opacity-60 cursor-not-allowed"></div>
                 </label>
               </div>
             </div>
@@ -338,7 +338,7 @@ export default function ConfiguracionPage() {
         <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl p-6 space-y-6">
             <div className="flex items-center justify-between border-b border-[#2a2a2c] pb-3">
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <Clock className="w-5 h-5 text-billanga-primary" />
+                <Clock className="w-5 h-5 text-billar-primary" />
                 Gestión de Tarifas de Juego
               </h3>
               <button
@@ -351,7 +351,7 @@ export default function ConfiguracionPage() {
                   });
                   setIsTarifaModalOpen(true);
                 }}
-                className="flex items-center gap-2 px-3 py-1.5 bg-billanga-primary/20 text-billanga-primary hover:bg-billanga-primary hover:text-white rounded-lg text-sm font-semibold transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 bg-billar-primary/20 text-billar-primary hover:bg-billar-primary hover:text-white rounded-lg text-sm font-semibold transition-colors"
               >
                 <Plus className="w-4 h-4" /> Nueva Tarifa
               </button>
@@ -371,11 +371,11 @@ export default function ConfiguracionPage() {
                       </button>
                     </div>
                   </div>
-                  <div className="text-2xl font-bold text-billanga-primary mb-1">
-                    {currency} {Number(tarifa.precio_hora).toFixed(2)} <span className="text-xs text-billanga-gray font-normal">/ hora</span>
+                  <div className="text-2xl font-bold text-billar-primary mb-1">
+                    {currency} {Number(tarifa.precio_hora).toFixed(2)} <span className="text-xs text-billar-gray font-normal">/ hora</span>
                   </div>
                   <div className="flex flex-col gap-1 mt-2">
-                    <span className="text-xs text-billanga-gray bg-zinc-800/50 inline-block px-2 py-1 rounded w-fit">
+                    <span className="text-xs text-billar-gray bg-zinc-800/50 inline-block px-2 py-1 rounded w-fit">
                       Aplicación: {tarifa.tipo_dia.toUpperCase()}
                     </span>
                     {(tarifa.horas_regalo > 0) && (
@@ -388,7 +388,7 @@ export default function ConfiguracionPage() {
               ))}
               
               {tarifas.length === 0 && (
-                <div className="col-span-full py-8 text-center text-billanga-gray border border-dashed border-[#2a2a2c] rounded-xl bg-black/20">
+                <div className="col-span-full py-8 text-center text-billar-gray border border-dashed border-[#2a2a2c] rounded-xl bg-black/20">
                   <p>No hay tarifas registradas.</p>
                 </div>
               )}
@@ -408,17 +408,17 @@ export default function ConfiguracionPage() {
               <div className={tarifaForm.es_promocion ? "p-6 overflow-y-auto flex flex-col md:flex-row gap-8" : "p-6 overflow-y-auto space-y-4"}>
                 <div className={tarifaForm.es_promocion ? "w-full md:w-1/2 space-y-4" : "space-y-4"}>
                   <div>
-                  <label className="block text-xs font-bold text-billanga-gray uppercase mb-2">Nombre de Tarifa</label>
-                  <input type="text" value={tarifaForm.nombre} onChange={e => setTarifaForm({...tarifaForm, nombre: e.target.value})} className="w-full px-4 py-3 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none" placeholder="Ej: Tarifa Normal" autoFocus required />
+                  <label className="block text-xs font-bold text-billar-gray uppercase mb-2">Nombre de Tarifa</label>
+                  <input type="text" value={tarifaForm.nombre} onChange={e => setTarifaForm({...tarifaForm, nombre: e.target.value})} className="w-full px-4 py-3 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none" placeholder="Ej: Tarifa Normal" autoFocus required />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-billanga-gray uppercase mb-2">Precio por Hora (Bs.)</label>
-                    <input type="number" step="0.5" value={tarifaForm.precio_hora} onChange={e => setTarifaForm({...tarifaForm, precio_hora: parseFloat(e.target.value) || 0})} className="w-full px-4 py-3 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none" required />
+                    <label className="block text-xs font-bold text-billar-gray uppercase mb-2">Precio por Hora (Bs.)</label>
+                    <input type="number" step="0.5" value={tarifaForm.precio_hora} onChange={e => setTarifaForm({...tarifaForm, precio_hora: parseFloat(e.target.value) || 0})} className="w-full px-4 py-3 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none" required />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-billanga-gray uppercase mb-2">Aplicación</label>
-                    <select value={tarifaForm.tipo_dia} onChange={e => setTarifaForm({...tarifaForm, tipo_dia: e.target.value})} className="w-full px-4 py-3 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none">
+                    <label className="block text-xs font-bold text-billar-gray uppercase mb-2">Aplicación</label>
+                    <select value={tarifaForm.tipo_dia} onChange={e => setTarifaForm({...tarifaForm, tipo_dia: e.target.value})} className="w-full px-4 py-3 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none">
                       <option value="todos">Todos los Días</option>
                       <option value="l-v">Lunes a Viernes</option>
                       <option value="fin-de-semana">Fin de Semana</option>
@@ -434,7 +434,7 @@ export default function ConfiguracionPage() {
                     </h4>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" checked={tarifaForm.es_promocion} onChange={(e) => setTarifaForm({...tarifaForm, es_promocion: e.target.checked})} className="sr-only peer" />
-                      <div className="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-billanga-primary"></div>
+                      <div className="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-billar-primary"></div>
                     </label>
                   </div>
                 </div>
@@ -443,35 +443,35 @@ export default function ConfiguracionPage() {
                 {tarifaForm.es_promocion && (
                   <div className="w-full md:w-1/2 space-y-4 animate-in fade-in duration-300 border-t md:border-t-0 md:border-l border-[#2a2a2c] pt-6 md:pt-0 md:pl-8 mt-4 md:mt-0">
                       <div>
-                        <label className="block text-xs font-bold text-billanga-gray uppercase mb-1">Descripción Breve</label>
-                        <input type="text" value={tarifaForm.descripcion} onChange={e => setTarifaForm({...tarifaForm, descripcion: e.target.value})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none" placeholder="Ej: 2 horas + 1 Paceña gratis" />
+                        <label className="block text-xs font-bold text-billar-gray uppercase mb-1">Descripción Breve</label>
+                        <input type="text" value={tarifaForm.descripcion} onChange={e => setTarifaForm({...tarifaForm, descripcion: e.target.value})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none" placeholder="Ej: 2 horas + 1 Paceña gratis" />
                       </div>
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-bold text-billanga-gray uppercase mb-1">Precio Fijo Opcional (Bs.)</label>
-                          <input type="number" step="0.5" min="0" value={tarifaForm.precio_fijo} onChange={e => setTarifaForm({...tarifaForm, precio_fijo: parseFloat(e.target.value) || 0})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none" placeholder="Si tiene valor, anula precio x hora" />
+                          <label className="block text-xs font-bold text-billar-gray uppercase mb-1">Precio Fijo Opcional (Bs.)</label>
+                          <input type="number" step="0.5" min="0" value={tarifaForm.precio_fijo} onChange={e => setTarifaForm({...tarifaForm, precio_fijo: parseFloat(e.target.value) || 0})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none" placeholder="Si tiene valor, anula precio x hora" />
                         </div>
                         <div>
-                          <label className="block text-xs font-bold text-billanga-gray uppercase mb-1">Personas Válidas</label>
-                          <input type="number" min="1" value={tarifaForm.personas} onChange={e => setTarifaForm({...tarifaForm, personas: parseInt(e.target.value) || 1})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none" />
+                          <label className="block text-xs font-bold text-billar-gray uppercase mb-1">Personas Válidas</label>
+                          <input type="number" min="1" value={tarifaForm.personas} onChange={e => setTarifaForm({...tarifaForm, personas: parseInt(e.target.value) || 1})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none" />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-bold text-billanga-gray uppercase mb-1">Horas que Paga</label>
-                          <input type="number" min="0" value={tarifaForm.horas_pagadas} onChange={e => setTarifaForm({...tarifaForm, horas_pagadas: parseInt(e.target.value) || 0})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none" placeholder="Ej: 2" />
+                          <label className="block text-xs font-bold text-billar-gray uppercase mb-1">Horas que Paga</label>
+                          <input type="number" min="0" value={tarifaForm.horas_pagadas} onChange={e => setTarifaForm({...tarifaForm, horas_pagadas: parseInt(e.target.value) || 0})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none" placeholder="Ej: 2" />
                         </div>
                         <div>
-                          <label className="block text-xs font-bold text-billanga-gray uppercase mb-1">Horas de Regalo</label>
-                          <input type="number" min="0" value={tarifaForm.horas_regalo} onChange={e => setTarifaForm({...tarifaForm, horas_regalo: parseInt(e.target.value) || 0})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billanga-primary focus:outline-none" placeholder="Ej: 1" />
+                          <label className="block text-xs font-bold text-billar-gray uppercase mb-1">Horas de Regalo</label>
+                          <input type="number" min="0" value={tarifaForm.horas_regalo} onChange={e => setTarifaForm({...tarifaForm, horas_regalo: parseInt(e.target.value) || 0})} className="w-full px-4 py-2 bg-[#121212] border border-[#2a2a2c] rounded-xl text-white text-sm focus:border-billar-primary focus:outline-none" placeholder="Ej: 1" />
                         </div>
                       </div>
-                      <p className="text-[10px] text-billanga-gray -mt-2">Ej: Promo 3x2, Horas que paga=2, Horas regalo=1.</p>
+                      <p className="text-[10px] text-billar-gray -mt-2">Ej: Promo 3x2, Horas que paga=2, Horas regalo=1.</p>
 
                       <div>
-                        <label className="block text-xs font-bold text-billanga-gray uppercase mb-1">Días de la semana</label>
+                        <label className="block text-xs font-bold text-billar-gray uppercase mb-1">Días de la semana</label>
                         <div className="flex flex-wrap gap-2">
                           {['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'].map((d, i) => {
                             const dayNumber = i === 6 ? 0 : i + 1; // Dom=0, Lun=1...
@@ -486,7 +486,7 @@ export default function ConfiguracionPage() {
                                     : [...tarifaForm.dias_semana, dayNumber];
                                   setTarifaForm({...tarifaForm, dias_semana: newDays});
                                 }}
-                                className={`px-2 py-1 rounded-md text-xs font-bold transition-colors ${isSelected ? 'bg-billanga-primary text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}
+                                className={`px-2 py-1 rounded-md text-xs font-bold transition-colors ${isSelected ? 'bg-billar-primary text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'}`}
                               >
                                 {d}
                               </button>
@@ -496,7 +496,7 @@ export default function ConfiguracionPage() {
                       </div>
 
                       <div className="bg-black/20 p-3 rounded-xl border border-[#2a2a2c]">
-                        <label className="block text-xs font-bold text-billanga-gray uppercase mb-2">Productos Incluidos</label>
+                        <label className="block text-xs font-bold text-billar-gray uppercase mb-2">Productos Incluidos</label>
                         <div className="flex gap-2 mb-3">
                           <select 
                             id="prod_select"
@@ -559,7 +559,7 @@ export default function ConfiguracionPage() {
               </div>
               <div className="p-5 border-t border-[#2a2a2c] flex gap-3 justify-end bg-black/20 shrink-0">
                 <button type="button" onClick={() => setIsTarifaModalOpen(false)} className="px-5 py-2.5 rounded-xl font-bold text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors">Cancelar</button>
-                <button type="button" onClick={handleSaveTarifa} className="px-5 py-2.5 rounded-xl font-bold bg-billanga-primary text-white hover:bg-[#b81d24] transition-colors shadow-lg shadow-billanga-primary/20">
+                <button type="button" onClick={handleSaveTarifa} className="px-5 py-2.5 rounded-xl font-bold bg-billar-primary text-white hover:bg-[#b81d24] transition-colors shadow-lg shadow-billar-primary/20">
                   {editingTarifa ? 'Guardar Cambios' : 'Crear Tarifa'}
                 </button>
               </div>
@@ -568,8 +568,8 @@ export default function ConfiguracionPage() {
         )}
 
         {/* Info Box */}
-        <div className="p-4 bg-billanga-primary/5 border border-billanga-primary/10 rounded-xl flex gap-3 text-xs text-billanga-gray">
-          <Info className="w-5 h-5 text-billanga-primary shrink-0" />
+        <div className="p-4 bg-billar-primary/5 border border-billar-primary/10 rounded-xl flex gap-3 text-xs text-billar-gray">
+          <Info className="w-5 h-5 text-billar-primary shrink-0" />
           <p className="leading-relaxed">
             Las tarifas y parámetros de cobro configurados aquí afectan en tiempo real al Punto de Venta (POS) y a la facturación del panel de control de mesas en juego. Asegúrate de guardar los cambios antes de salir.
           </p>
@@ -578,7 +578,7 @@ export default function ConfiguracionPage() {
         <button
           type="submit"
           disabled={saving}
-          className="flex items-center gap-2 px-6 py-3 bg-billanga-primary hover:bg-[#b81d24] text-white rounded-xl text-sm font-bold shadow-lg shadow-billanga-primary/10 transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-6 py-3 bg-billar-primary hover:bg-[#b81d24] text-white rounded-xl text-sm font-bold shadow-lg shadow-billar-primary/10 transition-colors disabled:opacity-50"
         >
           <Save className="w-4.5 h-4.5" />
           {saving ? "Guardando Ajustes..." : "Guardar Configuración"}

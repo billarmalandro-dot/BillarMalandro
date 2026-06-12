@@ -214,29 +214,29 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
         <div className="absolute inset-0 bg-[#0f0f11]/95 z-50 flex items-center px-4 md:px-8 gap-3 animate-in fade-in slide-in-from-top-2 duration-200 rounded-2xl">
           <button 
             onClick={() => setIsSearchExpanded(false)}
-            className="p-2 text-billanga-gray hover:text-white transition-colors"
+            className="p-2 text-billar-gray hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <div className="flex-1 flex items-center relative bg-white/5 border border-white/10 focus-within:border-billanga-primary/50 rounded-full">
-            <Search className="absolute left-4 w-4 h-4 text-billanga-gray" />
+          <div className="flex-1 flex items-center relative bg-white/5 border border-white/10 focus-within:border-billar-primary/50 rounded-full">
+            <Search className="absolute left-4 w-4 h-4 text-billar-gray" />
             <input 
               type="text"
               placeholder="Buscar bebidas, snacks, poleras..."
               value={searchVal}
               autoFocus
               onChange={(e) => handleSearch(e.target.value)}
-              className="w-full pl-11 pr-10 py-2 bg-transparent text-white placeholder-billanga-gray text-xs focus:outline-none"
+              className="w-full pl-11 pr-10 py-2 bg-transparent text-white placeholder-billar-gray text-xs focus:outline-none"
             />
             {searchVal && (
-              <button onClick={() => handleSearch("")} className="absolute right-4 text-billanga-gray hover:text-white">
+              <button onClick={() => handleSearch("")} className="absolute right-4 text-billar-gray hover:text-white">
                 <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
         </div>
       )}
-      <Link href="/" className="font-bold text-xl md:text-2xl tracking-tighter text-billanga-white flex items-center gap-3 hover:opacity-90 transition-opacity">
+      <Link href="/" className="font-bold text-xl md:text-2xl tracking-tighter text-billar-white flex items-center gap-3 hover:opacity-90 transition-opacity">
         <div className="relative w-8 h-8 md:w-10 md:h-10">
           <Image 
             src="/logo_transparente.png" 
@@ -248,30 +248,30 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
           />
         </div>
         <div className="font-black tracking-tight">
-          <span className="text-billanga-primary">BILLAR</span> MALANDRO
+          <span className="text-billar-primary">BILLAR</span> MALANDRO
         </div>
       </Link>
       
       {/* Desktop Search & Nav */}
       <div className="hidden md:flex items-center gap-4 lg:gap-6">
-        <nav className="flex gap-2 items-center text-sm font-semibold text-billanga-gray">
-          <Link href="/" className="px-4 py-2 rounded-full hover:bg-white/5 transition-all text-billanga-white">Inicio</Link>
+        <nav className="flex gap-2 items-center text-sm font-semibold text-billar-gray">
+          <Link href="/" className="px-4 py-2 rounded-full hover:bg-white/5 transition-all text-billar-white">Inicio</Link>
           <Link href="#torneos" className="px-4 py-2 rounded-full hover:bg-white/5 hover:text-white transition-all">Torneos</Link>
           <Link href="#menu" className="px-4 py-2 rounded-full hover:bg-white/5 hover:text-white transition-all">Catálogo</Link>
         </nav>
         
         {/* Lupa para PC */}
-        <div className="relative flex items-center w-44 lg:w-56 bg-white/5 border border-white/10 focus-within:border-billanga-primary/50 rounded-full transition-all duration-300">
-          <Search className="absolute left-3.5 w-4 h-4 text-billanga-gray" />
+        <div className="relative flex items-center w-44 lg:w-56 bg-white/5 border border-white/10 focus-within:border-billar-primary/50 rounded-full transition-all duration-300">
+          <Search className="absolute left-3.5 w-4 h-4 text-billar-gray" />
           <input 
             type="text"
             placeholder="Buscar..."
             value={searchVal}
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-full pl-10 pr-8 py-1.5 bg-transparent text-white placeholder-billanga-gray text-xs focus:outline-none"
+            className="w-full pl-10 pr-8 py-1.5 bg-transparent text-white placeholder-billar-gray text-xs focus:outline-none"
           />
           {searchVal && (
-            <button onClick={() => handleSearch("")} className="absolute right-3 text-billanga-gray hover:text-white transition-colors">
+            <button onClick={() => handleSearch("")} className="absolute right-3 text-billar-gray hover:text-white transition-colors">
               <X className="w-3.5 h-3.5" />
             </button>
           )}
@@ -283,14 +283,14 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
         {/* Botón Lupa en Móvil */}
         <button 
           onClick={() => setIsSearchExpanded(true)}
-          className="md:hidden p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/5 text-billanga-gray hover:text-white active:scale-95 transition-all shadow-md"
+          className="md:hidden p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/5 text-billar-gray hover:text-white active:scale-95 transition-all shadow-md"
         >
           <Search className="w-5 h-5" />
         </button>
 
         <button className="hidden md:block relative p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 transition-all group hover:scale-105 active:scale-95 shadow-md">
-          <ShoppingCart className="w-6 h-6 md:w-7 md:h-7 text-billanga-gray group-hover:text-white transition-colors" />
-          <span className="absolute -top-1 -right-1 w-4 h-4 md:w-4.5 md:h-4.5 bg-billanga-primary rounded-full text-[9px] md:text-[10px] font-bold flex items-center justify-center text-white border border-[#0f0f11]">
+          <ShoppingCart className="w-6 h-6 md:w-7 md:h-7 text-billar-gray group-hover:text-white transition-colors" />
+          <span className="absolute -top-1 -right-1 w-4 h-4 md:w-4.5 md:h-4.5 bg-billar-primary rounded-full text-[9px] md:text-[10px] font-bold flex items-center justify-center text-white border border-[#0f0f11]">
             0
           </span>
         </button>
@@ -308,12 +308,12 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                     <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
                   </div>
                 ) : (
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-billanga-primary to-billanga-primary-dark flex items-center justify-center font-bold text-white shadow-md text-sm">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-billar-primary to-billar-primary-dark flex items-center justify-center font-bold text-white shadow-md text-sm">
                     {user.email?.charAt(0).toUpperCase()}
                   </div>
                 )
               ) : (
-                <div className="w-9 h-9 rounded-full bg-[#2a2a2c] flex items-center justify-center text-billanga-gray border border-white/5">
+                <div className="w-9 h-9 rounded-full bg-[#2a2a2c] flex items-center justify-center text-billar-gray border border-white/5">
                   <UserCircle className="w-5.5 h-5.5" />
                 </div>
               )}
@@ -329,15 +329,15 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                 <div className="flex flex-col">
                   {/* Info de Usuario */}
                   <div className="px-4 py-2 border-b border-white/5 pb-3 mb-2">
-                    <p className="text-[10px] text-billanga-gray tracking-wider uppercase">Sesión activa</p>
+                    <p className="text-[10px] text-billar-gray tracking-wider uppercase">Sesión activa</p>
                     <p className="text-sm font-bold text-white truncate">{user.email}</p>
                     {isStaff ? (
-                      <div className="mt-2 flex items-center gap-1.5 text-xs text-white font-bold bg-billanga-primary px-2.5 py-1 rounded-full w-max shadow-md shadow-billanga-primary/10">
+                      <div className="mt-2 flex items-center gap-1.5 text-xs text-white font-bold bg-billar-primary px-2.5 py-1 rounded-full w-max shadow-md shadow-billar-primary/10">
                         <Shield className="w-3.5 h-3.5 text-white" />
                         <span>{staffRoleName || "Personal"}</span>
                       </div>
                     ) : (
-                      <div className="mt-2 flex items-center gap-1.5 text-xs text-billanga-primary font-semibold bg-billanga-primary/10 px-2 py-0.5 rounded-full w-max">
+                      <div className="mt-2 flex items-center gap-1.5 text-xs text-billar-primary font-semibold bg-billar-primary/10 px-2 py-0.5 rounded-full w-max">
                         <Award className="w-3.5 h-3.5" />
                         <span>{clientPoints} Puntos Malandro</span>
                       </div>
@@ -347,16 +347,16 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                   {/* Enlaces de Cuenta para Clientes */}
                   {!isStaff ? (
                     <>
-                      <Link href="/perfil" className="flex items-center gap-3 px-4 py-2.5 text-sm text-billanga-gray hover:text-white hover:bg-white/5 transition-colors">
-                        <UserCircle className="w-4 h-4 text-billanga-primary" />
+                      <Link href="/perfil" className="flex items-center gap-3 px-4 py-2.5 text-sm text-billar-gray hover:text-white hover:bg-white/5 transition-colors">
+                        <UserCircle className="w-4 h-4 text-billar-primary" />
                         Mi Perfil / Datos
                       </Link>
-                      <Link href="/mis-torneos" className="flex items-center gap-3 px-4 py-2.5 text-sm text-billanga-gray hover:text-white hover:bg-white/5 transition-colors">
-                        <Trophy className="w-4 h-4 text-billanga-primary" />
+                      <Link href="/mis-torneos" className="flex items-center gap-3 px-4 py-2.5 text-sm text-billar-gray hover:text-white hover:bg-white/5 transition-colors">
+                        <Trophy className="w-4 h-4 text-billar-primary" />
                         Mis Torneos
                       </Link>
-                      <Link href="#pedidos" className="flex items-center gap-3 px-4 py-2.5 text-sm text-billanga-gray hover:text-white hover:bg-white/5 transition-colors">
-                        <ShoppingBag className="w-4 h-4 text-billanga-primary" />
+                      <Link href="#pedidos" className="flex items-center gap-3 px-4 py-2.5 text-sm text-billar-gray hover:text-white hover:bg-white/5 transition-colors">
+                        <ShoppingBag className="w-4 h-4 text-billar-primary" />
                         Mis Pedidos
                       </Link>
                     </>
@@ -364,9 +364,9 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                     <>
                       <Link 
                         href={staffRoleLevel >= 2 ? "/dashboard" : "/dashboard/mesas"} 
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-white bg-billanga-primary/15 hover:bg-billanga-primary/25 border border-billanga-primary/35 rounded-lg mx-2 my-1.5 transition-all font-bold shadow-md shadow-billanga-primary/10"
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-white bg-billar-primary/15 hover:bg-billar-primary/25 border border-billar-primary/35 rounded-lg mx-2 my-1.5 transition-all font-bold shadow-md shadow-billar-primary/10"
                       >
-                        <Shield className="w-4 h-4 text-billanga-primary animate-pulse" />
+                        <Shield className="w-4 h-4 text-billar-primary animate-pulse" />
                         Panel Administrativo
                       </Link>
                     </>
@@ -376,9 +376,9 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                   <div className="h-px bg-white/5 my-1" />
                   <button 
                     onClick={handleSignOut} 
-                    className="w-full text-left flex items-center gap-3 px-4 py-2.5 text-sm text-billanga-gray hover:text-white hover:bg-billanga-primary/10 transition-colors"
+                    className="w-full text-left flex items-center gap-3 px-4 py-2.5 text-sm text-billar-gray hover:text-white hover:bg-billar-primary/10 transition-colors"
                   >
-                    <LogOut className="w-4 h-4 text-billanga-primary" />
+                    <LogOut className="w-4 h-4 text-billar-primary" />
                     Cerrar Sesión
                   </button>
                 </div>
@@ -387,13 +387,13 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                 <div className="flex flex-col">
                   <div className="px-4 py-2 mb-2">
                     <p className="text-sm font-bold text-white">¡Bienvenido!</p>
-                    <p className="text-xs text-billanga-gray mt-0.5">Inicia sesión para registrarte en torneos y acumular puntos.</p>
+                    <p className="text-xs text-billar-gray mt-0.5">Inicia sesión para registrarte en torneos y acumular puntos.</p>
                   </div>
 
                   <div className="px-3 pb-2 space-y-2">
                     <Link 
                       href="/login" 
-                      className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-bold text-white bg-billanga-primary hover:bg-billanga-primary-dark rounded-lg transition-colors shadow-lg shadow-billanga-primary/20"
+                      className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-bold text-white bg-billar-primary hover:bg-billar-primary-dark rounded-lg transition-colors shadow-lg shadow-billar-primary/20"
                     >
                       <LogIn className="w-4 h-4" />
                       Iniciar Sesión
@@ -408,12 +408,12 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
                   </div>
 
                   <div className="h-px bg-white/5 my-1" />
-                  <Link href="/mis-torneos" className="flex items-center gap-3 px-4 py-2 text-xs text-billanga-gray hover:text-white hover:bg-white/5 transition-colors">
-                    <Trophy className="w-3.5 h-3.5 text-billanga-primary" />
+                  <Link href="/mis-torneos" className="flex items-center gap-3 px-4 py-2 text-xs text-billar-gray hover:text-white hover:bg-white/5 transition-colors">
+                    <Trophy className="w-3.5 h-3.5 text-billar-primary" />
                     Torneos Activos
                   </Link>
-                  <Link href="#sucursales" className="flex items-center gap-3 px-4 py-2 text-xs text-billanga-gray hover:text-white hover:bg-white/5 transition-colors">
-                    <MapPin className="w-3.5 h-3.5 text-billanga-primary" />
+                  <Link href="#sucursales" className="flex items-center gap-3 px-4 py-2 text-xs text-billar-gray hover:text-white hover:bg-white/5 transition-colors">
+                    <MapPin className="w-3.5 h-3.5 text-billar-primary" />
                     Nuestras Sucursales
                   </Link>
                 </div>
@@ -425,7 +425,7 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
         {/* Mobile Menu Button */}
         {!hideMobileMenu && (
           <button 
-            className="md:hidden p-2 text-billanga-gray hover:text-white transition-colors"
+            className="md:hidden p-2 text-billar-gray hover:text-white transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -439,10 +439,10 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
           <Link href="/" onClick={() => setIsOpen(false)} className="text-white font-medium p-2 hover:bg-white/5 rounded-lg flex items-center gap-2">
             Inicio
           </Link>
-          <Link href="/mis-torneos" onClick={() => setIsOpen(false)} className="text-billanga-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg">
+          <Link href="/mis-torneos" onClick={() => setIsOpen(false)} className="text-billar-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg">
             Torneos
           </Link>
-          <Link href="#menu" onClick={() => setIsOpen(false)} className="text-billanga-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg">
+          <Link href="#menu" onClick={() => setIsOpen(false)} className="text-billar-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg">
             Catálogo
           </Link>
           
@@ -451,14 +451,14 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
           {user ? (
             <div className="flex flex-col gap-2">
               <div className="px-2 py-1 mb-1">
-                <p className="text-[10px] text-billanga-gray uppercase">Sesión activa</p>
+                <p className="text-[10px] text-billar-gray uppercase">Sesión activa</p>
                 <p className="text-xs font-bold text-white truncate">{user.email}</p>
                 {isStaff ? (
-                  <p className="text-[11px] text-white font-bold mt-1 flex items-center gap-1 bg-billanga-primary px-2.5 py-0.5 rounded-full w-max shadow-md">
+                  <p className="text-[11px] text-white font-bold mt-1 flex items-center gap-1 bg-billar-primary px-2.5 py-0.5 rounded-full w-max shadow-md">
                     <Shield className="w-3.5 h-3.5 text-white" /> {staffRoleName || "Personal"}
                   </p>
                 ) : (
-                  <p className="text-[11px] text-billanga-primary font-bold mt-1 flex items-center gap-1">
+                  <p className="text-[11px] text-billar-primary font-bold mt-1 flex items-center gap-1">
                     <Award className="w-3.5 h-3.5" /> {clientPoints} Puntos Malandro
                   </p>
                 )}
@@ -466,41 +466,41 @@ export default function Navbar({ hideMobileMenu = false }: { hideMobileMenu?: bo
 
               {!isStaff ? (
                 <>
-                  <Link href="/perfil" onClick={() => setIsOpen(false)} className="text-billanga-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-2">
-                    <UserCircle className="w-4 h-4 text-billanga-primary" /> Mi Perfil
+                  <Link href="/perfil" onClick={() => setIsOpen(false)} className="text-billar-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-2">
+                    <UserCircle className="w-4 h-4 text-billar-primary" /> Mi Perfil
                   </Link>
-                  <Link href="/mis-torneos" onClick={() => setIsOpen(false)} className="text-billanga-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-2">
-                    <Trophy className="w-4 h-4 text-billanga-primary" /> Mis Torneos
+                  <Link href="/mis-torneos" onClick={() => setIsOpen(false)} className="text-billar-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-2">
+                    <Trophy className="w-4 h-4 text-billar-primary" /> Mis Torneos
                   </Link>
-                  <Link href="#pedidos" onClick={() => setIsOpen(false)} className="text-billanga-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-2">
-                    <ShoppingBag className="w-4 h-4 text-billanga-primary" /> Mis Pedidos
+                  <Link href="#pedidos" onClick={() => setIsOpen(false)} className="text-billar-gray font-medium p-2 hover:bg-white/5 hover:text-white rounded-lg flex items-center gap-2">
+                    <ShoppingBag className="w-4 h-4 text-billar-primary" /> Mis Pedidos
                   </Link>
                 </>
               ) : (
                 <Link 
                   href={staffRoleLevel >= 2 ? "/dashboard" : "/dashboard/mesas"} 
                   onClick={() => setIsOpen(false)} 
-                  className="text-white font-bold p-2 bg-billanga-primary/20 border border-billanga-primary/35 rounded-lg text-center flex items-center justify-center gap-2 mt-1 shadow-md shadow-billanga-primary/5"
+                  className="text-white font-bold p-2 bg-billar-primary/20 border border-billar-primary/35 rounded-lg text-center flex items-center justify-center gap-2 mt-1 shadow-md shadow-billar-primary/5"
                 >
-                  <Shield className="w-4 h-4 text-billanga-primary animate-pulse" />
+                  <Shield className="w-4 h-4 text-billar-primary animate-pulse" />
                   Panel Administrativo
                 </Link>
               )}
               
               <button 
                 onClick={() => { setIsOpen(false); handleSignOut(); }}
-                className="text-billanga-gray font-medium p-2 border border-white/10 rounded-lg text-center flex items-center justify-center gap-2 mt-1 hover:bg-billanga-primary/10"
+                className="text-billar-gray font-medium p-2 border border-white/10 rounded-lg text-center flex items-center justify-center gap-2 mt-1 hover:bg-billar-primary/10"
               >
-                <LogOut className="w-4 h-4 text-billanga-primary" />
+                <LogOut className="w-4 h-4 text-billar-primary" />
                 Cerrar Sesión
               </button>
             </div>
           ) : (
             <div className="flex flex-col gap-2">
-              <Link href="/login" onClick={() => setIsOpen(false)} className="text-white font-medium p-2 bg-billanga-primary rounded-lg text-center flex items-center justify-center gap-2">
+              <Link href="/login" onClick={() => setIsOpen(false)} className="text-white font-medium p-2 bg-billar-primary rounded-lg text-center flex items-center justify-center gap-2">
                 <LogIn className="w-4 h-4" /> Iniciar Sesión
               </Link>
-              <Link href="/registro" onClick={() => setIsOpen(false)} className="text-billanga-gray font-medium p-2 border border-white/10 rounded-lg text-center flex items-center justify-center gap-2">
+              <Link href="/registro" onClick={() => setIsOpen(false)} className="text-billar-gray font-medium p-2 border border-white/10 rounded-lg text-center flex items-center justify-center gap-2">
                 <UserPlus className="w-4 h-4" /> Registrarse
               </Link>
             </div>

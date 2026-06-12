@@ -206,8 +206,8 @@ export default function PerfilPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen pt-24 flex flex-col items-center justify-center text-billanga-gray">
-        <RefreshCw className="w-10 h-10 animate-spin text-billanga-primary mb-4" />
+      <div className="min-h-screen pt-24 flex flex-col items-center justify-center text-billar-gray">
+        <RefreshCw className="w-10 h-10 animate-spin text-billar-primary mb-4" />
         <p>Cargando tu perfil...</p>
       </div>
     );
@@ -228,16 +228,16 @@ export default function PerfilPage() {
         {/* Columna Izquierda: Tarjeta de Perfil */}
         <div className="w-full md:w-1/3 space-y-6">
           <div className="glass-panel p-8 rounded-3xl flex flex-col items-center text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-billanga-primary/20 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-billar-primary/20 to-transparent" />
             
             <div 
               onClick={() => !uploadingAvatar && fileInputRef.current?.click()}
-              className="w-28 h-28 bg-[#1a1a1c] border-4 border-[#2a2a2c] hover:border-billanga-primary/50 rounded-full flex items-center justify-center shadow-2xl relative z-10 mb-4 cursor-pointer group overflow-hidden transition-colors"
+              className="w-28 h-28 bg-[#1a1a1c] border-4 border-[#2a2a2c] hover:border-billar-primary/50 rounded-full flex items-center justify-center shadow-2xl relative z-10 mb-4 cursor-pointer group overflow-hidden transition-colors"
             >
               {clienteData?.avatar_url ? (
                 <img src={clienteData.avatar_url} alt="Avatar" className="w-full h-full object-cover" />
               ) : (
-                <User className="w-12 h-12 text-billanga-gray" />
+                <User className="w-12 h-12 text-billar-gray" />
               )}
               
               <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -260,20 +260,20 @@ export default function PerfilPage() {
             />
             
             <h2 className="text-2xl font-black text-white relative z-10">{clienteData?.nombre || "Usuario"}</h2>
-            <p className="text-sm text-billanga-gray mb-6 relative z-10">{user?.email}</p>
+            <p className="text-sm text-billar-gray mb-6 relative z-10">{user?.email}</p>
 
             {clienteData?.isStaff ? (
-              <div className="flex items-center gap-2 bg-billanga-primary/10 border border-billanga-primary/30 px-4 py-2 rounded-xl text-billanga-primary font-bold w-full justify-center">
+              <div className="flex items-center gap-2 bg-billar-primary/10 border border-billar-primary/30 px-4 py-2 rounded-xl text-billar-primary font-bold w-full justify-center">
                 <Shield className="w-5 h-5" />
                 <span>Personal: {Array.isArray(clienteData?.roles) ? clienteData?.roles[0]?.nombre : clienteData?.roles?.nombre || "Staff"}</span>
               </div>
             ) : (
-              <div className="w-full bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl p-4 flex flex-col items-center gap-2 transition-all hover:border-billanga-primary/50">
+              <div className="w-full bg-[#1a1a1c] border border-[#2a2a2c] rounded-2xl p-4 flex flex-col items-center gap-2 transition-all hover:border-billar-primary/50">
                 <Trophy className="w-8 h-8 text-yellow-500 mb-1" />
-                <span className="text-xs text-billanga-gray font-bold uppercase tracking-widest">Nivel Actual</span>
+                <span className="text-xs text-billar-gray font-bold uppercase tracking-widest">Nivel Actual</span>
                 <span className="text-3xl font-black text-white flex items-center gap-2">
                   {clienteData?.puntos_fidelidad || 0}
-                  <span className="text-sm text-billanga-primary">Pts</span>
+                  <span className="text-sm text-billar-primary">Pts</span>
                 </span>
               </div>
             )}
@@ -287,12 +287,12 @@ export default function PerfilPage() {
           <div className="glass-panel p-6 md:p-8 rounded-3xl">
             <div className="flex justify-between items-center mb-6 pb-4 border-b border-white/5">
               <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <User className="w-6 h-6 text-billanga-primary" /> Mis Datos
+                <User className="w-6 h-6 text-billar-primary" /> Mis Datos
               </h3>
               {!clienteData?.isStaff && (
                 <button 
                   onClick={() => setIsEditing(!isEditing)} 
-                  className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-billanga-gray hover:text-white transition-all"
+                  className="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-billar-gray hover:text-white transition-all"
                 >
                   {isEditing ? <X className="w-5 h-5" /> : <Edit2 className="w-5 h-5" />}
                 </button>
@@ -301,9 +301,9 @@ export default function PerfilPage() {
 
             <div className="space-y-5">
               <div>
-                <label className="text-xs text-billanga-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><User className="w-3.5 h-3.5" /> Nombre Completo</label>
+                <label className="text-xs text-billar-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><User className="w-3.5 h-3.5" /> Nombre Completo</label>
                 {isEditing ? (
-                  <input type="text" value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-xl py-3 px-4 text-white focus:outline-none focus:border-billanga-primary transition-all" />
+                  <input type="text" value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-xl py-3 px-4 text-white focus:outline-none focus:border-billar-primary transition-all" />
                 ) : (
                   <p className="text-white bg-black/20 py-3 px-4 rounded-xl border border-transparent">{clienteData?.nombre || "—"}</p>
                 )}
@@ -311,13 +311,13 @@ export default function PerfilPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-xs text-billanga-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> Correo Electrónico</label>
+                  <label className="text-xs text-billar-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> Correo Electrónico</label>
                   <p className="text-white bg-black/20 py-3 px-4 rounded-xl border border-transparent">{user?.email}</p>
                 </div>
                 <div>
-                  <label className="text-xs text-billanga-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> Teléfono</label>
+                  <label className="text-xs text-billar-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> Teléfono</label>
                   {isEditing ? (
-                    <input type="text" value={formData.telefono} onChange={e => setFormData({...formData, telefono: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-xl py-3 px-4 text-white focus:outline-none focus:border-billanga-primary transition-all" />
+                    <input type="text" value={formData.telefono} onChange={e => setFormData({...formData, telefono: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-xl py-3 px-4 text-white focus:outline-none focus:border-billar-primary transition-all" />
                   ) : (
                     <p className="text-white bg-black/20 py-3 px-4 rounded-xl border border-transparent">{clienteData?.telefono || "—"}</p>
                   )}
@@ -325,9 +325,9 @@ export default function PerfilPage() {
               </div>
 
               <div>
-                <label className="text-xs text-billanga-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Dirección de Envío</label>
+                <label className="text-xs text-billar-gray uppercase font-bold tracking-wider mb-2 block flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Dirección de Envío</label>
                 {isEditing ? (
-                  <textarea value={formData.direccion} onChange={e => setFormData({...formData, direccion: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-xl py-3 px-4 text-white focus:outline-none focus:border-billanga-primary transition-all min-h-[100px]" />
+                  <textarea value={formData.direccion} onChange={e => setFormData({...formData, direccion: e.target.value})} className="w-full bg-black/40 border border-[#2a2a2c] rounded-xl py-3 px-4 text-white focus:outline-none focus:border-billar-primary transition-all min-h-[100px]" />
                 ) : (
                   <p className="text-white bg-black/20 py-3 px-4 rounded-xl border border-transparent min-h-[60px]">{clienteData?.direccion || "—"}</p>
                 )}
@@ -338,7 +338,7 @@ export default function PerfilPage() {
                   <button 
                     onClick={handleSave} 
                     disabled={saving}
-                    className="flex items-center gap-2 bg-billanga-primary hover:bg-billanga-primary-dark text-white font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50"
+                    className="flex items-center gap-2 bg-billar-primary hover:bg-billar-primary-dark text-white font-bold py-3 px-6 rounded-xl transition-all disabled:opacity-50"
                   >
                     {saving ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
                     Guardar Cambios
@@ -353,14 +353,14 @@ export default function PerfilPage() {
             <div className="glass-panel p-6 md:p-8 rounded-3xl">
               <div className="flex justify-between items-center mb-6 pb-4 border-b border-white/5">
                 <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                  <ShoppingBag className="w-6 h-6 text-billanga-primary" /> Historial de Compras
+                  <ShoppingBag className="w-6 h-6 text-billar-primary" /> Historial de Compras
                 </h3>
               </div>
               
               {historialVentas.length === 0 ? (
                 <div className="text-center py-10 bg-black/20 rounded-2xl border border-white/5">
-                  <Clock className="w-12 h-12 text-billanga-gray mx-auto mb-3 opacity-50" />
-                  <p className="text-billanga-gray">Aún no tienes compras registradas.</p>
+                  <Clock className="w-12 h-12 text-billar-gray mx-auto mb-3 opacity-50" />
+                  <p className="text-billar-gray">Aún no tienes compras registradas.</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -368,7 +368,7 @@ export default function PerfilPage() {
                     <div key={venta.id_venta} className="bg-[#1a1a1c] border border-[#2a2a2c] p-4 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#3a3a3c] transition-colors">
                       <div>
                         <p className="text-sm font-bold text-white mb-1">Pedido #{venta.id_venta.split("-")[0]}</p>
-                        <p className="text-xs text-billanga-gray flex items-center gap-1"><Clock className="w-3 h-3" /> {formatDate(venta.created_at)}</p>
+                        <p className="text-xs text-billar-gray flex items-center gap-1"><Clock className="w-3 h-3" /> {formatDate(venta.created_at)}</p>
                       </div>
                       <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${venta.estado === 'completada' ? 'bg-green-500/10 text-green-500' : venta.estado === 'anulada' ? 'bg-red-500/10 text-red-500' : 'bg-yellow-500/10 text-yellow-500'}`}>

@@ -108,18 +108,18 @@ export default function ReportesPage() {
   const topProductos = Array.from(productosMap.values()).sort((a, b) => b.ganancia - a.ganancia).slice(0, 5);
 
   if (loading) {
-    return (<div className="flex flex-col items-center justify-center py-24 text-billanga-gray"><RefreshCw className="w-10 h-10 animate-spin text-billanga-primary mb-4" /><p className="text-sm">Generando reportes...</p></div>);
+    return (<div className="flex flex-col items-center justify-center py-24 text-billar-gray"><RefreshCw className="w-10 h-10 animate-spin text-billar-primary mb-4" /><p className="text-sm">Generando reportes...</p></div>);
   }
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-white flex items-center gap-2"><BarChart3 className="w-7 h-7 text-billanga-primary" /> Reportes & Estadísticas</h2>
-          <p className="text-sm text-billanga-gray">Métricas financieras y rendimiento de ventas de la sucursal.</p>
+          <h2 className="text-2xl font-bold text-white flex items-center gap-2"><BarChart3 className="w-7 h-7 text-billar-primary" /> Reportes & Estadísticas</h2>
+          <p className="text-sm text-billar-gray">Métricas financieras y rendimiento de ventas de la sucursal.</p>
         </div>
         <div className="flex gap-2">
-          <select value={rangoFechas} onChange={e => setRangoFechas(e.target.value)} className="bg-black/40 border border-[#2a2a2c] rounded-lg py-2 px-3 text-sm text-white focus:outline-none focus:border-billanga-primary">
+          <select value={rangoFechas} onChange={e => setRangoFechas(e.target.value)} className="bg-black/40 border border-[#2a2a2c] rounded-lg py-2 px-3 text-sm text-white focus:outline-none focus:border-billar-primary">
             <option value="hoy">Hoy</option><option value="semana">Últimos 7 días</option><option value="mes">Último mes</option><option value="año">Último año</option>
           </select>
           <button onClick={loadData} className="p-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg transition-all"><RefreshCw className="w-4 h-4" /></button>
@@ -131,14 +131,14 @@ export default function ReportesPage() {
       {/* KPIs Principales */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-xl p-5">
-          <div className="flex items-center gap-3"><div className="p-3 bg-green-500/10 rounded-xl"><TrendingUp className="w-6 h-6 text-green-500" /></div><div><p className="text-xs text-billanga-gray uppercase tracking-wider">Ingresos Globales</p><p className="text-2xl font-black text-white mt-1">Bs. {totalIngresos.toFixed(2)}</p></div></div>
+          <div className="flex items-center gap-3"><div className="p-3 bg-green-500/10 rounded-xl"><TrendingUp className="w-6 h-6 text-green-500" /></div><div><p className="text-xs text-billar-gray uppercase tracking-wider">Ingresos Globales</p><p className="text-2xl font-black text-white mt-1">Bs. {totalIngresos.toFixed(2)}</p></div></div>
         </div>
         <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-xl p-5 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-2 opacity-10"><BarChart3 className="w-16 h-16 text-billanga-primary" /></div>
-          <div className="flex items-center gap-3 relative z-10"><div className="p-3 bg-billanga-primary/10 rounded-xl"><Calendar className="w-6 h-6 text-billanga-primary" /></div><div><p className="text-xs text-billanga-gray uppercase tracking-wider">Ingresos Mesas</p><p className="text-2xl font-black text-white mt-1">Bs. {ingresosMesas.toFixed(2)}</p></div></div>
+          <div className="absolute top-0 right-0 p-2 opacity-10"><BarChart3 className="w-16 h-16 text-billar-primary" /></div>
+          <div className="flex items-center gap-3 relative z-10"><div className="p-3 bg-billar-primary/10 rounded-xl"><Calendar className="w-6 h-6 text-billar-primary" /></div><div><p className="text-xs text-billar-gray uppercase tracking-wider">Ingresos Mesas</p><p className="text-2xl font-black text-white mt-1">Bs. {ingresosMesas.toFixed(2)}</p></div></div>
         </div>
         <div className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-xl p-5">
-          <div className="flex items-center gap-3"><div className="p-3 bg-blue-500/10 rounded-xl"><ShoppingBag className="w-6 h-6 text-blue-400" /></div><div><p className="text-xs text-billanga-gray uppercase tracking-wider">Venta Productos</p><p className="text-2xl font-black text-white mt-1">Bs. {ingresosProductos.toFixed(2)}</p></div></div>
+          <div className="flex items-center gap-3"><div className="p-3 bg-blue-500/10 rounded-xl"><ShoppingBag className="w-6 h-6 text-blue-400" /></div><div><p className="text-xs text-billar-gray uppercase tracking-wider">Venta Productos</p><p className="text-2xl font-black text-white mt-1">Bs. {ingresosProductos.toFixed(2)}</p></div></div>
         </div>
         <div className="bg-[#1a1a1c] border border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.1)] rounded-xl p-5">
            <div className="flex items-center gap-3"><div className="p-3 bg-green-500/20 rounded-xl"><Banknote className="w-6 h-6 text-green-400" /></div><div><p className="text-xs text-green-400 font-bold uppercase tracking-wider">Ganancia Neta (Prod)</p><p className="text-2xl font-black text-white mt-1">Bs. {gananciaProductos.toFixed(2)}</p></div></div>
@@ -153,18 +153,18 @@ export default function ReportesPage() {
             {topProductos.length > 0 ? topProductos.map((p, i) => (
               <div key={i} className="flex justify-between items-center bg-black/20 p-3 rounded-lg border border-[#2a2a2c]/50">
                 <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded bg-[#2a2a2c] text-xs font-bold flex items-center justify-center text-billanga-gray">{i + 1}</div>
+                  <div className="w-6 h-6 rounded bg-[#2a2a2c] text-xs font-bold flex items-center justify-center text-billar-gray">{i + 1}</div>
                   <div>
                     <span className="text-sm font-bold text-white block">{p.nombre}</span>
-                    <span className="text-xs text-billanga-gray">{p.cantidad} unidades vendidas</span>
+                    <span className="text-xs text-billar-gray">{p.cantidad} unidades vendidas</span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm font-bold text-green-400">+Bs. {p.ganancia.toFixed(2)} <span className="text-[10px] text-billanga-gray font-normal block">Ganancia Neta</span></div>
+                  <div className="text-sm font-bold text-green-400">+Bs. {p.ganancia.toFixed(2)} <span className="text-[10px] text-billar-gray font-normal block">Ganancia Neta</span></div>
                 </div>
               </div>
             )) : (
-               <div className="py-8 text-center text-billanga-gray/50 text-sm">No hay datos de productos en este periodo.</div>
+               <div className="py-8 text-center text-billar-gray/50 text-sm">No hay datos de productos en este periodo.</div>
             )}
           </div>
         </div>
@@ -179,15 +179,15 @@ export default function ReportesPage() {
                  <div key={i} className="space-y-1">
                    <div className="flex justify-between text-sm">
                      <span className="capitalize text-white font-bold">{metodo}</span>
-                     <span className="text-billanga-gray">Bs. {monto.toFixed(2)} <span className="text-xs ml-1">({percentage}%)</span></span>
+                     <span className="text-billar-gray">Bs. {monto.toFixed(2)} <span className="text-xs ml-1">({percentage}%)</span></span>
                    </div>
                    <div className="w-full bg-[#2a2a2c] rounded-full h-2">
-                     <div className="bg-billanga-primary h-2 rounded-full" style={{ width: `${percentage}%` }}></div>
+                     <div className="bg-billar-primary h-2 rounded-full" style={{ width: `${percentage}%` }}></div>
                    </div>
                  </div>
                );
              }) : (
-               <div className="py-8 text-center text-billanga-gray/50 text-sm">No hay datos financieros en este periodo.</div>
+               <div className="py-8 text-center text-billar-gray/50 text-sm">No hay datos financieros en este periodo.</div>
              )}
           </div>
         </div>
