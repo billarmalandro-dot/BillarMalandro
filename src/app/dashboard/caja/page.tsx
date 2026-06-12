@@ -66,7 +66,7 @@ export default function CajaPage() {
       const sucursal = sucursales?.[0];
       const sucursalId = sucursal?.id_sucursal || "";
       setActiveSucursalId(sucursalId);
-      setSucursalNombre(sucursal?.nombre || "El Billanga");
+      setSucursalNombre(sucursal?.nombre || "El Malandro");
 
       // Obtener o crear caja
       let { data: cajas } = await supabase.from("cajas").select("*").eq("id_sucursal", sucursalId).eq("activo", true);

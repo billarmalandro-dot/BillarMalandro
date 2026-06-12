@@ -212,7 +212,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-sm tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-billanga-gray">
-                LA BILLANGA
+                EL MALANDRO
               </span>
               <span className="text-[10px] text-billanga-primary font-semibold tracking-widest -mt-0.5">
                 STAFF HUB

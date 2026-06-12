@@ -12,7 +12,7 @@ export default function ConfiguracionPage() {
 
   const [configId, setConfigId] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<any>(null);
-  const [billarName, setBillarName] = useState("Billanga");
+  const [billarName, setBillarName] = useState("Billar El Malandro");
   const [hourlyRate, setHourlyRate] = useState(30.00);
   const [currency, setCurrency] = useState("Bs.");
   const [soundsEnabled, setSoundsEnabled] = useState(true);
