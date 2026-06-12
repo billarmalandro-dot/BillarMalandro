@@ -111,7 +111,7 @@ export function printReceipt(data: ReceiptData) {
       <div class="ticket">
         <div class="header">
           <!-- <img src="${logoUrl}" alt="Logo" /> -->
-          <h1>EL MALANDRO</h1>
+          <h1>BILLAR EL MALANDRO</h1>
           <p>Ticket de Consumo</p>
           <p>${dateStr}</p>
         </div>
