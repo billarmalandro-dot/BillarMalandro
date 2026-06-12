@@ -15,7 +15,6 @@ interface Caja {
   id_caja: string;
   nombre: string;
 }
-
 export default function ComprasPage() {
   const [loading, setLoading] = useState(true);
   const [dbError, setDbError] = useState("");
@@ -26,6 +25,8 @@ export default function ComprasPage() {
   
   const [activeSucursalId, setActiveSucursalId] = useState<string>("");
   const [currentUser, setCurrentUser] = useState<any>(null);
+  const [sucursalesList, setSucursalesList] = useState<any[]>([]);
+  const [userRoleNivel, setUserRoleNivel] = useState<number>(0);
 
   // Formulario
   const [selectedProductId, setSelectedProductId] = useState("");
@@ -40,28 +41,48 @@ export default function ComprasPage() {
 
   useEffect(() => { loadData(); }, []);
 
-  const loadData = async () => {
+  const loadData = async (targetSucursalId?: string) => {
     setLoading(true);
     setDbError("");
     setSuccessMsg("");
     try {
+      let currentNivel = 0;
+      let userAssignedSucursalId = "";
+
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        const { data: dbUser } = await supabase.from("usuarios").select("id_usuario").eq("auth_id", user.id).single();
-        setCurrentUser(dbUser || { id_usuario: user.id });
+        const { data: dbUser } = await supabase
+          .from("usuarios")
+          .select("*, roles:id_rol(nombre, nivel), usuario_sucursal(id_sucursal)")
+          .eq("auth_id", user.id)
+          .single();
+        
+        if (dbUser) {
+          setCurrentUser(dbUser);
+          const rolObj = Array.isArray(dbUser.roles) ? dbUser.roles[0] : dbUser.roles;
+          currentNivel = rolObj?.nivel || 0;
+          setUserRoleNivel(currentNivel);
+          
+          const usObj = Array.isArray(dbUser.usuario_sucursal) ? dbUser.usuario_sucursal[0] : dbUser.usuario_sucursal;
+          userAssignedSucursalId = usObj?.id_sucursal || "";
+        }
       }
 
-      // 1. Obtener la sucursal activa
-      const { data: sucursales, error: sucError } = await supabase.from("sucursales").select("id_sucursal");
+      // Cargar todas las sucursales
+      const { data: sucs, error: sucError } = await supabase.from("sucursales").select("id_sucursal, nombre").order("nombre");
       if (sucError) throw sucError;
-      
-      let sucursalId = "";
-      if (sucursales && sucursales.length > 0) {
-        sucursalId = sucursales[0].id_sucursal;
-        setActiveSucursalId(sucursalId);
-      } else {
-        throw new Error("No hay sucursales disponibles.");
+      setSucursalesList(sucs || []);
+
+      // Determinar la sucursal activa
+      let sucursalId = targetSucursalId || activeSucursalId;
+      if (!sucursalId) {
+        if (currentNivel >= 4) {
+          sucursalId = userAssignedSucursalId || sucs?.[0]?.id_sucursal || "";
+        } else {
+          sucursalId = userAssignedSucursalId || sucs?.[0]?.id_sucursal || "";
+        }
       }
+      setActiveSucursalId(sucursalId);
 
       // 2. Obtener productos activos
       const { data: prods, error: prodErr } = await supabase
@@ -72,14 +93,18 @@ export default function ComprasPage() {
       if (prodErr) throw prodErr;
       setProductos(prods || []);
 
-      // 3. Obtener cajas de la sucursal
-      const { data: cajasData, error: cajasErr } = await supabase
-        .from("cajas")
-        .select("id_caja, nombre")
-        .eq("id_sucursal", sucursalId)
-        .eq("activo", true);
-      if (cajasErr) throw cajasErr;
-      setCajas(cajasData || []);
+      // 3. Obtener cajas de la sucursal seleccionada
+      if (sucursalId) {
+        const { data: cajasData, error: cajasErr } = await supabase
+          .from("cajas")
+          .select("id_caja, nombre")
+          .eq("id_sucursal", sucursalId)
+          .eq("activo", true);
+        if (cajasErr) throw cajasErr;
+        setCajas(cajasData || []);
+      } else {
+        setCajas([]);
+      }
 
     } catch (err: any) {
       console.error("Error cargando datos de compras:", err);
@@ -214,6 +239,29 @@ export default function ComprasPage() {
             Compras de Inventario
           </h1>
           <p className="text-billar-gray mt-1">Registra el ingreso de mercadería y bebidas, y opcionalmente descuenta el dinero de tu caja.</p>
+        </div>
+
+        <div className="flex items-center gap-2 bg-[#121212] p-2 rounded-xl border border-[#2a2a2c]">
+          <span className="text-sm text-billar-gray font-medium px-2">Sucursal Destino:</span>
+          {userRoleNivel >= 4 ? (
+            <select
+              value={activeSucursalId}
+              onChange={(e) => {
+                const newSucId = e.target.value;
+                setActiveSucursalId(newSucId);
+                loadData(newSucId);
+              }}
+              className="bg-black/40 border border-[#2a2a2c] rounded-lg py-2 px-3 text-sm text-white focus:outline-none focus:border-billar-primary"
+            >
+              {sucursalesList.map(s => (
+                <option key={s.id_sucursal} value={s.id_sucursal}>{s.nombre}</option>
+              ))}
+            </select>
+          ) : (
+            <span className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-lg py-2 px-4 text-sm text-white font-bold">
+              {sucursalesList.find(s => s.id_sucursal === activeSucursalId)?.nombre || "Cargando..."}
+            </span>
+          )}
         </div>
       </div>
 

@@ -625,3 +625,146 @@ CREATE POLICY "Empleados gestionan sucursales"
   ON sucursales FOR ALL
   USING (public.es_empleado())
   WITH CHECK (public.es_empleado());
+
+-- ============================================================
+-- BLOQUE 10: TRIGGERS PARA CONTROL DE STOCK AUTOMÁTICO
+-- ============================================================
+
+-- 1. Función y trigger para descontar stock al insertar un ítem de venta
+CREATE OR REPLACE FUNCTION public.decrementar_stock_venta()
+RETURNS TRIGGER AS $$
+DECLARE
+  v_id_sucursal UUID;
+  v_id_inventario UUID;
+  v_stock_antes NUMERIC(10,2);
+  v_stock_despues NUMERIC(10,2);
+  v_id_usuario UUID;
+BEGIN
+  -- Obtener la sucursal y el usuario de la venta
+  SELECT id_sucursal, id_usuario INTO v_id_sucursal, v_id_usuario
+  FROM public.ventas
+  WHERE id_venta = NEW.id_venta;
+
+  IF v_id_sucursal IS NULL THEN
+    RAISE EXCEPTION 'No se encontró la sucursal para la venta %', NEW.id_venta;
+  END IF;
+
+  -- Buscar o crear la ficha de inventario para el producto en esta sucursal
+  SELECT id_inventario, stock INTO v_id_inventario, v_stock_antes
+  FROM public.inventario
+  WHERE id_sucursal = v_id_sucursal AND id_producto = NEW.id_producto;
+
+  IF v_id_inventario IS NULL THEN
+    -- Si no existe la ficha de stock para esta sucursal, la creamos con stock inicial en 0
+    INSERT INTO public.inventario (id_sucursal, id_producto, stock, stock_minimo)
+    VALUES (v_id_sucursal, NEW.id_producto, 0, 5)
+    RETURNING id_inventario, stock INTO v_id_inventario, v_stock_antes;
+  END IF;
+
+  -- Calcular el nuevo stock (evitar negativos)
+  v_stock_despues := GREATEST(0, v_stock_antes - NEW.cantidad);
+
+  -- Actualizar la tabla de inventario
+  UPDATE public.inventario
+  SET stock = v_stock_despues, updated_at = NOW()
+  WHERE id_inventario = v_id_inventario;
+
+  -- Registrar movimiento en el historial
+  INSERT INTO public.movimientos_inventario (
+    id_inventario,
+    id_sucursal,
+    id_producto,
+    tipo,
+    cantidad,
+    stock_antes,
+    stock_despues,
+    motivo,
+    created_by
+  ) VALUES (
+    v_id_inventario,
+    v_id_sucursal,
+    NEW.id_producto,
+    'salida',
+    NEW.cantidad,
+    v_stock_antes,
+    v_stock_despues,
+    'Descuento automático por Venta: ' || NEW.id_venta,
+    v_id_usuario
+  );
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER tg_descontar_stock_venta
+AFTER INSERT ON public.venta_items
+FOR EACH ROW
+EXECUTE FUNCTION public.decrementar_stock_venta();
+
+
+-- 2. Función y trigger para reponer stock al anular una venta
+CREATE OR REPLACE FUNCTION public.restaurar_stock_anulacion()
+RETURNS TRIGGER AS $$
+DECLARE
+  item RECORD;
+  v_id_inventario UUID;
+  v_stock_antes NUMERIC(10,2);
+  v_stock_despues NUMERIC(10,2);
+BEGIN
+  -- Solo actuar si el estado cambia a 'anulada'
+  IF NEW.estado = 'anulada' AND OLD.estado != 'anulada' THEN
+    -- Recorrer todos los ítems vendidos en esta venta
+    FOR item IN 
+      SELECT id_producto, cantidad
+      FROM public.venta_items
+      WHERE id_venta = NEW.id_venta
+    LOOP
+      -- Buscar la ficha de inventario en la sucursal de la venta
+      SELECT id_inventario, stock INTO v_id_inventario, v_stock_antes
+      FROM public.inventario
+      WHERE id_sucursal = NEW.id_sucursal AND id_producto = item.id_producto;
+
+      IF v_id_inventario IS NOT NULL THEN
+        -- Calcular nuevo stock reponiendo las unidades devueltas
+        v_stock_despues := v_stock_antes + item.cantidad;
+
+        -- Actualizar stock
+        UPDATE public.inventario
+        SET stock = v_stock_despues, updated_at = NOW()
+        WHERE id_inventario = v_id_inventario;
+
+        -- Registrar movimiento de devolución en el historial de inventario
+        INSERT INTO public.movimientos_inventario (
+          id_inventario,
+          id_sucursal,
+          id_producto,
+          tipo,
+          cantidad,
+          stock_antes,
+          stock_despues,
+          motivo,
+          created_by
+        ) VALUES (
+          v_id_inventario,
+          NEW.id_sucursal,
+          item.id_producto,
+          'devolucion',
+          item.cantidad,
+          v_stock_antes,
+          v_stock_despues,
+          'Reposición automática por Venta Anulada: ' || NEW.id_venta,
+          NEW.id_usuario
+        );
+      END IF;
+    END LOOP;
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER tg_restaurar_stock_anulacion
+AFTER UPDATE OF estado ON public.ventas
+FOR EACH ROW
+EXECUTE FUNCTION public.restaurar_stock_anulacion();
+

@@ -58,6 +58,8 @@ export default function InventarioPage() {
   
   const [activeSucursalId, setActiveSucursalId] = useState<string>("");
   const [currentUser, setCurrentUser] = useState<any>(null);
+  const [sucursalesList, setSucursalesList] = useState<any[]>([]);
+  const [userRoleNivel, setUserRoleNivel] = useState<number>(0);
 
   // Filtros
   const [searchQuery, setSearchQuery] = useState("");
@@ -88,23 +90,47 @@ export default function InventarioPage() {
 
   useEffect(() => { loadData(); }, []);
 
-  const loadData = async () => {
+  const loadData = async (targetSucursalId?: string) => {
     setLoading(true);
     setDbError("");
     try {
+      let currentNivel = 0;
+      let userAssignedSucursalId = "";
+      
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        const { data: dbUser } = await supabase.from("usuarios").select("id_usuario, nombre").eq("auth_id", user.id).single();
-        setCurrentUser(dbUser || { id_usuario: user.id, nombre: user.email?.split("@")[0] || "Admin" });
+        const { data: dbUser } = await supabase
+          .from("usuarios")
+          .select("*, roles:id_rol(nombre, nivel), usuario_sucursal(id_sucursal)")
+          .eq("auth_id", user.id)
+          .single();
+        
+        if (dbUser) {
+          setCurrentUser(dbUser);
+          const rolObj = Array.isArray(dbUser.roles) ? dbUser.roles[0] : dbUser.roles;
+          currentNivel = rolObj?.nivel || 0;
+          setUserRoleNivel(currentNivel);
+          
+          const usObj = Array.isArray(dbUser.usuario_sucursal) ? dbUser.usuario_sucursal[0] : dbUser.usuario_sucursal;
+          userAssignedSucursalId = usObj?.id_sucursal || "";
+        }
       }
 
-      const { data: sucursales, error: sucError } = await supabase.from("sucursales").select("id_sucursal");
+      // Cargar todas las sucursales
+      const { data: sucs, error: sucError } = await supabase.from("sucursales").select("id_sucursal, nombre").order("nombre");
       if (sucError) throw sucError;
-      let sucursalId = "";
-      if (sucursales && sucursales.length > 0) {
-        sucursalId = sucursales[0].id_sucursal;
-        setActiveSucursalId(sucursalId);
+      setSucursalesList(sucs || []);
+
+      // Determinar la sucursal activa
+      let sucursalId = targetSucursalId || activeSucursalId;
+      if (!sucursalId) {
+        if (currentNivel >= 4) {
+          sucursalId = userAssignedSucursalId || sucs?.[0]?.id_sucursal || "";
+        } else {
+          sucursalId = userAssignedSucursalId || sucs?.[0]?.id_sucursal || "";
+        }
       }
+      setActiveSucursalId(sucursalId);
 
       // Categorías
       const { data: catData, error: catError } = await supabase.from("categorias").select("*");
@@ -359,8 +385,32 @@ export default function InventarioPage() {
           </h2>
           <p className="text-sm text-billar-gray">Gestiona productos, categorías y stock de tu sucursal.</p>
         </div>
-        <div className="flex gap-2">
-          <button onClick={loadData} className="flex items-center gap-2 px-4 py-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg text-sm transition-all">
+        <div className="flex flex-wrap items-center gap-4">
+          {/* Selector de Sucursal */}
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-billar-gray font-medium">Sucursal:</span>
+            {userRoleNivel >= 4 ? (
+              <select
+                value={activeSucursalId}
+                onChange={(e) => {
+                  const newSucId = e.target.value;
+                  setActiveSucursalId(newSucId);
+                  loadData(newSucId);
+                }}
+                className="bg-black/40 border border-[#2a2a2c] rounded-lg py-2 px-3 text-sm text-white focus:outline-none focus:border-billar-primary"
+              >
+                {sucursalesList.map(s => (
+                  <option key={s.id_sucursal} value={s.id_sucursal}>{s.nombre}</option>
+                ))}
+              </select>
+            ) : (
+              <span className="bg-[#1a1a1c] border border-[#2a2a2c] rounded-lg py-2 px-4 text-sm text-white font-bold">
+                {sucursalesList.find(s => s.id_sucursal === activeSucursalId)?.nombre || "Cargando..."}
+              </span>
+            )}
+          </div>
+
+          <button onClick={() => loadData()} className="flex items-center gap-2 px-4 py-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg text-sm transition-all">
             <RefreshCw className="w-4 h-4" /> Refrescar
           </button>
         </div>

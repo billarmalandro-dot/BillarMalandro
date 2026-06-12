@@ -138,18 +138,26 @@ export default function MesasPage() {
       
       const { data: dbUser } = await supabase
         .from("usuarios")
-        .select("id_usuario, nombre, roles(nombre, nivel)")
+        .select("id_usuario, nombre, roles(nombre, nivel), usuario_sucursal(id_sucursal)")
         .eq("auth_id", user.id)
         .single();
       
       setCurrentUser(dbUser);
 
+      // Obtener la sucursal del empleado
+      const usObj = dbUser?.usuario_sucursal && (Array.isArray(dbUser.usuario_sucursal) ? dbUser.usuario_sucursal[0] : dbUser.usuario_sucursal);
+      const userAssignedSucursalId = usObj?.id_sucursal || "";
+
       const { data: sucursales } = await supabase.from("sucursales").select("id_sucursal");
-      const sucursalId = sucursales?.[0]?.id_sucursal || "";
+      const sucursalId = userAssignedSucursalId || sucursales?.[0]?.id_sucursal || "";
       setActiveSucursalId(sucursalId);
 
-      // Mesas (Todas para CRUD)
-      const { data: mesasAll } = await supabase.from("mesas").select("*").order("numero");
+      // Mesas (Todas para CRUD) filtradas por la sucursal activa
+      const { data: mesasAll } = await supabase
+        .from("mesas")
+        .select("*")
+        .eq("id_sucursal", sucursalId)
+        .order("numero");
       setTodasMesas(mesasAll || []);
       
       // Mesas (Activas para Grid)
@@ -208,7 +216,7 @@ export default function MesasPage() {
       }
 
       // Tarifas y Configuración
-      const { data: tarifasData } = await supabase.from("tarifas").select("*").eq("activo", true);
+      const { data: tarifasData } = await supabase.from("tarifas").select("*").eq("id_sucursal", sucursalId).eq("activo", true);
       setTarifas(tarifasData || []);
       if (tarifasData && tarifasData.length > 0) setSelectedTarifaId(tarifasData[0].id_tarifa);
 
