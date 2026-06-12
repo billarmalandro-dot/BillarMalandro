@@ -71,12 +71,6 @@ export function printReceipt(data: ReceiptData) {
   let productsSection = "";
   if (data.productos.length > 0) {
     productsSection = `
-      ${data.tipo !== "mesa" ? `
-      <div class="divider"></div>
-      <div style="text-align:center; font-weight:bold; margin: 10px 0 5px 0;">
-        DETALLE DE CONSUMO
-      </div>` : ''}
-
       ${data.productos.map(p => `
         <div class="row text-sm">
           <span>${p.cantidad}x ${p.nombre}</span>
