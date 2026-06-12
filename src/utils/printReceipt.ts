@@ -23,13 +23,13 @@ export interface ReceiptData {
 
 export function printReceipt(data: ReceiptData) {
   const dateStr = new Date().toLocaleString("es-BO");
-  const logoUrl = "/logo_transparente.png"; // Se asume que el logo est en public/logo_transparente.png
+  const logoUrl = "/logo_transparente.png"; // Se asume que el logo está en public/logo_transparente.png
 
   let timeSection = "";
   if (data.tipo === "mesa" && data.tiempo) {
     timeSection = `
       <div class="divider"></div>
-      <div style="text-align:center; font-weight:bold; margin: 10px 0 5px 0;">
+      <div style="text-align:center; font-weight:bold; margin: 4px 0 2px 0; font-size: 11px;">
         DETALLE DE CONSUMO
       </div>
       ${data.tiempo.horaInicio ? `
@@ -54,7 +54,7 @@ export function printReceipt(data: ReceiptData) {
         <span>- ${data.tiempo.horasRegaloPromo} hrs</span>
       </div>
       ` : ''}
-      <div class="row text-sm" style="margin-bottom: 5px;">
+      <div class="row text-sm" style="margin-bottom: 2px;">
         <span>Costo del tiempo</span>
         <span>${data.tiempo.costo.toFixed(2)} Bs.</span>
       </div>
@@ -62,7 +62,7 @@ export function printReceipt(data: ReceiptData) {
   } else if (data.productos.length > 0) {
     timeSection = `
       <div class="divider"></div>
-      <div style="text-align:center; font-weight:bold; margin: 10px 0 5px 0;">
+      <div style="text-align:center; font-weight:bold; margin: 4px 0 2px 0; font-size: 11px;">
         DETALLE DE CONSUMO
       </div>
     `;
@@ -88,23 +88,24 @@ export function printReceipt(data: ReceiptData) {
       <title>Ticket de Venta</title>
       <style>
         @page { margin: 0; size: auto; }
+        * { box-sizing: border-box; }
         body { 
           font-family: 'Courier New', Courier, monospace; 
           margin: 0; 
-          padding: 2px; 
+          padding: 0 4mm; 
           width: 58mm; /* Ancho estándar de ticketera pequeña */
           color: #000;
         }
         .ticket { width: 100%; max-width: 58mm; margin: 0 auto; }
-        .header { text-align: center; margin-bottom: 5px; }
-        .header img { max-width: 60px; margin-bottom: 5px; }
-        .header h1 { font-size: 14px; margin: 0; padding: 0; font-weight: bold; text-transform: uppercase; }
-        .header p { font-size: 10px; margin: 2px 0; }
-        .divider { border-top: 1px dashed #000; margin: 3px 0; }
-        .row { display: flex; justify-content: space-between; margin: 2px 0; font-size: 11px; }
-        .text-sm { font-size: 10px; }
-        .total-row { font-size: 13px; font-weight: bold; margin-top: 5px; }
-        .footer { text-align: center; font-size: 9px; margin-top: 10px; }
+        .header { text-align: center; margin-bottom: 3px; }
+        .header img { max-width: 50px; margin-bottom: 3px; }
+        .header h1 { font-size: 13px; margin: 0; padding: 0; font-weight: bold; text-transform: uppercase; }
+        .header p { font-size: 9px; margin: 1px 0; }
+        .divider { border-top: 1px dashed #000; margin: 2px 0; }
+        .row { display: flex; justify-content: space-between; margin: 1px 0; font-size: 10px; }
+        .text-sm { font-size: 9px; }
+        .total-row { font-size: 12px; font-weight: bold; margin-top: 3px; }
+        .footer { text-align: center; font-size: 8px; margin-top: 5px; }
       </style>
     </head>
     <body>

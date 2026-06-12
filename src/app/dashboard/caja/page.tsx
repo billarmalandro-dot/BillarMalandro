@@ -30,6 +30,10 @@ export default function CajaPage() {
   const [totalVentasMesas, setTotalVentasMesas] = useState(0);
   const [totalVentasProductos, setTotalVentasProductos] = useState(0);
 
+  // Sucursales y Rol
+  const [sucursales, setSucursales] = useState<any[]>([]);
+  const [userLevel, setUserLevel] = useState<number>(1);
+
   // Modales
   const [isOpeningCaja, setIsOpeningCaja] = useState(false);
   const [montoInicial, setMontoInicial] = useState("");
@@ -49,24 +53,63 @@ export default function CajaPage() {
 
   useEffect(() => { loadData(); }, []);
 
-  const loadData = async () => {
+  const loadData = async (targetSucursalId?: string) => {
     setLoading(true);
     setDbError("");
     try {
       const { data: { user } } = await supabase.auth.getUser();
       let dbUser: any = null;
+      let level = 1;
       if (user) {
-        const { data } = await supabase.from("usuarios").select("id_usuario, nombre").eq("auth_id", user.id).single();
-        dbUser = data || { id_usuario: user.id, nombre: user.email?.split("@")[0] || "Admin" };
+        const { data } = await supabase
+          .from("usuarios")
+          .select("id_usuario, nombre, id_rol, roles:id_rol(nombre, nivel), usuario_sucursal(id_sucursal)")
+          .eq("auth_id", user.id)
+          .single();
+        if (data) {
+          dbUser = data;
+          const rolObj = Array.isArray(data.roles) ? data.roles[0] : data.roles;
+          level = rolObj?.nivel || 1;
+        } else {
+          dbUser = { id_usuario: user.id, nombre: user.email?.split("@")[0] || "Admin" };
+          level = 1;
+        }
         setCurrentUser(dbUser);
+        setUserLevel(level);
       }
       if (!dbUser) { setLoading(false); return; }
 
-      const { data: sucursales } = await supabase.from("sucursales").select("id_sucursal, nombre");
-      const sucursal = sucursales?.[0];
-      const sucursalId = sucursal?.id_sucursal || "";
+      // Obtener lista de sucursales activas
+      let listSucursales = sucursales;
+      if (listSucursales.length === 0) {
+        const { data } = await supabase.from("sucursales").select("id_sucursal, nombre").eq("activo", true);
+        if (data) {
+          listSucursales = data;
+          setSucursales(data);
+        }
+      }
+
+      // Determinar ID de sucursal activa
+      let sucursalId = "";
+      if (level < 4) {
+        const usObj = Array.isArray(dbUser.usuario_sucursal) ? dbUser.usuario_sucursal[0] : dbUser.usuario_sucursal;
+        sucursalId = usObj?.id_sucursal || "";
+      } else {
+        sucursalId = targetSucursalId || activeSucursalId;
+        if (!sucursalId) {
+          const usObj = Array.isArray(dbUser.usuario_sucursal) ? dbUser.usuario_sucursal[0] : dbUser.usuario_sucursal;
+          sucursalId = usObj?.id_sucursal || listSucursales?.[0]?.id_sucursal || "";
+        }
+      }
       setActiveSucursalId(sucursalId);
-      setSucursalNombre(sucursal?.nombre || "El Malandro");
+
+      const activeSuc = listSucursales.find((s: any) => s.id_sucursal === sucursalId);
+      setSucursalNombre(activeSuc?.nombre || "El Malandro");
+
+      if (!sucursalId) {
+        setLoading(false);
+        return;
+      }
 
       // Obtener o crear caja
       let { data: cajas } = await supabase.from("cajas").select("*").eq("id_sucursal", sucursalId).eq("activo", true);
@@ -79,28 +122,31 @@ export default function CajaPage() {
 
       if (caja) {
         const hoy = new Date().toISOString().slice(0, 10);
-        
-        // Verificar si ESTE CAJERO tiene un arqueo de apertura sin cierre
-        const { data: lastArqueo } = await supabase
+        let aperturaTime = hoy + "T00:00:00";
+        let isAbierta = false;
+
+        // Verificar el último arqueo de apertura
+        let arqueoQuery = supabase
           .from("arqueos")
-          .select("*")
+          .select("*, usuarios:id_usuario(nombre)")
           .eq("id_caja", caja.id_caja)
-          .eq("id_usuario", dbUser.id_usuario)
-          .eq("tipo", "apertura")
+          .eq("tipo", "apertura");
+
+        if (level < 4) {
+          arqueoQuery = arqueoQuery.eq("id_usuario", dbUser.id_usuario);
+        }
+
+        const { data: lastArqueo } = await arqueoQuery
           .order("created_at", { ascending: false })
           .limit(1)
           .maybeSingle();
 
-        let aperturaTime = hoy + "T00:00:00";
-        let isAbierta = false;
-
         if (lastArqueo) {
-          // Buscar si hay un cierre posterior de ESTE CAJERO
+          // Buscar si hay un cierre posterior
           const { data: cierrePost } = await supabase
             .from("arqueos")
             .select("*")
             .eq("id_caja", caja.id_caja)
-            .eq("id_usuario", dbUser.id_usuario)
             .eq("tipo", "cierre")
             .gt("created_at", lastArqueo.created_at)
             .limit(1)
@@ -122,29 +168,37 @@ export default function CajaPage() {
 
         // Si la caja está abierta, buscar movimientos y ventas desde la apertura
         if (isAbierta) {
-          const { data: movsData } = await supabase
+          let movsQuery = supabase
             .from("movimientos_caja")
-            .select("*")
+            .select("*, usuarios:id_usuario(nombre)")
             .eq("id_caja", caja.id_caja)
-            .eq("id_usuario", dbUser.id_usuario)
-            .gte("created_at", aperturaTime)
-            .order("created_at", { ascending: false });
+            .gte("created_at", aperturaTime);
 
+          if (level < 4) {
+            movsQuery = movsQuery.eq("id_usuario", dbUser.id_usuario);
+          }
+
+          const { data: movsData } = await movsQuery.order("created_at", { ascending: false });
           const movs = movsData || [];
           setMovimientos(movs);
           
-          const { data: ventasData } = await supabase
+          let ventasQuery = supabase
             .from("ventas")
             .select(`
               *,
+              usuarios:id_usuario(nombre),
               venta_items ( cantidad, precio_unitario, subtotal, productos (nombre) ),
               sesiones_mesa ( total_tiempo, mesas (tipo), tarifas (nombre, es_promocion) )
             `)
             .eq("id_sucursal", sucursalId)
-            .eq("id_usuario", dbUser.id_usuario)
             .eq("estado", "completada")
             .gte("created_at", aperturaTime);
-            
+
+          if (level < 4) {
+            ventasQuery = ventasQuery.eq("id_usuario", dbUser.id_usuario);
+          }
+
+          const { data: ventasData } = await ventasQuery;
           const ventas = ventasData || [];
           setVentasTurno(ventas);
 
@@ -167,7 +221,7 @@ export default function CajaPage() {
             tVentas += t;
             
             // Efectivo vs QR
-            if (v.metodo_pago === 'efectivo' || v.metodo_pago === 'mixto') vEfectivo += t; // Simplificación
+            if (v.metodo_pago === 'efectivo' || v.metodo_pago === 'mixto') vEfectivo += t;
             else vQr += t;
             
             // Prod vs Mesa
@@ -178,7 +232,7 @@ export default function CajaPage() {
               });
             }
             tVentasProductos += subtotalProd;
-            tVentasMesas += (t - subtotalProd); // El restante es la mesa
+            tVentasMesas += (t - subtotalProd);
           });
 
           // Efectivo y QR de ingresos manuales
@@ -378,7 +432,29 @@ export default function CajaPage() {
           <h2 className="text-2xl font-bold text-white flex items-center gap-2"><Landmark className="w-7 h-7 text-billar-primary" /> Control de Caja</h2>
           <p className="text-sm text-billar-gray">Apertura, cierre y movimientos de caja diarios.</p>
         </div>
-        <button onClick={loadData} className="flex items-center gap-2 px-4 py-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg text-sm transition-all"><RefreshCw className="w-4 h-4" /> Refrescar</button>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          {userLevel >= 4 && sucursales.length > 0 && (
+            <div className="flex items-center gap-2 bg-[#1a1a1c] border border-[#2a2a2c] rounded-xl px-3 py-2">
+              <span className="text-xs text-billar-gray font-bold uppercase whitespace-nowrap">Sucursal:</span>
+              <select
+                value={activeSucursalId}
+                onChange={(e) => {
+                  const nextId = e.target.value;
+                  setActiveSucursalId(nextId);
+                  loadData(nextId);
+                }}
+                className="bg-transparent text-white text-sm focus:outline-none cursor-pointer font-bold border-none p-0 outline-none"
+              >
+                {sucursales.map((s: any) => (
+                  <option key={s.id_sucursal} value={s.id_sucursal} className="bg-[#1a1a1c] text-white">
+                    {s.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          <button onClick={() => loadData()} className="flex items-center justify-center gap-2 px-4 py-2 border border-[#2a2a2c] hover:bg-[#2a2a2c] text-white rounded-lg text-sm transition-all"><RefreshCw className="w-4 h-4" /> Refrescar</button>
+        </div>
       </div>
 
       {dbError && (<div className="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl flex items-start gap-3 print:hidden"><AlertTriangle className="w-6 h-6 shrink-0" /><div><h4 className="font-bold text-white">Error</h4><p className="text-sm">{dbError}</p></div></div>)}
@@ -392,7 +468,9 @@ export default function CajaPage() {
           <div>
             <h3 className="text-xl font-black text-white">{cajaAbierta ? "Caja Abierta" : "Caja Cerrada"}</h3>
             <p className="text-sm text-billar-gray">
-              {cajaAbierta ? `Apertura: ${new Date(arqueoActual?.created_at).toLocaleString("es-BO")} — Monto inicial: Bs. ${Number(arqueoActual?.monto_inicial || 0).toFixed(2)}` : "No hay una caja abierta actualmente."}
+              {cajaAbierta 
+                ? `Apertura por ${arqueoActual?.usuarios?.nombre || "Cajero"}: ${new Date(arqueoActual?.created_at).toLocaleString("es-BO")} — Monto inicial: Bs. ${Number(arqueoActual?.monto_inicial || 0).toFixed(2)}` 
+                : "No hay una caja abierta actualmente."}
             </p>
           </div>
         </div>
@@ -446,7 +524,11 @@ export default function CajaPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead><tr className="border-b border-[#2a2a2c] text-xs font-bold text-billar-gray tracking-wider uppercase bg-[#141416]/50">
-              <th className="py-3 pl-6">Hora</th><th className="py-3">Tipo</th><th className="py-3 text-right">Monto</th><th className="py-3 pr-6">Descripción</th>
+              <th className="py-3 pl-6">Hora</th>
+              <th className="py-3">Tipo</th>
+              <th className="py-3">Empleado</th>
+              <th className="py-3 text-right">Monto</th>
+              <th className="py-3 pr-6">Descripción</th>
             </tr></thead>
             <tbody>
               {movimientos.length > 0 ? movimientos.map((m: any) => {
@@ -455,12 +537,13 @@ export default function CajaPage() {
                   <tr key={m.id_mov_caja} className="border-b border-[#2a2a2c]/40 hover:bg-white/[0.02] transition-colors text-sm">
                     <td className="py-3 pl-6 text-billar-gray text-xs">{new Date(m.created_at).toLocaleTimeString("es-BO", { hour: "2-digit", minute: "2-digit" })}</td>
                     <td className="py-3"><span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase ${isPositive ? "bg-green-500/10 text-green-500" : m.tipo === 'cierre' ? "bg-blue-500/10 text-blue-400" : "bg-red-500/10 text-red-400"}`}>{m.tipo}</span></td>
+                    <td className="py-3 text-billar-gray text-xs">{m.usuarios?.nombre || "—"}</td>
                     <td className={`py-3 text-right font-bold ${isPositive ? "text-green-400" : "text-red-400"}`}>{isPositive ? "+" : "-"} Bs. {Number(m.monto).toFixed(2)}</td>
                     <td className="py-3 pr-6 text-billar-gray text-xs truncate max-w-[200px]">{m.descripcion || "—"}</td>
                   </tr>
                 );
               }) : (
-                <tr><td colSpan={4} className="py-12 text-center text-billar-gray text-sm">No hay movimientos manuales registrados en este turno.</td></tr>
+                <tr><td colSpan={5} className="py-12 text-center text-billar-gray text-sm">No hay movimientos registrados en este turno.</td></tr>
               )}
             </tbody>
           </table>

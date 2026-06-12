@@ -17,8 +17,50 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { nombre, email, password, id_rol, id_sucursal } = body;
 
-    if (!nombre || !email || !password || !id_rol) {
+    if (!nombre || !email || !id_rol) {
       return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
+    }
+
+    const isDummyKey = !process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY === "dummy-key";
+
+    if (isDummyKey) {
+      // Fallback: pre-registrar en base de datos sin Supabase Auth
+      const { data: existingUser } = await supabaseAdmin.from("usuarios").select("id_usuario").eq("email", email).maybeSingle();
+      if (existingUser) {
+        return NextResponse.json({ error: "El correo ya está registrado en el sistema." }, { status: 400 });
+      }
+
+      const { data: userData, error: userError } = await supabaseAdmin.from("usuarios").insert({
+        nombre,
+        email,
+        id_rol,
+        activo: true,
+        auth_id: null
+      }).select();
+
+      if (userError) {
+        return NextResponse.json({ error: userError.message }, { status: 400 });
+      }
+
+      const userId = userData[0].id_usuario;
+
+      if (id_sucursal) {
+        await supabaseAdmin.from("usuario_sucursal").insert({
+          id_usuario: userId,
+          id_sucursal,
+          id_rol,
+        });
+      }
+
+      return NextResponse.json({ 
+        success: true, 
+        user: userData[0], 
+        warning: "Falta configurar la clave secreta SUPABASE_SERVICE_ROLE_KEY en el servidor. El empleado fue registrado en la base de datos, pero no se pudo crear su contraseña. Pídele que se registre de forma pública en la web usando el correo '" + email + "' para vincular su cuenta."
+      }, { status: 200 });
+    }
+
+    if (!password) {
+      return NextResponse.json({ error: "La contraseña es obligatoria" }, { status: 400 });
     }
 
     // 1. Create the user in Supabase Auth
