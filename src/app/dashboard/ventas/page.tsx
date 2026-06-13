@@ -51,13 +51,16 @@ export default function VentasPage() {
       
       const { data: dbUser } = await supabase
         .from("usuarios")
-        .select("id_usuario, nombre, roles(nombre, nivel)")
+        .select("id_usuario, nombre, roles(nombre, nivel), usuario_sucursal(id_sucursal)")
         .eq("auth_id", user.id)
         .single();
 
       // 1. Obtener sucursal actual para revisar la caja
+      const usObj = dbUser?.usuario_sucursal && (Array.isArray(dbUser.usuario_sucursal) ? dbUser.usuario_sucursal[0] : dbUser.usuario_sucursal);
+      const userAssignedSucursalId = usObj?.id_sucursal || "";
+
       const { data: sucursales } = await supabase.from("sucursales").select("id_sucursal");
-      const sucursalId = sucursales?.[0]?.id_sucursal || "";
+      const sucursalId = userAssignedSucursalId || sucursales?.[0]?.id_sucursal || "";
 
       // 2. Verificar Caja Abierta
       const { data: cajas } = await supabase.from("cajas").select("id_caja").eq("id_sucursal", sucursalId).eq("activo", true).limit(1).maybeSingle();

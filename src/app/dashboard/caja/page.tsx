@@ -93,7 +93,7 @@ export default function CajaPage() {
       let sucursalId = "";
       if (level < 4) {
         const usObj = Array.isArray(dbUser.usuario_sucursal) ? dbUser.usuario_sucursal[0] : dbUser.usuario_sucursal;
-        sucursalId = usObj?.id_sucursal || "";
+        sucursalId = usObj?.id_sucursal || listSucursales?.[0]?.id_sucursal || "";
       } else {
         sucursalId = targetSucursalId || activeSucursalId;
         if (!sucursalId) {
