@@ -64,58 +64,38 @@ export default function VentasPage() {
       if (cajas && dbUser) {
         const rolesData = dbUser.roles;
         const rolesObj = Array.isArray(rolesData) ? rolesData[0] : rolesData;
-        const userRol = rolesObj?.nombre || "";
+        const userLevel = rolesObj?.nivel || 1;
 
-        if (userRol === 'cajero') {
-          // Si es cajero, verificar que ESTE cajero específico tenga su caja abierta
-          const { data: lastArqueo } = await supabase
+        let arqueoQuery = supabase
+          .from("arqueos")
+          .select("*")
+          .eq("id_caja", cajas.id_caja)
+          .eq("tipo", "apertura");
+
+        if (userLevel < 4) {
+          // Si es cajero/mesero (nivel < 4), buscar su propia apertura
+          arqueoQuery = arqueoQuery.eq("id_usuario", dbUser.id_usuario);
+        }
+
+        const { data: lastArqueo } = await arqueoQuery
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        if (lastArqueo) {
+          // Buscar si hay un cierre posterior a esta apertura (sin importar quién lo cerró)
+          const { data: cierrePost } = await supabase
             .from("arqueos")
             .select("*")
             .eq("id_caja", cajas.id_caja)
-            .eq("id_usuario", dbUser.id_usuario)
-            .eq("tipo", "apertura")
-            .order("created_at", { ascending: false })
+            .eq("tipo", "cierre")
+            .gt("created_at", lastArqueo.created_at)
             .limit(1)
             .maybeSingle();
 
-          if (lastArqueo) {
-            const { data: cierrePost } = await supabase
-              .from("arqueos")
-              .select("*")
-              .eq("id_caja", cajas.id_caja)
-              .eq("id_usuario", dbUser.id_usuario)
-              .eq("tipo", "cierre")
-              .gt("created_at", lastArqueo.created_at)
-              .limit(1)
-              .maybeSingle();
-
-            setCajaAbierta(!cierrePost);
-          } else {
-            setCajaAbierta(false);
-          }
+          setCajaAbierta(!cierrePost);
         } else {
-          // Admin, Superadmin y otros roles: verificar si hay al menos una caja abierta en general
-          const { data: lastArqueo } = await supabase
-            .from("arqueos")
-            .select("*")
-            .eq("id_caja", cajas.id_caja)
-            .eq("tipo", "apertura")
-            .order("created_at", { ascending: false })
-            .limit(1)
-            .maybeSingle();
-          if (lastArqueo) {
-            const { data: cierrePost } = await supabase
-              .from("arqueos")
-              .select("*")
-              .eq("id_caja", cajas.id_caja)
-              .eq("tipo", "cierre")
-              .gt("created_at", lastArqueo.created_at)
-              .limit(1)
-              .maybeSingle();
-            setCajaAbierta(!cierrePost);
-          } else {
-            setCajaAbierta(false);
-          }
+          setCajaAbierta(false);
         }
       } else {
         setCajaAbierta(false);
